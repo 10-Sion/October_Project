@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +10,11 @@
 <title>로그인 페이지</title>
 </head>
 <body>
-	<form action="" method="post">
-			<h3>로그인</h2>
-			<input type="email">
+	<form action="<%=contextPath %>/mainPage/index.jsp" method="post" align="center">
+		<h3>참가자(참가기업) 로그인</h3>
+		이메일 : <input type="email" name="email" ><br>
+		비밀번호 : <input type="password" name="pw"><br>
+		<input type="submit" value="로그인">
 	</form>
-	
 </body>
 </html>

@@ -44,11 +44,11 @@
 	                <li><a href="#" accesskey="4" title="">커뮤니티</a>
 	                    <ul class="sub-menu">
 	                        <li><a href="sub_Community"> 공지사항 </a></li>
-	                        <li><a href="sub_Community"> 자주 하는 질문 </a></li>
+	                        <li><a href="../sub_Community/QnAinterview.jsp"> 자주 하는 질문 </a></li>
 	                    </ul>
 	                </li>
 	                <li>
-	                	<a href="#" accesskey="5" title="">로그인</a>
+	                	<a href="../mainPage/login.jsp" accesskey="5" title="">로그인</a>
 	                </li>
 	                
 	            </ul>
