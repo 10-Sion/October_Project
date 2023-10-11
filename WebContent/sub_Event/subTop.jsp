@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 	<!-- Header -->
@@ -20,7 +20,7 @@
     <!-- Nav -->
     <nav id="menu">
         <ul class="links">
-            <li><a href="expt_AnNae.jsp">박람회 소개</a></li>
+            <li><a href="expo_AnNae.jsp">박람회 소개</a></li>
             <li><a href="expo_JulCha.jsp">참여 절차</a></li>
             <li><a href="expo_SaJeon.jsp">사전 등록</a></li>
             <li><a href="expo_JiDo.jsp">찾아오시는 길</a></li>
