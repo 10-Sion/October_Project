@@ -24,27 +24,27 @@
 	            <ul>
 	                <li class="active"><a href="#" accesskey="1" title="">행사 안내</a>
 	                    <ul class="sub-menu">
-	                        <li><a> 박람회 소개 </a></li>
-	                        <li><a> 참여 절차 </a></li>
-	                        <li><a> 사전 등록 </a></li>
-	                        <li><a> 찾아오시는 길 </a></li>
+	                        <li><a href="../sub_Event"> 박람회 소개 </a></li>
+	                        <li><a href="../sub_Event"> 참여 절차 </a></li>
+	                        <li><a href="../sub_Event"> 사전 등록 </a></li>
+	                        <li><a href="../sub_Event"> 찾아오시는 길 </a></li>
 	                    </ul>
 	                </li>
 	                <li><a href="#" accesskey="2" title="">참여 기업</a>
 	                    <ul class="sub-menu">
-	                        <li><a> 기업 리스트 </a></li>
+	                        <li><a href="../sub_Company"> 기업 리스트 </a></li>
 	                    </ul>
 	                </li>
 	                <li><a href="#" accesskey="3" title="">온라인 면접</a>
 	                    <ul class="sub-menu">
-	                        <li><a> 온라인 면접 신청 </a></li>
-	                        <li><a> 관리자: 기업 신청 승인 </a></li>
+	                        <li><a href="../sub_Interview"> 온라인 면접 신청 </a></li>
+	                        <li><a href="../sub_Interview"> 관리자: 기업 신청 승인 </a></li>
 	                    </ul>
 	                </li>
 	                <li><a href="#" accesskey="4" title="">커뮤니티</a>
 	                    <ul class="sub-menu">
-	                        <li><a> 공지사항 </a></li>
-	                        <li><a> 자주 하는 질문 </a></li>
+	                        <li><a href="sub_Community"> 공지사항 </a></li>
+	                        <li><a href="sub_Community"> 자주 하는 질문 </a></li>
 	                    </ul>
 	                </li>
 	                
