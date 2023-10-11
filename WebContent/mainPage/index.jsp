@@ -24,10 +24,10 @@
 	            <ul>
 	                <li class="active"><a href="#" accesskey="1" title="">행사 안내</a>
 	                    <ul class="sub-menu">
-	                        <li><a href="../sub_Event"> 박람회 소개 </a></li>
-	                        <li><a href="../sub_Event"> 참여 절차 </a></li>
-	                        <li><a href="../sub_Event"> 사전 등록 </a></li>
-	                        <li><a href="../sub_Event"> 찾아오시는 길 </a></li>
+	                        <li><a href="../sub_Event/expo_AnNae.jsp"> 박람회 소개 </a></li>
+	                        <li><a href="../sub_Event/expo_JulCha.jsp"> 참여 절차 </a></li>
+	                        <li><a href="../sub_Event/expo_SaJeon.jsp"> 사전 등록 </a></li>
+	                        <li><a href="../sub_Event/expo_JiDo.jsp"> 찾아오시는 길 </a></li>
 	                    </ul>
 	                </li>
 	                <li><a href="#" accesskey="2" title="">참여 기업</a>
@@ -44,11 +44,12 @@
 	                <li><a href="#" accesskey="4" title="">커뮤니티</a>
 	                    <ul class="sub-menu">
 	                        <li><a href="sub_Community"> 공지사항 </a></li>
+<<<<<<< HEAD
 	                        <li><a href="<%=request.getContextPath()%>/QnA/QnAlist.do"> 자주 하는 질문 </a></li>
+=======
+	                        <li><a href="sub_Community"> 자주 하는 질문 </a></li>
+>>>>>>> branch 'main' of https://github.com/10-Sion/October_Project.git
 	                    </ul>
-	                </li>
-	                <li>
-	                	<a href="../mainPage/login.jsp" accesskey="5" title="">로그인</a>
 	                </li>
 	                
 	            </ul>

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	절차 페이지
 </body>
 </html>
