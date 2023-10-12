@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<jsp:include page="subTop.jsp"/>
+	지도 페이지
 </body>
 </html>
