@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<jsp:include page="subTop.jsp"/>
+	사전 등록 페이지 2 
 </body>
 </html>
