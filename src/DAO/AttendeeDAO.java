@@ -10,12 +10,15 @@ import VO.AttendeeVO;
 public class AttendeeDAO implements EventInterface.AttendeeDAO {
     private Connection connection;
 
-    public AttendeeDAO(Connection connection) {
-        this.connection = connection;
+    public AttendeeDAO() {
+        // 데이터베이스 연결 초기화
+        this.connection = DatabaseConnection.getConnection();
+        
     }
 
     @Override
     public void addAttendee(AttendeeVO attendee) {
+    	
         String sql = "INSERT INTO Attendee (AtndName, Email, Passwd, ExpoID) VALUES (?, ?, ?, ?)";
         
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -28,20 +31,19 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
             preparedStatement.executeUpdate();
             
         } catch (SQLException e) {
+        	
             e.printStackTrace();
-            
         }
     }
 
     @Override
     public List<AttendeeVO> getAllAttendees() {
-    	
         List<AttendeeVO> attendees = new ArrayList<>();
         String sql = "SELECT * FROM Attendee";
         
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        		
              ResultSet resultSet = preparedStatement.executeQuery()) {
+        	
             while (resultSet.next()) {
             	
                 AttendeeVO attendee = new AttendeeVO();
@@ -62,11 +64,9 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
         
     }
 
-	@Override
-	public AttendeeVO getAttendee(int attendeeId) {
-		
-		return null;
-	}
-    
-    
+    @Override
+    public AttendeeVO getAttendee(int attendeeId) {
+        
+        return null;
+    }
 }
