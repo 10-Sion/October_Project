@@ -60,4 +60,3 @@ public class qnaController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 }
-
