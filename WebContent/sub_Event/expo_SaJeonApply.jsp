@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
 <%@ page import="VO.ExpoInfoVO" %>
 <%@ page import="DAO.ExpoInfoDAO" %>
 
@@ -17,6 +18,7 @@
 	<button id="showCompanyForm">Company</button>
     
     
+    <!-- 일반 참가자 입력 폼 -->
     <div id="attendeeForm" style="display: none;">
     <form action="/ChuiUpExpo/Event?action=addAttendee" method="post">
     <h1>Add Attendee</h1>
@@ -75,6 +77,43 @@
         <label for="passwd">Password:</label>
         <input type="password" id="passwd" name="passwd" required><br><br>
         
+        <% 
+		    // 선택한 expoID에 해당하는 ExpoInfoVO 객체
+		    int selectedExpoID;
+		    String expoIDParam = request.getParameter("expoID");
+		    
+		    if (expoIDParam != null && !expoIDParam.isEmpty()) {
+		        selectedExpoID = Integer.parseInt(expoIDParam);
+		        
+		    } else {
+		        selectedExpoID = 1; // 또는 다른 기본 값 설정
+		        
+		    }
+		
+		    ExpoInfoVO selectedExpo = null;
+		    for (ExpoInfoVO expo : expoInfoList) {
+		    	
+		        if (expo.getExpoID() == selectedExpoID) {
+		            selectedExpo = expo;
+		            break;
+		            
+		        }
+    		}
+		    
+		    if (selectedExpo != null) {
+		        // 선택한 expoID에 해당하는 ExpoInfoVO에서 ExpoStartSched 및 ExpoEndSched 가져오기
+		        Date expoStartSched = selectedExpo.getExpoStartSched();
+		        Date expoEndSched = selectedExpo.getExpoEndSched();
+		%>
+		        <label for="startDate">StartDate:</label>
+		        <input type="date" name="startDate" value="<%= expoStartSched %>" min="<%= expoStartSched %>" max="<%= expoEndSched %>">
+		        
+		        <label for="endDate">EndDate:</label>
+		        <input type="date" name="endDate" value="<%= expoStartSched %>" min="<%= expoStartSched %>" max="<%= expoEndSched %>">
+		<%
+		    }
+		%>
+
         <label for="expoID">Select Expo:</label><br>
         <select name="expoID">
             <option value="" disabled selected>Select an Expo</option>
@@ -83,8 +122,9 @@
             %>
                 <option value="<%= expo.getExpoID() %>"><%= expo.getExpoName() %></option>
             <%
+        
                 }
-            %>
+			%>
         </select>
 
     	<input type="submit" value="Add Company">
@@ -104,6 +144,7 @@
 	   	        $("#attendeeForm").hide();
 	   	        $("#companyForm").show();
 	   	    });
+	   	    
 	   	});
    	</script>
     	

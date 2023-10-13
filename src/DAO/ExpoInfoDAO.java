@@ -32,6 +32,8 @@ public class ExpoInfoDAO {
                 ExpoInfoVO expo = new ExpoInfoVO();
                 expo.setExpoID(resultSet.getInt("ExpoID"));
                 expo.setExpoName(resultSet.getString("ExpoName"));
+                expo.setExpoStartSched(resultSet.getDate("ExpoStartSched"));
+                expo.setExpoEndSched(resultSet.getDate("ExpoEndSched"));
                 
 
                 expoList.add(expo);
