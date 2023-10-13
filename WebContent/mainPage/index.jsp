@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     
-    <link href="css/default.css" rel="stylesheet" type="text/css" media="all">
-    <link href="css/fonts.css" rel="stylesheet" type="text/css" media="all">
+    <link href="<%=request.getContextPath() %>/mainPage/css/default.css" rel="stylesheet" type="text/css" media="all">
+    <link href="<%=request.getContextPath() %>/mainPage/css/fonts.css" rel="stylesheet" type="text/css" media="all">
 
 </head>
 <body>
@@ -49,6 +49,9 @@
 	                    </ul>
 	                </li>
 	               
+	               	<li>
+	               		<a href="<%=request.getContextPath() %>/mainPage/login.jsp" accesskey="6" title="">로그인</a>
+	               	</li>
 	            </ul>
 	            
 	        </div>
@@ -57,9 +60,9 @@
 	</div>
 	
 	<div class="wrapper">
-	    <div id="banner" class="container"><img src="images/banner.jpg" width="1200" height="500" alt=""></div>
+	    <div id="banner" class="container"><img src="<%=request.getContextPath() %>/mainPage/images/banner.jpg" width="1200" height="500" alt=""></div>
 	</div>
 
-	<script src="js/mainPageSC.js"></script>
+	<script src="<%=request.getContextPath() %>/mainPage/js/mainPageSC.js"></script>
 </body>
 </html>
