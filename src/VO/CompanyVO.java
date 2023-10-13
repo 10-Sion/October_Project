@@ -1,6 +1,6 @@
 package VO;
 
-import java.util.Date;
+import java.sql.Date;
 
 //	기업측 참가자 VO
 public class CompanyVO {
