@@ -2070,9 +2070,9 @@
 		display: block;
 		float: left;
 		margin-right: -2em;
-		opacity: 0;
+		opacity: 1;
 		width: 1em;
-		z-index: -1;
+		height: 1em;
 	}
 
 		input[type="checkbox"] + label,

@@ -9,14 +9,14 @@ import VO.CompanyVO;
 
 public class CompanyDAO {
     private Connection connection;
-
+    
     public CompanyDAO(Connection connection) {
         this.connection = connection;
     }
 
     public void addCompany(CompanyVO company) {
     	
-        String sql = "INSERT INTO Company (CoName, CoDetails, Co_tel, Co_number, Email, Passwd, StartDate, EndDate, ExpoID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Company (CoName, CoDetails, Co_tel, Co_number, Email, Passwd, StartDate, EndDate, ExpoID) VALUES (?, ?, ?, ?, ?, SHA2('?', 256), ?, ?, ?)";
         
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
         	
