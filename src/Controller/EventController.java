@@ -22,26 +22,58 @@ public class EventController extends HttpServlet {
             
         } else if (action.equals("addAttendee")) {
         	
+            // Attendee 추가 처리
             String atndName = request.getParameter("atndName");
             String email = request.getParameter("email");
             String passwd = request.getParameter("passwd");
             int expoID = Integer.parseInt(request.getParameter("expoID"));
 
-            // VO 객체 설정
             AttendeeVO attendee = new AttendeeVO();
+            
             attendee.setAtndName(atndName);
             attendee.setEmail(email);
             attendee.setPasswd(passwd);
             attendee.setExpoID(expoID);
 
-            // Attendee 추가 메서드
             AttendeeDAO attendeeDAO = new AttendeeDAO();
             attendeeDAO.addAttendee(attendee);
 
-            response.sendRedirect("/ChuiUpExpo/sub_Event/expo_SaJeonApply.jsp");
+            response.sendRedirect("/ChuiUpExpo/sub_Event/expo_SaJeon.jsp");
             
-        } else if (action.equals("otherAction")) {
+        } else if (action.equals("addCompany")) {
+        	
+            // 기업 추가 처리
+            String coName = request.getParameter("coName");
+            String coDetails = request.getParameter("coDetails");
+            String coTel = request.getParameter("coTel");
+            String coNumber = request.getParameter("coNumber");
+            String email = request.getParameter("email");
+            String passwd = request.getParameter("passwd");
+            int expoID = Integer.parseInt(request.getParameter("expoID"));
+
+            CompanyVO company = new CompanyVO();
             
+            company.setCoName(coName);
+            company.setCoDetails(coDetails);
+            company.setCoTel(coTel);
+            company.setCoNumber(coNumber);
+            company.setEmail(email);
+            company.setPasswd(passwd);
+            company.setExpoID(expoID);
+
+            CompanyDAO companyDAO = new CompanyDAO();
+            companyDAO.addCompany(company);
+
+            response.sendRedirect("/ChuiUpExpo/sub_Event/expo_SaJeon.jsp");
+            
+        } else if (action.equals("acceptCompany")) {
+            // 기업 수락 처리
+            int companyId = Integer.parseInt(request.getParameter("coID"));
+
+            CompanyDAO companyDAO = new CompanyDAO();
+            companyDAO.acceptCompany(companyId);
+
+            response.sendRedirect("/ChuiUpExpo/sub_Event/expo_CompanyAccepted.jsp");
         } else {
             // 지원하지 않는 동작
             response.sendRedirect("error.jsp");
