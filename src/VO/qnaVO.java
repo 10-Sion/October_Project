@@ -13,6 +13,7 @@ public class qnaVO {
 	private String Qdata;
 	private String Poster;
 	
+	
 	public int getFaqid() {
 		return Faqid;
 	}

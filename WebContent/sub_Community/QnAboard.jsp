@@ -72,9 +72,19 @@
 				<td><%=qVo.getPoster() %></td>
 			</tr>
 			<tr class="answer-row">
-				<td colspan="5"><%=qVo.getAnswer() %></td>
-			</tr>
 			<%
+			if(qVo.getAnswer() == null){
+			%>
+				<td colspan="5">답변 내용이 없습니다.</td>
+			<%
+				} else {
+			%>		
+				<td colspan="5"><%=qVo.getAnswer() %></td>
+			<%	
+				}
+			 %>	
+			</tr>
+<%	
     }
 %>
 		</table>
@@ -124,7 +134,7 @@ if (count != 0) {
 	<%
 	if (sessionUser != null && !sessionUser.isEmpty()) {
     %>
-        <a href="<%= request.getContextPath() %>/sub_Community/addQnA.jsp">글쓰기</a>
+        <a href="<%= request.getContextPath() %>/sub_Community/addQnA.jsp?loginUser=<%=sessionUser%>">글쓰기</a>
     <%
 	}
     %>

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 
 import VO.qnaVO;
+import javafx.css.PseudoClass;
 
 public class qnaDAO  {
 	
@@ -107,6 +108,27 @@ public class qnaDAO  {
 		} 
 		
 		return qnaList;
+	}
+
+	// 질문 추가
+	public void addQnA(String loginUser, String title, String content) {
+		String sql = "";
+		
+		try {
+			
+		sql = "INSERT INTO faq (QTitle, QContent, PostDate, Poster) " + 
+				"VALUE (?, ?, NOW(), ?)";	
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, title);
+		pstmt.setString(2, content);
+		pstmt.setString(3, loginUser);
+		
+		pstmt.executeUpdate();
+		
+		} catch (Exception e) {
+			System.out.println("addQnA() 메소드 내부오류 : " + e);
+		} 
+		
 	}
 	
 	
