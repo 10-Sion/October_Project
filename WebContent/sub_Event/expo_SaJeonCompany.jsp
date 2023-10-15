@@ -8,11 +8,6 @@
 </head>
 <body>
 	<jsp:include page="subTop.jsp"/>
-	
-	사전등록 페이지
-	
-	<button onclick="location.href='expo_SaJeonApply.jsp'">사전등록 신청</button>
-	<button onclick="location.href='expo_SaJeonCompany.jsp'">기업 사전등록</button>
-	
+	기업 사전등록 페이지
 </body>
 </html>

@@ -9,8 +9,8 @@ public interface EventInterface {
     void someMethod();
 
     interface CompanyDAO {	//	사전등록 기업 참가 DAO
-        void insertCompany(CompanyVO company);
-        CompanyVO getCompany(int companyId);
+    	void addCompany(CompanyVO company);
+    	void acceptCompany(int companyId);
     }
 
     interface AttendeeDAO {	//	사전등록 참가자 DAO
