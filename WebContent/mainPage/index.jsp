@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%
+	String contextPath = request.getContextPath();
+	String loginUser = (String) request.getAttribute("loginUser");
+	String sessionUser = (String) session.getAttribute("loginUser");
+
+	// sessionUser 값이 없으면, loginUser 값으로 세션을 설정
+	if (sessionUser == null || sessionUser.isEmpty()) {
+		sessionUser = loginUser;
+		session.setAttribute("loginUser", sessionUser);
+	}
+
+	System.out.println("세션에 저장된 값: " + sessionUser);
+%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title> 취업 박람회 </title>
@@ -11,7 +24,6 @@
     
     <link href="<%=request.getContextPath() %>/mainPage/css/default.css" rel="stylesheet" type="text/css" media="all">
     <link href="<%=request.getContextPath() %>/mainPage/css/fonts.css" rel="stylesheet" type="text/css" media="all">
-
 </head>
 <body>
 	<div id="header-wrapper">
@@ -50,8 +62,14 @@
 	                </li>
 	               
 	               	<li>
-	               		<a href="<%=request.getContextPath() %>/mainPage/login.jsp" accesskey="6" title="">로그인</a>
-	               	</li>
+	                <%-- 세션에 저장된 값이 있으면 로그아웃을 표시 --%>
+	                <% if (sessionUser != null && !sessionUser.isEmpty()) { %>
+	                    <a href="<%=request.getContextPath() %>/mainPage/logout.jsp" accesskey="6" title="">로그아웃</a>
+	                <% } else { %>
+	                    <a href="<%=request.getContextPath() %>/mainPage/login.jsp" accesskey="6" title="">로그인</a>
+	                <% } %>
+	                </li>
+	               	
 	            </ul>
 	            
 	        </div>

@@ -24,6 +24,10 @@
 	// getBoardList() 메소드 호출
 	ArrayList qnaLsit = (ArrayList)qDao.getBoardList(startRow, pageSize);
 	System.out.println("리스트 사이즈 : " + qnaLsit.size());
+	System.out.println("세션에 저장된 값 : " + session.getAttribute("loginUser"));
+	
+	String sessionUser = (String)session.getAttribute("loginUser");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -115,5 +119,15 @@ if (count != 0) {
 }
 %>
 	</div>
+	<div align="center">
+	<!-- 세션에 저장된 값이 있으면 글쓰기 버튼 생성 -->
+	<%
+	if (sessionUser != null && !sessionUser.isEmpty()) {
+    %>
+        <a href="<%= request.getContextPath() %>/sub_Community/addQnA.jsp">글쓰기</a>
+    <%
+	}
+    %>
+    </div>
 </body>
 </html>

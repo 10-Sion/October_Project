@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,7 +37,8 @@ public class LoginController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String nextPage = "";
 		System.out.println("요청 받은 주소 : " + action);
-		
+		PrintWriter out = response.getWriter();
+
 		if(action.equals("") || action == null) {
 			
 			nextPage = "/mainPage/index.jsp";
@@ -45,20 +47,42 @@ public class LoginController extends HttpServlet {
 			
 			String email = request.getParameter("email");
 			String pwd = request.getParameter("pwd");
+			String checkType = request.getParameter("type");
+			String loginUser = "";
 			
-			System.out.println(email);
-			System.out.println(pwd);
+//			System.out.println(email);
+//			System.out.println(pwd);
+//			System.out.println(checkType);
 			
 			LoginDAO lDao = new LoginDAO();
 			
-			String loginUser = lDao.checkUesr(email, pwd);
-			
-			
+			if(checkType.equals("Comp")) {
+				loginUser = lDao.checkComp(email, pwd);
+				
+				if( loginUser.equals("가입된 정보와 일치하지 않습니다.")) {
+					loginUser = "가입된 정보와 일치하지 않습니다.";
+					request.setAttribute("Retry", loginUser);
+					nextPage = "/mainPage/login.jsp";			
+				} else {
+					request.setAttribute("loginUser", loginUser);
+					nextPage = "/mainPage/index.jsp";
+				}
+				
+			} else if(checkType.equals("Atnd")){
+				loginUser = lDao.checkUesr(email, pwd);
+				
+				if( loginUser.equals("가입된 정보와 일치하지 않습니다.")) {
+					loginUser = "가입된 정보와 일치하지 않습니다.";
+					request.setAttribute("Retry", loginUser);
+					nextPage = "/mainPage/login.jsp";	
+				} else {
+					request.setAttribute("loginUser", loginUser);
+					nextPage = "/mainPage/index.jsp";
+				}
+			}
+
 			System.out.println("return 값 : " + loginUser);
 			
-			
-			
-			nextPage = "/mainPage/login.jsp";
 		}
 		
 		System.out.println("반환 되는 주소 : " + nextPage);
