@@ -13,7 +13,7 @@
     <!-- Banner -->
     <section id="banner">
         <div class="inner">
-            <h1>This is Binary, a free and fully responsive<br>website template by <a href="https://templated.co">TEMPLATED</a></h1>
+            <h1>취업 박람회</h1>
             <ul class="actions">
                 <li><a href="#one" class="button alt scrolly big">Continue</a></li>
             </ul>

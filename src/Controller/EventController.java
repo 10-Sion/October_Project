@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,10 +46,12 @@ public class EventController extends HttpServlet {
             // 기업 추가 처리
             String coName = request.getParameter("coName");
             String coDetails = request.getParameter("coDetails");
-            String coTel = request.getParameter("coTel");
-            String coNumber = request.getParameter("coNumber");
+            String coTel = request.getParameter("co_tel");
+            String coNumber = request.getParameter("co_number");
             String email = request.getParameter("email");
             String passwd = request.getParameter("passwd");
+            Date startDate = Date.valueOf(request.getParameter("startDate")); // 사용자로부터 날짜를 문자열로 입력 받음
+            Date endDate = Date.valueOf(request.getParameter("endDate"));
             int expoID = Integer.parseInt(request.getParameter("expoID"));
 
             CompanyVO company = new CompanyVO();
@@ -57,12 +60,15 @@ public class EventController extends HttpServlet {
             company.setCoDetails(coDetails);
             company.setCoTel(coTel);
             company.setCoNumber(coNumber);
-            company.setEmail(email);
+            company.setEmail(email);          
             company.setPasswd(passwd);
+            company.setStartDate(startDate);
+            company.setEndDate(endDate);
             company.setExpoID(expoID);
 
             CompanyDAO companyDAO = new CompanyDAO();
             companyDAO.addCompany(company);
+            
 
             response.sendRedirect("/ChuiUpExpo/sub_Event/expo_SaJeon.jsp");
             
@@ -74,9 +80,38 @@ public class EventController extends HttpServlet {
             companyDAO.acceptCompany(companyId);
 
             response.sendRedirect("/ChuiUpExpo/sub_Event/expo_CompanyAccepted.jsp");
-        } else {
+            
+	    }  else if (action.equals("SelectWhat")) {
+	            // Expo 선택 변경 처리
+	            int selectedExpoID = Integer.parseInt(request.getParameter("expoID"));
+	            
+	            ExpoInfoDAO expoInfoDAO = new ExpoInfoDAO();
+	            ExpoInfoVO selectedExpo = expoInfoDAO.getExpoInfoByID(selectedExpoID);
+
+	            response.setContentType("application/json");
+	            response.setCharacterEncoding("UTF-8");
+
+	            if (selectedExpo != null) {
+	                // 선택한 Expo 정보
+	                String json = "{\"expoID\":" + selectedExpo.getExpoID() + 
+	                                ",\"expoName\":\"" + selectedExpo.getExpoName() + 
+	                                "\",\"expoStartSched\":\"" + selectedExpo.getExpoStartSched() + 
+	                                "\",\"expoEndSched\":\"" + selectedExpo.getExpoEndSched() + "\"}";
+
+	                // JSON 응답 전송
+	                response.getWriter().write(json);
+	                
+	            } else {
+	                // 선택한 Expo가 존재하지 않는 경우에 대한 처리
+	                response.getWriter().write("Selected Expo not found.");
+	                
+	            }
+	        } else {
             // 지원하지 않는 동작
             response.sendRedirect("error.jsp");
         }
     }
+    
+
+
 }
