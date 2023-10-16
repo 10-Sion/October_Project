@@ -123,5 +123,56 @@ public class LoginDAO {
 		
 		return checkComp;
 	}
+	
+	
+	// 관리자 조회 메소드
+	public String checkAdmin(String email, String pwd) {
+		String checkAdmin = "";
+		String sql = "";
+		String checkAdmID = "";
+		String checkPwd = "";
+		String checkPwd2 = "";
+		String getAdminName = "";
+		try {
+			
+			sql = "SELECT * FROM Admin WHERE AdmID = ? AND AdmPW = SHA2(?, 256)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, pwd);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				checkAdmID = rs.getString("AdmID");
+				checkPwd = rs.getString("AdmPW");
+			}
+			
+			sql = "SELECT * FROM Admin WHERE AdmID = ? AND AdmPW = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, checkAdmID);
+			pstmt.setString(2, checkPwd);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				checkAdmID = rs.getString("AdmID");
+				checkPwd2 = rs.getString("AdmPW");
+				getAdminName = rs.getString("AdmName");
+			}
+			// 관리자 이메일이 DB 에 저장된 AdmID 과 같으면?
+			if( email.equals(checkAdmID)) {
+				// 비밀번호 비교
+				if(checkPwd.equals(checkPwd2)) {
+					checkAdmID = getAdminName;
+				} else {
+					checkAdmID = "관리자가 아닙니다.";
+				}
+			} else {
+				checkAdmID = "가입된 정보와 일치하지 않습니다.";
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("checkAdmin 메소드 내부오류 : " + e);
+		}
+		
+		return checkAdmID;
+	}
 
 }

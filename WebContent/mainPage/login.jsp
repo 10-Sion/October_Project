@@ -30,7 +30,7 @@ function goToIndexPage() {
         구분 : 
         <input type="radio" name="type" value="Atnd"> 개인
         <input type="radio" name="type" value="Comp"> 기업<br>
-        이메일 : <input type="email" name="email"><br>
+        이메일 : <input type="text" name="email"><br>
         비밀번호 : <input type="text" name="pwd"><br>
         <input type="submit" value="로그인">
         <input type="button" value="돌아가기" onclick="goToIndexPage()">

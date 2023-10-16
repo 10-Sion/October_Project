@@ -45,42 +45,61 @@ public class LoginController extends HttpServlet {
 
 		}else if( action.equals("/login.do")) {
 			
+			LoginDAO lDao = new LoginDAO();
+			
 			String email = request.getParameter("email");
 			String pwd = request.getParameter("pwd");
 			String checkType = request.getParameter("type");
 			String loginUser = "";
+			int check = email.indexOf("@");
 			
-//			System.out.println(email);
-//			System.out.println(pwd);
-//			System.out.println(checkType);
+			System.out.println("@ 포함" + check);
+			System.out.println("입력한 eamil 값 :" + email);
 			
-			LoginDAO lDao = new LoginDAO();
-			
-			if(checkType.equals("Comp")) {
-				loginUser = lDao.checkComp(email, pwd);
+			// 입력한 아이디에 @ 가 포함되지 않으면? 관리자 아이디와 매칭시킨다.
+			if( check == -1) {
+				System.out.println("관리자 조회 해야함");
 				
-				if( loginUser.equals("가입된 정보와 일치하지 않습니다.")) {
+				loginUser = lDao.checkAdmin(email, pwd);
+				
+				if(loginUser.equals("가입된 정보와 일치하지 않습니다.")) {
 					loginUser = "가입된 정보와 일치하지 않습니다.";
 					request.setAttribute("Retry", loginUser);
-					nextPage = "/mainPage/login.jsp";			
+					nextPage = "/mainPage/login.jsp";
 				} else {
 					request.setAttribute("loginUser", loginUser);
 					nextPage = "/mainPage/index.jsp";
 				}
 				
-			} else if(checkType.equals("Atnd")){
-				loginUser = lDao.checkUesr(email, pwd);
 				
-				if( loginUser.equals("가입된 정보와 일치하지 않습니다.")) {
-					loginUser = "가입된 정보와 일치하지 않습니다.";
-					request.setAttribute("Retry", loginUser);
-					nextPage = "/mainPage/login.jsp";	
-				} else {
-					request.setAttribute("loginUser", loginUser);
-					nextPage = "/mainPage/index.jsp";
+			// 입력한 아이디에 @ 가 포함되어 있으면? 개인 및 기업 참가 여부 확인
+			} else {
+				if(checkType.equals("Comp")) {
+					loginUser = lDao.checkComp(email, pwd);
+					
+					if( loginUser.equals("가입된 정보와 일치하지 않습니다.")) {
+						loginUser = "가입된 정보와 일치하지 않습니다.";
+						request.setAttribute("Retry", loginUser);
+						nextPage = "/mainPage/login.jsp";			
+					} else {
+						request.setAttribute("loginUser", loginUser);
+						nextPage = "/mainPage/index.jsp";
+					}
+					
+				} else if(checkType.equals("Atnd")){
+					loginUser = lDao.checkUesr(email, pwd);
+					
+					if( loginUser.equals("가입된 정보와 일치하지 않습니다.")) {
+						loginUser = "가입된 정보와 일치하지 않습니다.";
+						request.setAttribute("Retry", loginUser);
+						nextPage = "/mainPage/login.jsp";	
+					} else {
+						request.setAttribute("loginUser", loginUser);
+						nextPage = "/mainPage/index.jsp";
+					}
 				}
 			}
-
+			
 			System.out.println("return 값 : " + loginUser);
 			
 		}
