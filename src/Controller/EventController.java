@@ -80,9 +80,38 @@ public class EventController extends HttpServlet {
             companyDAO.acceptCompany(companyId);
 
             response.sendRedirect("/ChuiUpExpo/sub_Event/expo_CompanyAccepted.jsp");
-        } else {
+            
+	    }  else if (action.equals("SelectWhat")) {
+	            // Expo 선택 변경 처리
+	            int selectedExpoID = Integer.parseInt(request.getParameter("expoID"));
+	            
+	            ExpoInfoDAO expoInfoDAO = new ExpoInfoDAO();
+	            ExpoInfoVO selectedExpo = expoInfoDAO.getExpoInfoByID(selectedExpoID);
+
+	            response.setContentType("application/json");
+	            response.setCharacterEncoding("UTF-8");
+
+	            if (selectedExpo != null) {
+	                // 선택한 Expo 정보
+	                String json = "{\"expoID\":" + selectedExpo.getExpoID() + 
+	                                ",\"expoName\":\"" + selectedExpo.getExpoName() + 
+	                                "\",\"expoStartSched\":\"" + selectedExpo.getExpoStartSched() + 
+	                                "\",\"expoEndSched\":\"" + selectedExpo.getExpoEndSched() + "\"}";
+
+	                // JSON 응답 전송
+	                response.getWriter().write(json);
+	                
+	            } else {
+	                // 선택한 Expo가 존재하지 않는 경우에 대한 처리
+	                response.getWriter().write("Selected Expo not found.");
+	                
+	            }
+	        } else {
             // 지원하지 않는 동작
             response.sendRedirect("error.jsp");
         }
     }
+    
+
+
 }

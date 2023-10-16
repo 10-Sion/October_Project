@@ -86,7 +86,7 @@
 		        selectedExpoID = Integer.parseInt(expoIDParam);
 		        
 		    } else {
-		        selectedExpoID = 1; // 또는 다른 기본 값 설정
+		        selectedExpoID = 1;
 		        
 		    }
 		
@@ -115,38 +115,22 @@
 		%>
 
         <label for="expoID">Select Expo:</label><br>
-        <select name="expoID">
-            <option value="" disabled selected>Select an Expo</option>
-            <%
-                for (ExpoInfoVO expo : expoInfoList) {
-            %>
-                <option value="<%= expo.getExpoID() %>"><%= expo.getExpoName() %></option>
-            <%
-        
-                }
-			%>
-        </select>
+		<select name="expoID" id="expoSelect">
+		    <option value="" disabled selected>Select an Expo</option>
+		    <%
+		        for (ExpoInfoVO expo : expoInfoList) {
+		    %>
+		        <option value="<%= expo.getExpoID() %>"><%= expo.getExpoName() %></option>
+		    <%
+		        }
+		    %>
+		</select>
 
     	<input type="submit" value="Add Company">
     </form>
     </div>
     
-   	<script>
-	   	$(document).ready(function() {
-	   	    // Attendee 폼 표시
-	   	    $("#showAttendeeForm").click(function() {
-	   	        $("#attendeeForm").show();
-	   	        $("#companyForm").hide();
-	   	    });
-	
-	   	    // Company 폼 표시
-	   	    $("#showCompanyForm").click(function() {
-	   	        $("#attendeeForm").hide();
-	   	        $("#companyForm").show();
-	   	    });
-	   	    
-	   	});
-   	</script>
+   	<script src="assets/js/selectWarigari.js"></script>
     	
 </body>
 </html>
