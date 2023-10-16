@@ -38,7 +38,10 @@ public class In_Controller extends HttpServlet {
             List<In_ScheduleVO> schedules = scheduleDAO.getAllSchedules();
             request.setAttribute("applicants", applicants);
             request.setAttribute("schedules", schedules);
-            request.getRequestDispatcher("/admin.jsp").forward(request, response);
+            
+            request.getRequestDispatcher("/ChuiUpExpo/sub_Interview/in_admin.jsp").forward(request, response);
+
+      
         } else if (action.equals("approveApplicant")) {
             // 승인 기능 수행
             int appID = Integer.parseInt(request.getParameter("appID"));
