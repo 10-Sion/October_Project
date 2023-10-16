@@ -8,12 +8,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class In_ApplicantDAO {
     private Connection connection;
 
-    public In_ApplicantDAO(Connection connection) {
-        this.connection = connection;
+    public In_ApplicantDAO() {
+    	this.connection = DatabaseConnection.getConnection();
     }
 
     // 면접 신청 정보를 데이터베이스에 추가하는 메서드
@@ -80,5 +82,26 @@ public class In_ApplicantDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+ // 모든 면접 신청 정보를 가져오는 메서드
+    public List<In_ApplicantVO> getAllApplicants() {
+        List<In_ApplicantVO> applicants = new ArrayList<>();
+        String query = "SELECT * FROM IntvwApplicant";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                In_ApplicantVO applicant = new In_ApplicantVO();
+                applicant.setAppID(resultSet.getInt("AppID"));
+                applicant.setAtndID(resultSet.getInt("AtndID"));
+                applicant.setSchID(resultSet.getInt("SchID"));
+                applicant.setAppStatus(resultSet.getString("AppStatus"));
+                applicants.add(applicant);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return applicants;
     }
 }
