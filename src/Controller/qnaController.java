@@ -53,11 +53,28 @@ public class qnaController extends HttpServlet {
 			request.setAttribute("qlist", qlist);
 			
 			nextPage = "/sub_Community/QnAboard.jsp";
+			
+		} else if (action.equals("/addQnA.do")) {
+			
+			qnaDAO qnaDAO = new qnaDAO();
+
+			String loginUser = request.getParameter("loginUser");
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			
+			System.out.println(loginUser);
+			System.out.println(title);
+			System.out.println(content);
+			
+			qnaDAO.addQnA(loginUser, title, content);
+			
+			nextPage = "/sub_Community/QnAboard.jsp";
 		}
+		
+		
 		
 		System.out.println("반환 되는 주소 : " + nextPage);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
 	}
 }
-

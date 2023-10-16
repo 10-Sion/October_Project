@@ -15,7 +15,7 @@ public class DatabaseConnection {
                 final String DB_URL = "jdbc:mysql://localhost:3306/expo?serverTimezone=UTC";
                 final String DB_USERNAME = "pid";
                 final String DB_PASSWORD = "1234";
-                
+                 
                 connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
                 
             } catch (ClassNotFoundException | SQLException e) {
