@@ -24,6 +24,8 @@
 	// getBoardList() 메소드 호출
 	ArrayList qnaLsit = (ArrayList)qDao.getBoardList(startRow, pageSize);
 	System.out.println("리스트 사이즈 : " + qnaLsit.size());
+	
+	// 관리자 정보 확인
 	System.out.println("세션에 저장된 값 : " + session.getAttribute("loginUser"));
 	
 	String sessionUser = (String)session.getAttribute("loginUser");
@@ -69,20 +71,26 @@
 				<td><%=qVo.getQtitle() %></td>
 				<td><%=qVo.getQContent() %></td>
 				<td><%=qVo.getQdata() %></td>
-				<td><%=qVo.getPoster() %></td>
-			</tr>
-			<tr class="answer-row">
-			<%
-			if(qVo.getAnswer() == null){
-			%>
-				<td colspan="5">답변 내용이 없습니다.</td>
-			<%
+				
+				<!-- 세션에 저장된 값에 '관리자' 라는 문자가 있으면 글쓰기 버튼 생성 -->
+				<td>
+				<%
+				if (sessionUser != null && sessionUser.contains("관리자")) {
+				%>
+				    <a href="<%= request.getContextPath() %>/QnA/editQnA.do?FaqId=<%=qVo.getFaqid() %>"><%=qVo.getPoster() %></a>
+				<%
 				} else {
-			%>		
-				<td colspan="5"><%=qVo.getAnswer() %></td>
-			<%	
+				%>
+					<%=qVo.getPoster() %>
+				<%
 				}
-			 %>	
+				%>
+				</td>
+			</tr>
+			
+			
+			<tr class="answer-row">
+				<td colspan="5"><%=qVo.getAnswer() %></td>
 			</tr>
 <%	
     }
@@ -108,21 +116,21 @@ if (count != 0) {
 
     if (startPage > pageBlock) {
 %>
-		<a href="QnAboard.jsp?pageNum=<%= startPage - pageBlock %>">prev</a>
+		<a href="<%=request.getContextPath()%>/sub_Community/QnAboard.jsp?pageNum=<%= startPage - pageBlock %>">prev</a>
 		<!-- 이전 페이지로 이동 -->
 		<%
     }
 
     for (int i = startPage; i <= endPage; i++) {
 %>
-		<a href="QnAboard.jsp?pageNum=<%= i %>"><%= i %></a>
+		<a href="<%=request.getContextPath()%>/sub_Community/QnAboard.jsp?pageNum=<%= i %>"><%= i %></a>
 		<!-- 각 페이지 번호 링크 -->
 		<%
     }
 
     if (endPage < pageCount) {
 %>
-		<a href="QnAboard.jsp?pageNum=<%= startPage + pageBlock %>">next</a>
+		<a href="<%=request.getContextPath()%>/sub_Community/QnAboard.jsp?pageNum=<%= startPage + pageBlock %>">next</a>
 		<!-- 다음 페이지로 이동 -->
 		<%
     }
@@ -130,14 +138,14 @@ if (count != 0) {
 %>
 	</div>
 	<div align="center">
-	<!-- 세션에 저장된 값이 있으면 글쓰기 버튼 생성 -->
+	<!-- 세션에 저장된 값에 '관리자' 라는 문자가 있으면 글쓰기 버튼 생성 -->
 	<%
-	if (sessionUser != null && !sessionUser.isEmpty()) {
-    %>
-        <a href="<%= request.getContextPath() %>/sub_Community/addQnA.jsp?loginUser=<%=sessionUser%>">글쓰기</a>
-    <%
+	if (sessionUser != null && sessionUser.contains("관리자")) {
+	%>
+	    <a href="<%= request.getContextPath() %>/sub_Community/addQnA.jsp?loginUser=<%=sessionUser%>">글쓰기</a>
+	<%
 	}
-    %>
+	%>
     </div>
 </body>
 </html>

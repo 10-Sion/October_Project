@@ -33,6 +33,7 @@ public class LoginDAO {
 		String checkPwd = "";
 		String checkPwd2 = "";
 		String getUserName = "";
+		int checkStatus = 0;
 		try {
 			
 			sql = "SELECT * FROM Attendee WHERE Email = ? AND Passwd = SHA2(?, 256)";
@@ -54,12 +55,24 @@ public class LoginDAO {
 				checkEmail = rs.getString("email");
 				checkPwd2 = rs.getString("passwd");
 				getUserName = rs.getString("atndName");
+				checkStatus = rs.getInt("Status");
 			}
 			// 사용자 이메일이 DB 에 저장된 email 과 같으면?
 			if( email.equals(checkEmail)) {
 				// 비밀번호 비교
 				if(checkPwd.equals(checkPwd2)) {
-					checkUser = getUserName;
+					// 아이디 비밀번호 모두 일치하면 가입승인 상태 체크 
+					if( checkStatus == 0) {
+						checkUser = "관리자에게 문의 바람";
+					} else if( checkStatus == 1) {
+						checkUser = getUserName;
+					} else if( checkStatus == 2) {
+						checkUser = "관리자에게 문의 바람";
+					} else if( checkStatus == 3) {
+						checkUser = "관리자에게 문의 바람";
+					} else {
+						checkUser = "관리자에게 문의 바람";
+					}
 				} else {
 					checkUser = "가입된 정보와 일치하지 않습니다.";
 				}
@@ -82,6 +95,8 @@ public class LoginDAO {
 		String checkPwd = "";
 		String checkPwd2 = "";
 		String getUserName = "";
+		int checkStatus = 0;
+		
 		try {
 			
 			sql = "SELECT * FROM company WHERE Email = ? AND Passwd = SHA2(?, 256)";
@@ -103,12 +118,26 @@ public class LoginDAO {
 				checkEmail = rs.getString("email");
 				checkPwd2 = rs.getString("passwd");
 				getUserName = rs.getString("CoName");
+				checkStatus = rs.getInt("Status");
 			}
+			
 			// 사용자 이메일이 DB 에 저장된 email 과 같으면?
 			if( email.equals(checkEmail)) {
 				// 비밀번호 비교
 				if(checkPwd.equals(checkPwd2)) {
-					checkComp = getUserName;
+					// 아이디 비밀번호 모두 일치하면 가입승인 상태 체크 
+					if( checkStatus == 0) {
+						checkComp = "관리자에게 문의 바람";
+					} else if( checkStatus == 1) {
+						checkComp = getUserName;
+					} else if( checkStatus == 2) {
+						checkComp = "관리자에게 문의 바람";
+					} else if( checkStatus == 3) {
+						checkComp = "관리자에게 문의 바람";
+					} else {
+						checkComp = "관리자에게 문의 바람";
+					}
+					
 				} else {
 					checkComp = "가입된 정보와 일치하지 않습니다.";
 				}
@@ -122,6 +151,57 @@ public class LoginDAO {
 		}
 		
 		return checkComp;
+	}
+	
+	
+	// 관리자 조회 메소드
+	public String checkAdmin(String email, String pwd) {
+		String checkAdmin = "";
+		String sql = "";
+		String checkAdmID = "";
+		String checkPwd = "";
+		String checkPwd2 = "";
+		String getAdminName = "";
+		try {
+			
+			sql = "SELECT * FROM Admin WHERE AdmID = ? AND AdmPW = SHA2(?, 256)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, pwd);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				checkAdmID = rs.getString("AdmID");
+				checkPwd = rs.getString("AdmPW");
+			}
+			
+			sql = "SELECT * FROM Admin WHERE AdmID = ? AND AdmPW = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, checkAdmID);
+			pstmt.setString(2, checkPwd);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				checkAdmID = rs.getString("AdmID");
+				checkPwd2 = rs.getString("AdmPW");
+				getAdminName = rs.getString("AdmName");
+			}
+			// 관리자 이메일이 DB 에 저장된 AdmID 과 같으면?
+			if( email.equals(checkAdmID)) {
+				// 비밀번호 비교
+				if(checkPwd.equals(checkPwd2)) {
+					checkAdmID = getAdminName;
+				} else {
+					checkAdmID = "관리자가 아닙니다.";
+				}
+			} else {
+				checkAdmID = "가입된 정보와 일치하지 않습니다.";
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("checkAdmin 메소드 내부오류 : " + e);
+		}
+		
+		return checkAdmID;
 	}
 
 }
