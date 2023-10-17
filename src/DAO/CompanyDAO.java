@@ -23,7 +23,7 @@ public class CompanyDAO {
     public void addCompany(CompanyVO company) {
     	
         String sql = "INSERT INTO Company (CoName, CoDetails, Co_tel, Co_number, Email, Passwd, StartDate, EndDate, ExpoID, Status) " +
-                     "VALUES (?, ?, ?, ?, ?, SHA2(?, 256), ?, ?, ?, 0)";
+                     "VALUES (?, ?, ?, ?, ?, SHA2(?, 256), ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, company.getCoName());
