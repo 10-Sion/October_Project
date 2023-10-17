@@ -12,28 +12,6 @@
 <jsp:include page="../sub_Event/subTop.jsp"/>
     <h1>면접 신청 페이지</h1>
 
-    <!-- 여기에 면접 신청 정보를 나열하는 코드 추가 -->
-    <h2>면접 신청 정보</h2>
-    <table>
-        <tr>
-            <th>신청자 ID</th>
-            <th>일정 ID</th>
-            <th>상태</th>
-            <th>액션</th>
-        </tr>
-        <!-- 면접 신청 정보를 표로 나열 -->
-        <c:forEach var="applicant" items="${applicants}">
-            <tr>
-                <td>${applicant.atndID}</td>
-                <td>${applicant.schID}</td>
-                <td>${applicant.appStatus}</td>
-                <td>
-                    <!-- 기타 액션 추가 가능 -->
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
-
     <!-- 면접 신청 양식 -->
     <h2>면접 신청</h2>
     <form action="<%= request.getContextPath() %>/In_Controller" method="post">

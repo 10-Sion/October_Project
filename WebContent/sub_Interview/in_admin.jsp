@@ -30,20 +30,23 @@
             <td>${applicant.appID}</td>
             <td>${applicant.atndID}</td>
             <td>${applicant.schID}</td>
-            <td>${applicant.appStatus}</td>
+            <td>${applicant.status}</td>
             <td>
                 <!-- 승인 버튼 -->
-                <a href="<%= request.getContextPath() %>/Admin_Controller?action=approveApplicant&appID=${applicant.appID}">승인</a>
+                <a href="<%= request.getContextPath() %>/In_Controller?action=approveApplicant&appID=${applicant.appID}">승인</a>
                 
                 <!-- 수정 버튼 -->
-                <a href="<%= request.getContextPath() %>/Admin_Controller?action=editApplicant&appID=${applicant.appID}">수정</a>
+				<a href="<%= request.getContextPath() %>/In_Controller?action=updateApplicant&appID=${applicant.appID}">수정</a>
+
                 
                 <!-- 삭제 버튼 -->
-                <a href="<%= request.getContextPath() %>/Admin_Controller?action=deleteApplicant&appID=${applicant.appID}">삭제</a>
+                <a href="<%= request.getContextPath() %>/In_Controller?action=deleteApplicant&appID=${applicant.appID}">삭제</a>
             </td>
         </tr>
     </c:forEach>
 </table>
+<!-- 승인된 목록 버튼 -->
+<a href="<%= request.getContextPath() %>/In_Controller?action=approvedList">면접 신청 승인된 목록</a>
 
 <!-- 면접 일정 정보 -->
 <h2>면접 일정 정보</h2>
@@ -63,13 +66,13 @@
             <td>${schedule.coID}</td>
             <td>
                 <!-- 승인 버튼 -->
-                <a href="<%= request.getContextPath() %>/Admin_Controller?action=approveSchedule&schID=${schedule.schID}">승인</a>
+                <a href="<%= request.getContextPath() %>/In_Controller?action=approveSchedule&schID=${schedule.schID}">승인</a>
                 
                 <!-- 수정 버튼 -->
-                <a href="<%= request.getContextPath() %>/Admin_Controller?action=editSchedule&schID=${schedule.schID}">수정</a>
+                <a href="<%= request.getContextPath() %>/In_Controller?action=updateSchedule&schID=${schedule.schID}">수정</a>
                 
                 <!-- 삭제 버튼 -->
-                <a href="<%= request.getContextPath() %>/Admin_Controller?action=deleteSchedule&schID=${schedule.schID}">삭제</a>
+                <a href="<%= request.getContextPath() %>/In_Controller?action=deleteSchedule&schID=${schedule.schID}">삭제</a>
             </td>
         </tr>
     </c:forEach>
