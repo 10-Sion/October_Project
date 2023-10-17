@@ -47,4 +47,36 @@ public class CompanyDAO {
             e.printStackTrace();
         }
     }
+    public List getCompanyList() {
+    	ArrayList list = new ArrayList();
+    	
+    	try {
+    		
+			String sql = "select * from company where Status = 1";
+			
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CompanyVO com = new CompanyVO();
+				
+				com.setCoID(rs.getInt("CoID"));
+				com.setCoName(rs.getString("CoName"));
+				com.setCoDetails(rs.getString("CoDetails"));
+				com.setCoTel(rs.getString("Co_tel"));
+				com.setCoNumber(rs.getString("Co_number"));
+				com.setEmail(rs.getString("Email"));
+				com.setStartDate(rs.getDate("startDate"));
+				com.setEndDate(rs.getDate("endDate"));
+				com.setExpoID(rs.getInt("ExpoID"));
+				
+				list.add(com);
+			}	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return list;
+    }
 }
