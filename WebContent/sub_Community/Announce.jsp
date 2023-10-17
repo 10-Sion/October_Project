@@ -1,5 +1,4 @@
-
-<%@page import="VO.CompanyVO"%>
+<%@page import="VO.AnnounceVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -24,7 +23,7 @@
 	int nowBlock = 0; //클릭한 페이지 번호가 속한 블럭 위치 번호 저장
 	int beginPerPage = 0; //각 페이지마다 보여지는 시작 글번호(맨위의 글번호) 저장
 
-	List list = (List)request.getAttribute("CompanyList");
+	List list = (List)request.getAttribute("AnnounceList");
 	totalRecord = list.size();
 	
 
@@ -72,13 +71,13 @@
 </script>
 </head>
 <body>
-	<h1 align="center">참가기업 목록</h1>
+	<h1 align="center">공지사항</h1>
 	<form action="<%=contextPath%>/Lecture/ProLectureList.do" name="search"
 		method="post">
 		<table border=0 width=527 align=center cellpadding=4 cellspacing=0>
 			<td align=center valign=bottom><select name="keyField" size="1">
-					<option value="CoID">참가번호</option>
-					<option value="CoName">기업명</option>
+					<option value="AnnTitle">제목</option>
+					<option value="AnnContent">내용</option>
 			</select> <input type="text" size="16" name="keyWord"> <input
 				type="button" value="찾기" onClick="check()"> <input
 				type="hidden" name="page" value="0"></td>
@@ -88,10 +87,10 @@
 
 		<table>
 			<tr>
-				<th>참가번호</th>
-				<th>기업명</th>
-				<th>일정 시작일</th>
-				<th>일정 종료일</th>
+				<th>공지번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
  			</tr>
  			<%
 			if (list.isEmpty()) {
@@ -107,13 +106,13 @@
 						if (i == totalRecord) {
 							break;
 						}
-						CompanyVO vo = (CompanyVO)list.get(i);
+						AnnounceVO vo = (AnnounceVO)list.get(i);
 			%>
 			<tr>			
-				<th><%=vo.getCoID()%></th>
-				<th onclick="location.href='<%=contextPath%>/Company/Info.do?CoId=<%=vo.getCoID()%>'"><%=vo.getCoName()%></th>
-				<th><%=vo.getStartDate()%></th>
-				<th><%=vo.getEndDate()%></th>
+				<th><%=vo.getAnnID()%></th>
+				<th><%=vo.getAnnTitle()%></th>
+				<th><%=vo.getPoster()%></th>
+				<th><%=vo.getPostDate()%></th>
 			</tr>
 
 			<%
@@ -133,7 +132,7 @@
 
 				if (nowBlock > 0) {
 %> 
-				<a href= "<%=contextPath%>/Company/list.do?nowBlock=<%=nowBlock-1%>&nowPage=<%=(nowBlock-1)*pagePerBlock%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>">
+				<a href= "<%=contextPath%>/Ann/list.do?nowBlock=<%=nowBlock-1%>&nowPage=<%=(nowBlock-1)*pagePerBlock%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>">
 				이전<%=pagePerBlock%>개
 				</a> 
 <%
@@ -149,7 +148,7 @@
  						break;
  					}
  %> 																									
- 					<a	href= "<%=contextPath%>/Company/list.do?nowBlock=<%=nowBlock%>&nowPage=<%=(nowBlock*pagePerBlock)+j%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>">
+ 					<a	href= "<%=contextPath%>/Ann/list.do?nowBlock=<%=nowBlock%>&nowPage=<%=(nowBlock*pagePerBlock)+j%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>">
 					<%=(nowBlock * pagePerBlock)+j+1%>
 					</a>
 <%
@@ -165,7 +164,7 @@
 
  			if( totalBlock > nowBlock+1 ){																	
  %>																											
- 				<a href= "<%=contextPath%>/Company/list.do?nowBlock=<%=nowBlock+1%>&nowPage=<%=(nowBlock + 1) * pagePerBlock%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>">
+ 				<a href= "<%=contextPath%>/Ann/list.do?nowBlock=<%=nowBlock+1%>&nowPage=<%=(nowBlock + 1) * pagePerBlock%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>">
 				다음<%=pagePerBlock%>개
 				</a> 
  <%

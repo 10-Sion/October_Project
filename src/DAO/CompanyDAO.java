@@ -3,7 +3,10 @@ package DAO;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -59,6 +62,80 @@ public class CompanyDAO {
             
         }
     }
+
+    public List getCompanyList(String keyField, String keyWord) {
+    	
+    	List list = new ArrayList();
+    	String sql = "";
+    	try {
+    		
+        	if(keyWord == null || keyWord.isEmpty()) {
+      			sql = "select * from company where Status = 1 order by CoID desc";
+      			
+      		}else {
+      			sql = "select * from company where Status = 1  and " + keyField + 
+      					" like '%" + keyWord + "%' order by CoID desc";
+      		}
+			
+			
+			
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CompanyVO com = new CompanyVO();
+				
+				com.setCoID(rs.getInt("CoID"));
+				com.setCoName(rs.getString("CoName"));
+				com.setCoDetails(rs.getString("CoDetails"));
+				com.setCoTel(rs.getString("Co_tel"));
+				com.setCoNumber(rs.getString("Co_number"));
+				com.setEmail(rs.getString("Email"));
+				com.setStartDate(rs.getDate("startDate"));
+				com.setEndDate(rs.getDate("endDate"));
+				com.setExpoID(rs.getInt("ExpoID"));
+				
+				list.add(com);
+			}	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return list;
+    }
+
+	public CompanyVO getCompanyInfo(int coID) {
+		String sql = "";
+		CompanyVO com = null;
+    	try {
+    		
+      		sql = "select * from company where Status = 1 and CoID="+ coID+  " order by CoID desc";
+      			
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				com = new CompanyVO();
+				
+				com.setCoID(rs.getInt("CoID"));
+				com.setCoName(rs.getString("CoName"));
+				com.setCoDetails(rs.getString("CoDetails"));
+				com.setCoTel(rs.getString("Co_tel"));
+				com.setCoNumber(rs.getString("Co_number"));
+				com.setEmail(rs.getString("Email"));
+				com.setStartDate(rs.getDate("startDate"));
+				com.setEndDate(rs.getDate("endDate"));
+				com.setExpoID(rs.getInt("ExpoID"));
+			}	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return com;
+	}
     
     private void handleExpoSelect(HttpServletRequest request, HttpServletResponse response, int selectedExpoID) throws ServletException, IOException {
         // 선택한 Expo에 대한 정보를 데이터베이스에서 가져오는 코드
