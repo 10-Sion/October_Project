@@ -22,8 +22,8 @@ public class CompanyDAO {
 
     public void addCompany(CompanyVO company) {
     	
-        String sql = "INSERT INTO Company (CoName, CoDetails, Co_tel, Co_number, Email, Passwd, StartDate, EndDate, ExpoID) " +
-                     "VALUES (?, ?, ?, ?, ?, SHA2(?, 256), ?, ?, ?)";
+        String sql = "INSERT INTO Company (CoName, CoDetails, Co_tel, Co_number, Email, Passwd, StartDate, EndDate, ExpoID, Status) " +
+                     "VALUES (?, ?, ?, ?, ?, SHA2(?, 256), ?, ?, ?, 0)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, company.getCoName());
@@ -35,6 +35,7 @@ public class CompanyDAO {
             preparedStatement.setDate(7, new java.sql.Date(company.getStartDate().getTime()));
             preparedStatement.setDate(8, new java.sql.Date(company.getEndDate().getTime()));
             preparedStatement.setInt(9, company.getExpoID());
+            preparedStatement.setInt(10, company.getStatus());
 
             preparedStatement.executeUpdate();
             

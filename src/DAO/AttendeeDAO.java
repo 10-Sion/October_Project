@@ -19,7 +19,7 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
     @Override
     public void addAttendee(AttendeeVO attendee) {
     	
-        String sql = "INSERT INTO Attendee (AtndName, Email, Passwd, ExpoID) VALUES (?, ?, SHA2(?, 256), ?)";
+        String sql = "INSERT INTO Attendee (AtndName, Email, Passwd, ExpoID, Status) VALUES (?, ?, SHA2(?, 256), ?, 0)";
         
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
         	
@@ -27,6 +27,7 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
             preparedStatement.setString(2, attendee.getEmail());
             preparedStatement.setString(3, attendee.getPasswd());
             preparedStatement.setInt(4, attendee.getExpoID());
+            preparedStatement.setInt(5, attendee.getStatus());
             
             preparedStatement.executeUpdate();
             
