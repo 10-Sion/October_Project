@@ -47,12 +47,21 @@ public class CompanyDAO {
             e.printStackTrace();
         }
     }
-    public List getCompanyList() {
-    	ArrayList list = new ArrayList();
+    public List getCompanyList(String keyField, String keyWord) {
     	
+    	ArrayList list = new ArrayList();
+    	String sql = "";
     	try {
     		
-			String sql = "select * from company where Status = 1";
+        	if(keyWord == null || keyWord.isEmpty()) {
+      			sql = "select * from company where Status = 1 order by CoID desc";
+      			
+      		}else {
+      			sql = "select * from company where Status = 1  and " + keyField + 
+      					" like '%" + keyWord + "%' order by CoID desc";
+      		}
+			
+			
 			
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			
@@ -79,4 +88,36 @@ public class CompanyDAO {
 		}
     	return list;
     }
+
+	public CompanyVO getCompanyInfo(int coID) {
+		String sql = "";
+		CompanyVO com = null;
+    	try {
+    		
+      		sql = "select * from company where Status = 1 and CoID="+ coID+  " order by CoID desc";
+      			
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				com = new CompanyVO();
+				
+				com.setCoID(rs.getInt("CoID"));
+				com.setCoName(rs.getString("CoName"));
+				com.setCoDetails(rs.getString("CoDetails"));
+				com.setCoTel(rs.getString("Co_tel"));
+				com.setCoNumber(rs.getString("Co_number"));
+				com.setEmail(rs.getString("Email"));
+				com.setStartDate(rs.getDate("startDate"));
+				com.setEndDate(rs.getDate("endDate"));
+				com.setExpoID(rs.getInt("ExpoID"));
+			}	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return com;
+	}
 }
