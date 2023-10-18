@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -129,6 +130,26 @@ public class LoginController extends HttpServlet {
 		} else if ( action.equals("/loginFrom.do")) {
 			
 			nextPage = "/mainPage/login.jsp";
+		
+		} else if ( action.equals("/kakaoLogin.do")) {
+			
+			LoginDAO lDao = new LoginDAO();
+			ArrayList<String> getDate = new ArrayList<String>();
+
+			String email = request.getParameter("email");
+			String name = request.getParameter("name");
+			
+			getDate.add(email);
+			getDate.add(name);
+			
+			getDate = getName(getDate);
+			
+			
+			lDao.kakaoLoing(email, name);
+			
+			
+			
+			nextPage = "/mainPage/index.jsp";
 		}
 		
 		
@@ -137,4 +158,21 @@ public class LoginController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
 	}
+	
+	// 양옆 "" 없애기 위한 메소드
+	public ArrayList<String> getName(ArrayList<String> getDate){
+		
+		ArrayList<String> cntName = new ArrayList<String>();
+		
+		String email = getDate.get(0);
+		String name = getDate.get(1);
+		
+		System.out.println( email.indexOf("\"") ); 
+		System.out.println( email.lastIndexOf("\"") );
+		
+		
+		
+		return null;
+	}
+	
 }
