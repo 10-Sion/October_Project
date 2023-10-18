@@ -104,27 +104,25 @@ public class In_ScheduleDAO {
 
         return schedules;
     }
-    
+
     // 주어진 CoID를 기반으로 IntvwSched 테이블에서 해당 기업의 SchID를 검색하고 반환
     public int getSchIDByCoID(int coID) {
         int schID = -1;
-        Connection conn = this.connection; // 이미 초기화된 연결 재사용
+        String query = "SELECT SchID FROM IntvwSched WHERE CoID = ?";
 
-        try {
-            String sql = "SELECT SchID FROM IntvwSched WHERE CoID = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, coID);
-            ResultSet rs = stmt.executeQuery();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, coID);
+            ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
                 schID = rs.getInt("SchID");
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // 에러 처리를 여기에 추가
-        } finally {
-            // 리소스 해제 코드 추가
+            e.printStackTrace();
         }
 
         return schID;
     }
+    
+
 }

@@ -25,6 +25,8 @@ public class In_ApplicantDAO {
             preparedStatement.setInt(3, applicant.getStatus());
 
             preparedStatement.executeUpdate();
+            
+           
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -124,4 +126,6 @@ public class In_ApplicantDAO {
 
         return approvedApplicants;
     }
+    
+    
 }

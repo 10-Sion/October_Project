@@ -257,6 +257,8 @@ public class In_Controller extends HttpServlet {
             // CompanyDAO를 사용하여 기업명을 기반으로 CoID를 검색
             CompanyDAO companyDAO = new CompanyDAO();
             int coID = companyDAO.getCoIDByName(coName);
+            
+            System.out.println("해당 coID값은 :" + coID); // -1
 
             if (coID > 0) {
                 // IntvwSchedDAO를 사용하여 CoID를 기반으로 SchID를 검색
@@ -272,6 +274,13 @@ public class In_Controller extends HttpServlet {
                     In_ApplicantDAO applicantDAO = new In_ApplicantDAO();
                     applicantDAO.addApplicant(applicant); // IntvwApplicant 테이블에 신청 정보 추가
 
+					/*
+					 * int atndID = applicant.getAtndID(); int schhID = applicant.getSchID();
+					 * System.out.println("atndID: " + atndID); System.out.println("schhID: " +
+					 * schhID);
+					 */
+                    
+                    
                     response.sendRedirect("/ChuiUpExpo/sub_Interview/in_application.jsp");
                 } else {
                     // SchID를 찾을 수 없을 때의 에러 처리 로직
@@ -282,11 +291,6 @@ public class In_Controller extends HttpServlet {
                 // 사용자에게 오류 메시지를 표시하거나 다른 조치를 취할 수 있습니다.
             }
 
-
-            
-            
-            
-            
             response.sendRedirect("/ChuiUpExpo/sub_Interview/in_application.jsp");
         	
         	

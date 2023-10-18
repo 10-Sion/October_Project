@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import VO.CompanyVO;
 import VO.ExpoInfoVO;
+import VO.*;
 
 public class CompanyDAO {
     private Connection connection;
@@ -184,25 +185,26 @@ public class CompanyDAO {
     // 주어진 기업명(coName)을 기반으로 해당 기업의 CoID를 검색하고 반환
     public int getCoIDByName(String coName) {
         int coID = -1;
-        Connection conn = this.connection; // 이미 초기화된 연결 재사용
+        String query = "SELECT CoID FROM Company WHERE CoName = ?";
+        
+   
+        System.out.println("coName: " + coName);
 
-        try {
-            String sql = "SELECT CoID FROM Company WHERE CoName = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, coName);
-            ResultSet rs = stmt.executeQuery();
 
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, coName);
+            ResultSet rs = preparedStatement.executeQuery();
+            // 요기부텅~
             if (rs.next()) {
                 coID = rs.getInt("CoID");
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // 에러 처리를 여기에 추가
-        } finally {
-            // 리소스 해제 코드 추가
+            e.printStackTrace();
         }
 
         return coID;
     }
+
 
 
 

@@ -52,8 +52,8 @@
         </select>
     	<br><br>
 
-        <label for="schID">면접 기업:</label>
-		<select name="schID">
+        <label for="coName">면접 기업:</label>
+		<select name="coName">
 		<option value="" disabled selected>선택하세요.</option>
 		
 		    <%
@@ -64,7 +64,7 @@
 		    %>
 		    
 		    <!-- 사용자는 기업명을 선택하고, 값을 선택하면 해당 기업의 ID값을 받아 옴 -->
-		        <option value="<%= company.getCoID() %>"><%= company.getCoName() %></option>
+		        <option value="<%= company.getCoName() %>"><%= company.getCoName() %></option>
 		    <%
 		    }
 		    %>
