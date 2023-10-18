@@ -5,12 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/sub_Event/assets/css/main.css">
 </head>
 <body>
 	<!-- Header -->
     <header id="header">
-        <a href="expo_AnNae.jsp" class="logo">
+        <a href="<%= request.getContextPath() %>/mainPage/index.jsp" class="logo">
             <strong>취업 박람회</strong>
         </a>
         <nav>
@@ -21,10 +21,10 @@
     <!-- Nav -->
     <nav id="menu">
         <ul class="links">
-            <li><a href="expo_AnNae.jsp">박람회 소개</a></li>
-            <li><a href="expo_JulCha.jsp">참여 절차</a></li>
-            <li><a href="expo_SaJeon.jsp">사전 등록</a></li>
-            <li><a href="expo_JiDo.jsp">찾아오시는 길</a></li>
+            <li><a href="<%= request.getContextPath() %>/sub_Event/expo_AnNae.jsp">박람회 소개</a></li>
+            <li><a href="<%= request.getContextPath() %>/sub_Event/expo_JulCha.jsp">참여 절차</a></li>
+            <li><a href="<%= request.getContextPath() %>/sub_Event/expo_SaJeon.jsp">사전 등록</a></li>
+            <li><a href="<%= request.getContextPath() %>/sub_Event/expo_JiDo.jsp">찾아오시는 길</a></li>
         </ul>
         
         <ul class="links">

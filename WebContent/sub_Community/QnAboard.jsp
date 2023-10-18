@@ -138,11 +138,13 @@ if (count != 0) {
 %>
 	</div>
 	<div align="center">
+		<input type="button" onclick="location.href='<%= request.getContextPath() %>/mainPage/index.jsp'" value="메인으로">
 	<!-- 세션에 저장된 값에 '관리자' 라는 문자가 있으면 글쓰기 버튼 생성 -->
 	<%
 	if (sessionUser != null && sessionUser.contains("관리자")) {
 	%>
-	    <a href="<%= request.getContextPath() %>/sub_Community/addQnA.jsp?loginUser=<%=sessionUser%>">글쓰기</a>
+	    <input type="button" onclick="location.href='<%= request.getContextPath() %>/sub_Community/addQnA.jsp?loginUser=<%=sessionUser%>'" value="글쓰기">
+<%-- 	    <a href="<%= request.getContextPath() %>/sub_Community/addQnA.jsp?loginUser=<%=sessionUser%>">글쓰기</a> --%>
 	<%
 	}
 	%>

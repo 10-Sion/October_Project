@@ -66,10 +66,10 @@
         <input type="text" id="coDetails" name="coDetails" required><br><br>
         
         <label for="coTel">Company Tel:</label>
-        <input type="text" id="coTel" name="coTel" required><br><br>
+        <input type="text" id="co_tel" name="co_tel" required><br><br>
         
         <label for="coNumber">Company Number:</label>
-        <input type="text" id="coNumber" name="coNumber" required><br><br>
+        <input type="text" id="co_number" name="co_number" required><br><br>
         
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required><br><br>

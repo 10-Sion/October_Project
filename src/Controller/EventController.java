@@ -28,6 +28,7 @@ public class EventController extends HttpServlet {
             String email = request.getParameter("email");
             String passwd = request.getParameter("passwd");
             int expoID = Integer.parseInt(request.getParameter("expoID"));
+            int status = 0;	// 승인 대기 :0
 
             AttendeeVO attendee = new AttendeeVO();
             
@@ -35,6 +36,7 @@ public class EventController extends HttpServlet {
             attendee.setEmail(email);
             attendee.setPasswd(passwd);
             attendee.setExpoID(expoID);
+            attendee.setStatus(status);	
 
             AttendeeDAO attendeeDAO = new AttendeeDAO();
             attendeeDAO.addAttendee(attendee);
@@ -53,6 +55,8 @@ public class EventController extends HttpServlet {
             Date startDate = Date.valueOf(request.getParameter("startDate")); // 사용자로부터 날짜를 문자열로 입력 받음
             Date endDate = Date.valueOf(request.getParameter("endDate"));
             int expoID = Integer.parseInt(request.getParameter("expoID"));
+
+            
 
             CompanyVO company = new CompanyVO();
             
