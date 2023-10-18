@@ -48,6 +48,44 @@ public class CompanyDAO {
         }
     }
 
+    // 기업 전체 리스트 가져오는 메서드
+    public List<CompanyVO> getAllCompanies() {
+        List<CompanyVO> list = new ArrayList<>();
+        
+        //	수정 대기 중인 리스트만 가져옴
+        String sql = "SELECT * FROM Company WHERE Status <> 1 ORDER BY CoID DESC";
+        
+        try (PreparedStatement pstmt = connection.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+        	
+            while (rs.next()) {
+                CompanyVO com = new CompanyVO();
+                
+                com.setCoID(rs.getInt("CoID"));
+                com.setCoName(rs.getString("CoName"));
+                com.setCoDetails(rs.getString("CoDetails"));
+                com.setCoTel(rs.getString("Co_tel"));
+                com.setCoNumber(rs.getString("Co_number"));
+                com.setEmail(rs.getString("Email"));
+                com.setPasswd(rs.getString("Passwd"));
+                com.setStartDate(rs.getDate("StartDate"));
+                com.setEndDate(rs.getDate("EndDate"));
+                com.setExpoID(rs.getInt("ExpoID"));
+                com.setStatus(rs.getInt("Status"));
+                
+                list.add(com);
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            
+        }
+        
+        return list;
+    }
+
+
+    
     // 수락 처리를 위한 메서드
     public void acceptCompany(int companyId) {
     	
@@ -151,5 +189,7 @@ public class CompanyDAO {
             response.getWriter().write("Selected Expo not found.");
         }
     }
+    
+    
 
 }

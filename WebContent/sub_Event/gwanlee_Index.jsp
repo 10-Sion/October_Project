@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<jsp:include page="subTop.jsp"/>
+	
+	<a href="<%= request.getContextPath() %>/Controller/EventController?action=companyList">Company List</a>
+	
 </body>
 </html>
