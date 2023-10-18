@@ -132,24 +132,7 @@ public class In_Controller extends HttpServlet {
         String action = request.getParameter("action");
         request.setCharacterEncoding("UTF-8");
         
-        if (action.equals("addApplicant")) {
-            // 일반인 신청 정보 추가 처리
-            int atndID = Integer.parseInt(request.getParameter("atndID"));
-            int schID = Integer.parseInt(request.getParameter("schID"));
-            int status = Integer.parseInt(request.getParameter("status"));
-
-            In_ApplicantVO applicantVO = new In_ApplicantVO();
-            applicantVO.setAtndID(atndID);
-            applicantVO.setSchID(schID);
-            applicantVO.setStatus(status);
-
-            applicantDAO.addApplicant(applicantVO);
-
-            // 추가 완료 후 관리자 페이지로 리다이렉트
-            response.sendRedirect(request.getContextPath() + "/In_Controller");
-        } 
-        
-        else if (action.equals("updateApplicant")) {
+       if (action.equals("updateApplicant")) {
             // 일반인 면접신청 수정 처리
             int appID = Integer.parseInt(request.getParameter("appID"));
             int atndID = Integer.parseInt(request.getParameter("atndID"));
@@ -190,10 +173,50 @@ public class In_Controller extends HttpServlet {
 
             // 수정 완료 후 다시 관리자 페이지로 리다이렉트
             response.sendRedirect(request.getContextPath() + "/In_Controller");
-        }
+            
+        } // 기업 면접 공고 일정 추가
+        else if (action.equals("addSchedule")) {
+            Date intvwDate = Date.valueOf(request.getParameter("intvwDate"));
+           
+            int coID = Integer.parseInt(request.getParameter("coID"));
+            
+            // 시간 데이터 처리 부분
+            String intvwTimeStr = request.getParameter("intvwTime");
+            		 
+            
+            String fixedTimeStr = intvwTimeStr + ":00";
+            Time intvwTime = Time.valueOf(fixedTimeStr);
+
+            In_ScheduleVO scheduleVO = new In_ScheduleVO();
+            scheduleVO.setIntvwDate(intvwDate);
+            scheduleVO.setIntvwTime(intvwTime);
+            scheduleVO.setCoID(coID);
+
+            scheduleDAO.addSchedule(scheduleVO);
+
+            // 면접 일정관리 페이지로 포워딩
+            response.sendRedirect("/ChuiUpExpo/sub_Interview/in_schedule.jsp");
 
         }
-    
+       // 일반 면접신청 추가
+        else if (action.equals("addApplicant")) {
+            int atndID = Integer.parseInt(request.getParameter("atndID"));
+            int schID = Integer.parseInt(request.getParameter("schID"));
+          
+            
+            In_ApplicantVO applicantVO = new In_ApplicantVO();
+            
+            applicantVO.setAtndID(atndID);
+            applicantVO.setSchID(schID);
+          
+
+            applicantDAO.addApplicant(applicantVO);
+
+            // 신청이 완료되었습니다 알림을 표시
+            request.setAttribute("message", "신청이 완료되었습니다");
+       
+    }
+    }
 
     @Override
     public void destroy() {

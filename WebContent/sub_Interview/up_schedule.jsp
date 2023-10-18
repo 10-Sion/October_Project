@@ -17,7 +17,7 @@
     <input type="date" id="intvwDate" name="intvwDate" value="${schedule.intvwDate}"><br>
 
     <label for="intvwTime">면접 시간:</label>
-    <input type="text" id="intvwTime" name="intvwTime" value="${schedule.intvwTime}"><br>
+    <input type="time" id="intvwTime" name="intvwTime" value="${schedule.intvwTime}"><br>
     
  <!--    <script>
     // JavaScript를 사용하여 초를 00초로 설정

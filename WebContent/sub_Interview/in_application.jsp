@@ -20,8 +20,7 @@
         <input type="text" id="atndID" name="atndID" required>
         <label for="schID">일정 ID:</label>
         <input type="text" id="schID" name="schID" required>
-        <label for="appStatus">상태:</label>
-        <input type="text" id="appStatus" name="appStatus" required>
+       
         <input type="submit" value="신청">
     </form>
 	

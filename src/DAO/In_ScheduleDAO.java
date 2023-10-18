@@ -60,14 +60,12 @@ public class In_ScheduleDAO {
 
     // 면접 일정을 업데이트하는 메서드
     public void updateSchedule(In_ScheduleVO schedule) {
-        String query = "UPDATE IntvwSched SET IntvwDate = ?, IntvwTime = ?, CoID = ? WHERE SchID = ?";
+        String query = "UPDATE IntvwSched SET IntvwDate = ?, IntvwTime = ? WHERE SchID = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setDate(1, (Date) schedule.getIntvwDate());
             preparedStatement.setTime(2, schedule.getIntvwTime());
-            preparedStatement.setInt(3, schedule.getCoID());
-            preparedStatement.setInt(4, schedule.getSchID());
-
+            preparedStatement.setInt(3, schedule.getSchID());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
