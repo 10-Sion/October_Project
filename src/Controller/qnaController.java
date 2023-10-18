@@ -44,13 +44,23 @@ public class qnaController extends HttpServlet {
 		
 		} else if(action.equals("/QnAlist.do")) {
 			
+			ArrayList qlist = new ArrayList();
 			qnaDAO qnaDAO = new qnaDAO();
 			
-			ArrayList qlist = new ArrayList();
-			
+			// 전체 글 조회
 			qlist = qnaDAO.selectQlist();
-			
 			request.setAttribute("qlist", qlist);
+			
+			// 전체 글 갯수 조회
+			int count = qnaDAO.getTotalRecord();
+			request.setAttribute("count", count);
+			
+			// AQnAboard.jsp 페이징 처리 부분에서 이전 또는 다음 또는 각 페이지 번호를 클릭했을 때
+			String nowPage = request.getParameter("nowPage");
+			String nowBlock = request.getParameter("Block");
+			
+			request.setAttribute("nowPage", nowPage);
+			request.setAttribute("nowBlock", nowBlock);
 			
 			nextPage = "/sub_Community/QnAboard.jsp";
 			
@@ -111,6 +121,7 @@ public class qnaController extends HttpServlet {
 		} else if (action.equals("/delQnA.do")) {
 			
 			qnaDAO qDao = new qnaDAO();
+			System.out.println(request.getAttribute("faqId"));
 			
 			int faqId = Integer.parseInt(request.getParameter("faqId"));
 			
