@@ -20,7 +20,7 @@
 </head>
 <body>
 
-
+<jsp:include page="../sub_Event/subTop.jsp"/>
 <h1>면접 관리자 페이지</h1>
 
 <!-- 면접 신청 정보 -->

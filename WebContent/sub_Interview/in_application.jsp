@@ -25,19 +25,21 @@
     <!-- 면접 신청 양식 -->
     <h2>면접 신청</h2>
     <form action="<%= request.getContextPath() %>/In_Controller" method="post">
+        <input type="hidden" name="action" value="addAttendee">
     
-    <label for="atndName">Attendee Name:</label>
+    
+    <label for="atndName">신청자 이름:</label>
         <input type="text" id="atndName" name="atndName" required><br><br>
         
-        <label for="email">Email:</label>
+        <label for="email">이메일:</label>
         <input type="email" id="email" name="email" required><br><br>
         
-        <label for="passwd">Password:</label>
+        <label for="passwd">비밀번호:</label>
         <input type="password" id="passwd" name="passwd" required><br><br>
         
-        <label for="expoID">Select Expo:</label><br>
+        <label for="expoID">참가 박람회:</label><br>
         <select name="expoID">
-            <option value="" disabled selected>Select an Expo</option>
+            <option value="" disabled selected>선택하세요.</option>
             <%
                 ExpoInfoDAO expoInfoDAO = new ExpoInfoDAO();
                 List<ExpoInfoVO> expoInfoList = expoInfoDAO.getAllExpos();
@@ -52,20 +54,22 @@
 
         <label for="schID">면접 기업:</label>
 		<select name="schID">
+		<option value="" disabled selected>선택하세요.</option>
+		
 		    <%
 		    CompanyDAO companyDAO = new CompanyDAO();
 		    List<CompanyVO> companyList = companyDAO.getAllCompanies();
 		    
 		    for (CompanyVO company : companyList) {
 		    %>
+		    
+		    <!-- 사용자는 기업명을 선택하고, 값을 선택하면 해당 기업의 ID값을 받아 옴 -->
 		        <option value="<%= company.getCoID() %>"><%= company.getCoName() %></option>
 		    <%
 		    }
 		    %>
-		</select>
+		</select> 
 
-        
-        
        <br><br>
         <input type="submit" value="신청">
     </form>

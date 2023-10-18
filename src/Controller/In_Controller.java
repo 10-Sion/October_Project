@@ -14,13 +14,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.AttendeeDAO;
 import DAO.DatabaseConnection;
 import DAO.In_AdminDAO;
 import DAO.In_ApplicantDAO;
 import DAO.In_ScheduleDAO;
+import VO.AttendeeVO;
 import VO.In_AdminVO;
 import VO.In_ApplicantVO;
 import VO.In_ScheduleVO;
+import VO.AttendeeVO;
+import DAO.AttendeeDAO;
+import DAO.CompanyDAO;
+import VO.CompanyVO;
+
 
 @WebServlet("/In_Controller")
 public class In_Controller extends HttpServlet {
@@ -34,8 +41,11 @@ public class In_Controller extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+    	String action = request.getParameter("action");
         request.setCharacterEncoding("UTF-8");
+        
+    //    String action = request.getPathInfo();  //  온라인 면접 신청 요청애 관한 2 단계 요청 주소  /onlineApplication.do"   받기 
+        
         
         if (action == null) {
         	
@@ -128,6 +138,8 @@ public class In_Controller extends HttpServlet {
             scheduleDAO.deleteSchedule(schID);
 
             response.sendRedirect(request.getContextPath() + "/In_Controller");
+        
+        
         }
     }
 
@@ -219,9 +231,70 @@ public class In_Controller extends HttpServlet {
             request.setAttribute("message", "신청이 완료되었습니다");
        
     }
-    }
+        else if (action.equals("addAttendee")) {
+        	// 준현
+            // Attendee 추가 처리
+            String atndName = request.getParameter("atndName");
+            String email = request.getParameter("email");
+            String passwd = request.getParameter("passwd");
+            int expoID = Integer.parseInt(request.getParameter("expoID"));
+            int status = 0;	// 승인 대기 :0
 
-    @Override
+            AttendeeVO attendee = new AttendeeVO();
+            
+            attendee.setAtndName(atndName);
+            attendee.setEmail(email);
+            attendee.setPasswd(passwd);
+            attendee.setExpoID(expoID);
+            attendee.setStatus(status);	
+
+            AttendeeDAO attendeeDAO = new AttendeeDAO();
+            attendeeDAO.addAttendee(attendee);
+
+            // 사용자가 선택한 기업명을 입력 받음
+            String coName = request.getParameter("coName");
+
+            // CompanyDAO를 사용하여 기업명을 기반으로 CoID를 검색
+            CompanyDAO companyDAO = new CompanyDAO();
+            int coID = companyDAO.getCoIDByName(coName);
+
+            if (coID > 0) {
+                // IntvwSchedDAO를 사용하여 CoID를 기반으로 SchID를 검색
+                In_ScheduleDAO schedDAO = new In_ScheduleDAO();
+                int schID = schedDAO.getSchIDByCoID(coID);
+
+                if (schID > 0) {
+                    // SchID 및 CoID를 사용하여 IntvwApplicant 객체를 생성하고 추가
+                    In_ApplicantVO applicant = new In_ApplicantVO();
+                    applicant.setAtndID(attendee.getAtndID()); // 참가자 ID를 설정
+                    applicant.setSchID(schID); // 면접 일정 ID (SchID)를 설정
+
+                    In_ApplicantDAO applicantDAO = new In_ApplicantDAO();
+                    applicantDAO.addApplicant(applicant); // IntvwApplicant 테이블에 신청 정보 추가
+
+                    response.sendRedirect("/ChuiUpExpo/sub_Interview/in_application.jsp");
+                } else {
+                    // SchID를 찾을 수 없을 때의 에러 처리 로직
+                    // 사용자에게 오류 메시지를 표시하거나 다른 조치를 취할 수 있습니다.
+                }
+            } else {
+                // CoID를 찾을 수 없을 때의 에러 처리 로직
+                // 사용자에게 오류 메시지를 표시하거나 다른 조치를 취할 수 있습니다.
+            }
+
+
+            
+            
+            
+            
+            response.sendRedirect("/ChuiUpExpo/sub_Interview/in_application.jsp");
+        	
+        	
+        }
+        
+       }
+
+	@Override
     public void destroy() {
         super.destroy();
         DatabaseConnection.closeConnection();

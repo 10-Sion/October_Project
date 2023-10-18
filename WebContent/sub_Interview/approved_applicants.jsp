@@ -9,6 +9,7 @@
     <title>승인된 상태 목록</title>
 </head>
 <body>
+<jsp:include page="../sub_Event/subTop.jsp"/>
     <h1>승인된 상태 목록</h1>
     <table>
         <tr>
