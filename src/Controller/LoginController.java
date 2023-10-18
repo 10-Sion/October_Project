@@ -18,7 +18,7 @@ public class LoginController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse responsep) 
 							throws ServletException, IOException {
-		doHandle(request, responsep);
+		doHandle(request, responsep); 
 	}
 
 	@Override

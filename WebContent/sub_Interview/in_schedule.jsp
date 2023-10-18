@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%String sessionUser = (String) session.getAttribute("loginUser"); %>
     <meta charset="UTF-8">
     <title>면접 일정 관리 페이지</title>
 </head>

@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%String sessionUser = (String) session.getAttribute("loginUser"); %>
     <meta charset="UTF-8">
     <title>신청 정보 수정</title>
 </head>

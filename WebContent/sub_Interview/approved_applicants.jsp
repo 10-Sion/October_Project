@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html>
+<%String sessionUser = (String) session.getAttribute("loginUser"); %>
 <head>
     <meta charset="UTF-8">
     <title>승인된 상태 목록</title>

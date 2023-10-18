@@ -49,7 +49,8 @@
 	                </li>
 	                <li><a href="#" accesskey="3" title="">온라인 면접</a>
 	                    <ul class="sub-menu">
-	                        <li><a href="../sub_Interview/in_application.jsp"> 온라인 면접 신청 </a></li>
+	                        <li><a href="../sub_Interview/in_application.jsp"> 개인 온라인 면접 신청 </a></li>
+	                        <li><a href="../sub_Interview/in_schedule.jsp"> 기업 온라인 면접 공고 신청 </a></li>
 	                        <li><a href="../sub_Interview/in_admin.jsp"> 관리자: 기업 신청 승인 </a></li>
 	                    </ul>
 	                </li>

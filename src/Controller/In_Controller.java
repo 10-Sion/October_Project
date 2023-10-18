@@ -30,13 +30,16 @@ public class In_Controller extends HttpServlet {
     public In_Controller() {
         applicantDAO = new In_ApplicantDAO();
         scheduleDAO = new In_ScheduleDAO();
+        
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         request.setCharacterEncoding("UTF-8");
-
+        
         if (action == null) {
+        	
+        	
             // 기본 페이지로 포워딩
             List<In_ApplicantVO> applicants = applicantDAO.getAllApplicants();
             List<In_ScheduleVO> schedules = scheduleDAO.getAllSchedules();
