@@ -4,6 +4,7 @@
 <%
 	String contextPath = request.getContextPath();
 	String loginUser = (String) request.getAttribute("loginUser");
+	String rolename = (String) session.getAttribute("rolname");
 	String sessionUser = (String) session.getAttribute("loginUser");
 
 	// sessionUser 값이 없으면, loginUser 값으로 세션을 설정

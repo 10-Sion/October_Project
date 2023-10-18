@@ -65,6 +65,7 @@ public class CompanyController extends HttpServlet {
 			request.setAttribute("CompanyList", list);
 			
 			nextPage = "/sub_Company/company_main.jsp";
+			
 		}else if(action.equals("/Info.do")){
 			
 			int CoID = Integer.parseInt(request.getParameter("CoId"));
@@ -78,9 +79,9 @@ public class CompanyController extends HttpServlet {
 		
 		
 			
-		
-		
+		System.out.println("반환 되는 주소 : " + nextPage);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
-						  dispatcher.forward(request, response);
+		dispatcher.forward(request, response);
+		
 	}
 }
