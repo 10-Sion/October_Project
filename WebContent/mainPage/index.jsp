@@ -40,6 +40,7 @@
 	                        <li><a href="../sub_Event/expo_JulCha.jsp"> 참여 절차 </a></li>
 	                        <li><a href="../sub_Event/expo_SaJeon.jsp"> 사전 등록 </a></li>
 	                        <li><a href="../sub_Event/expo_JiDo.jsp"> 찾아오시는 길 </a></li>
+	                        <li><a href="../sub_Event/gwanlee_index"> 관리자: 기업 신청 승인 </a></li>
 	                    </ul>
 	                </li>
 	                <li><a href="#" accesskey="2" title="">참여 기업</a>

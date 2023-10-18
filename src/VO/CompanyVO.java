@@ -14,6 +14,7 @@ public class CompanyVO {
     private Date startDate;
     private Date endDate;
     private int expoID;
+    private int status;
     
     
 	public int getCoID() {
@@ -95,6 +96,12 @@ public class CompanyVO {
 	public void setExpoID(int expoID) {
 		this.expoID = expoID;
 		
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
     
