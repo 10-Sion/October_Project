@@ -54,8 +54,7 @@
         </table>
         <div style="text-align: center; margin-top: 10px;">
             <input type="submit" value="수정하기">
-            <input type="reset" value="다시작성">
-            <input type="button" onclick="location.href='<%= request.getContextPath() %>/sub_Community/QnAboard.jsp'" value="목록가기">
+            <input type="button" onclick="location.href='<%= request.getContextPath() %>/QnA/QnAlist.do'" value="목록가기">
             <input type="button" onclick="location.href='<%= request.getContextPath() %>/QnA/delQnA.do?faqId=<%=qVo.getFaqid() %>'" value="글 삭제">
         </div>
     </div>

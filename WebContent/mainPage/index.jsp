@@ -57,16 +57,16 @@
 	                <li><a href="#" accesskey="4" title="">커뮤니티</a>
 	                    <ul class="sub-menu">
 	                        <li><a href="<%=request.getContextPath()%>/Ann/list.do"> 공지사항 </a></li>
-	                        <li><a href="<%=request.getContextPath()%>/QnA/QnAlist.do"> 자주 하는 질문 </a></li>
+	                        <li><a href="<%=contextPath%>/QnA/QnAlist.do"> 자주 하는 질문 </a></li>
 	                    </ul>
 	                </li>
 	               
 	               	<li>
 	                <%-- 세션에 저장된 값이 있으면 로그아웃을 표시 --%>
 	                <% if (sessionUser != null && !sessionUser.isEmpty()) { %>
-	                    <a href="<%=request.getContextPath() %>/mainPage/logout.jsp" accesskey="6" title="">로그아웃</a>
+	                    <a href="<%=contextPath %>/login/logOutFrom.do" accesskey="6" title="">로그아웃</a>
 	                <% } else { %>
-	                    <a href="<%=request.getContextPath() %>/mainPage/login.jsp" accesskey="6" title="">로그인</a>
+	                    <a href="<%=contextPath %>/login/loginFrom.do" accesskey="6" title="">로그인</a>
 	                <% } %>
 	                </li>
 	               	

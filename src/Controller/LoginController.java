@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DAO.LoginDAO;
 
@@ -38,6 +39,7 @@ public class LoginController extends HttpServlet {
 		String nextPage = "";
 		System.out.println("요청 받은 주소 : " + action);
 		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
 
 		if(action.equals("") || action == null) {
 			
@@ -113,9 +115,23 @@ public class LoginController extends HttpServlet {
 					}
 				}
 			}
-			
 			System.out.println("return 값 : " + loginUser);			
+		
+		} else if ( action.equals("/logOutFrom.do")) {
+			
+			System.out.println("전달 받은 세션 값 : " + session);
+		    
+			// 세션을 삭제
+		    session.invalidate();
+			
+			nextPage = "/mainPage/index.jsp";
+			
+		} else if ( action.equals("/loginFrom.do")) {
+			
+			nextPage = "/mainPage/login.jsp";
 		}
+		
+		
 		
 		System.out.println("반환 되는 주소 : " + nextPage);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);

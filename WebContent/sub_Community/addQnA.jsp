@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-    String loginUser = (String)session.getAttribute("loginUser");
+    String loginUser = (String)request.getAttribute("loginUser");
     System.out.println(loginUser);
 %>
 <!DOCTYPE html>
@@ -44,7 +44,7 @@
         <div style="text-align: center; margin-top: 10px;">
             <input type="submit" value="글 작성">
             <input type="reset" value="다시작성">
-            <input type="button" onclick="location.href='<%= request.getContextPath() %>/sub_Community/QnAboard.jsp'" value="목록가기">
+            <input type="button" onclick="location.href='<%= request.getContextPath() %>/QnA/QnAlist.do'" value="목록가기">
         </div>
     </div>
     </form>

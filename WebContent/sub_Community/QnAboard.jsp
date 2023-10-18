@@ -99,51 +99,51 @@
 	</div>
 	<!-- 하단 글 페이지 번호 구현 -->
 	<div id="page_control" style="text-align: center;">
-		<%
-if (count != 0) {
-	// 전체 페이지 수 계산
-    int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-	// 한 페이지에 보여줄 페이지 블럭
-    int pageBlock = 5;
-	// 한 페이지에 보여줄 페이지 블럭 시작번호 계산
-    int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
-	// 한페이지에 보여줄 페이지 블럭 시작번호 계산
-    int endPage = startPage + pageBlock - 1;
-
-    if (endPage > pageCount) {
-        endPage = pageCount;
-    }
-
-    if (startPage > pageBlock) {
-%>
-		<a href="<%=request.getContextPath()%>/sub_Community/QnAboard.jsp?pageNum=<%= startPage - pageBlock %>">prev</a>
-		<!-- 이전 페이지로 이동 -->
-		<%
-    }
-
-    for (int i = startPage; i <= endPage; i++) {
-%>
-		<a href="<%=request.getContextPath()%>/sub_Community/QnAboard.jsp?pageNum=<%= i %>"><%= i %></a>
-		<!-- 각 페이지 번호 링크 -->
-		<%
-    }
-
-    if (endPage < pageCount) {
-%>
-		<a href="<%=request.getContextPath()%>/sub_Community/QnAboard.jsp?pageNum=<%= startPage + pageBlock %>">next</a>
-		<!-- 다음 페이지로 이동 -->
-		<%
-    }
-}
-%>
+<%
+	if (count != 0) {
+		// 전체 페이지 수 계산
+	    int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		// 한 페이지에 보여줄 페이지 블럭
+	    int pageBlock = 5;
+		// 한 페이지에 보여줄 페이지 블럭 시작번호 계산
+	    int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
+		// 한페이지에 보여줄 페이지 블럭 시작번호 계산
+	    int endPage = startPage + pageBlock - 1;
+	
+	    if (endPage > pageCount) {
+	        endPage = pageCount;
+	    }
+	
+	    if (startPage > pageBlock) {
+	%>
+			<a href="<%=request.getContextPath()%>/sub_Community/QnAboard.jsp?pageNum=<%= startPage - pageBlock %>">prev</a>
+			<!-- 이전 페이지로 이동 -->
+			<%
+	    }
+	
+	    for (int i = startPage; i <= endPage; i++) {
+	%>
+			<a href="<%=request.getContextPath()%>/sub_Community/QnAboard.jsp?pageNum=<%= i %>"><%= i %></a>
+			<!-- 각 페이지 번호 링크 -->
+			<%
+	    }
+	
+	    if (endPage < pageCount) {
+	%>
+			<a href="<%=request.getContextPath()%>/sub_Community/QnAboard.jsp?pageNum=<%= startPage + pageBlock %>">next</a>
+			<!-- 다음 페이지로 이동 -->
+			<%
+	    }
+	}
+	%>
 	</div>
 	<div align="center">
-		<input type="button" onclick="location.href='<%= request.getContextPath() %>/mainPage/index.jsp'" value="메인으로">
+		<input type="button" onclick="location.href='<%= request.getContextPath() %>/QnA/brackPage.do'" value="메인으로">
 	<!-- 세션에 저장된 값에 '관리자' 라는 문자가 있으면 글쓰기 버튼 생성 -->
 	<%
 	if (sessionUser != null && sessionUser.contains("관리자")) {
 	%>
-	    <input type="button" onclick="location.href='<%= request.getContextPath() %>/sub_Community/addQnA.jsp?loginUser=<%=sessionUser%>'" value="글쓰기">
+	    <input type="button" onclick="location.href='<%= request.getContextPath() %>/QnA/addQnAFrom.do?loginUser=<%=sessionUser%>'" value="글쓰기">
 	<%
 	}
 	%>

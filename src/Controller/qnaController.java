@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DAO.qnaDAO;
 import VO.qnaVO;
@@ -37,6 +38,7 @@ public class qnaController extends HttpServlet {
 		String action = request.getPathInfo();
 		String nextPage = "";
 		System.out.println("요청 받은 주소 : " + action);
+		HttpSession session = request.getSession();
 		
 		if( action.equals("") || action == null) {
 			
@@ -128,6 +130,21 @@ public class qnaController extends HttpServlet {
 			qDao.delQnA(faqId);
 			
 			nextPage = "/sub_Community/QnAboard.jsp";
+			
+		} else if (action.equals("/brackPage.do")) {
+			
+			nextPage = "/mainPage/index.jsp";
+			
+		} else if (action.equals("/addQnAFrom.do")) {
+			
+			String loginUser = (String)session.getAttribute("loginUser");
+			
+			System.out.println("addQnAFrom 안 에서 받는 값" + loginUser);
+			
+			request.setAttribute("loginUser", loginUser);
+			
+			nextPage = "/sub_Community/addQnA.jsp";
+			
 		}
 
 		System.out.println("반환 되는 주소 : " + nextPage);
