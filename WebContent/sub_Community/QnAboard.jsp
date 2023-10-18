@@ -144,7 +144,6 @@ if (count != 0) {
 	if (sessionUser != null && sessionUser.contains("관리자")) {
 	%>
 	    <input type="button" onclick="location.href='<%= request.getContextPath() %>/sub_Community/addQnA.jsp?loginUser=<%=sessionUser%>'" value="글쓰기">
-<%-- 	    <a href="<%= request.getContextPath() %>/sub_Community/addQnA.jsp?loginUser=<%=sessionUser%>">글쓰기</a> --%>
 	<%
 	}
 	%>

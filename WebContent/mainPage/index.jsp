@@ -56,8 +56,7 @@
 	                <li><a href="#" accesskey="4" title="">커뮤니티</a>
 	                    <ul class="sub-menu">
 	                        <li><a href="<%=request.getContextPath()%>/Ann/list.do"> 공지사항 </a></li>
-<%-- 	                        <li><a href="<%=request.getContextPath()%>/QnA/QnAlist.do"> 자주 하는 질문 </a></li> --%>
-	                        <li><a href="<%=request.getContextPath()%>/sub_Community/QnAboard.jsp"> 자주 하는 질문 </a></li>
+	                        <li><a href="<%=request.getContextPath()%>/QnA/QnAlist.do"> 자주 하는 질문 </a></li>
 	                    </ul>
 	                </li>
 	               

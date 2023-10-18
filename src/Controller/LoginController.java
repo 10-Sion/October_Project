@@ -114,8 +114,7 @@ public class LoginController extends HttpServlet {
 				}
 			}
 			
-//			System.out.println("return 값 : " + loginUser);
-			
+			System.out.println("return 값 : " + loginUser);			
 		}
 		
 		System.out.println("반환 되는 주소 : " + nextPage);
