@@ -44,7 +44,7 @@
 	                </li>
 	                <li><a href="#" accesskey="2" title="">참여 기업</a>
 	                    <ul class="sub-menu">
-	                        <li><a href="../sub_Company"> 기업 리스트 </a></li>
+	                        <li><a href="<%=request.getContextPath()%>/Company/list.do"> 기업 리스트 </a></li>
 	                    </ul>
 	                </li>
 	                <li><a href="#" accesskey="3" title="">온라인 면접</a>
@@ -55,7 +55,7 @@
 	                </li>
 	                <li><a href="#" accesskey="4" title="">커뮤니티</a>
 	                    <ul class="sub-menu">
-	                        <li><a href="sub_Community"> 공지사항 </a></li>
+	                        <li><a href="<%=request.getContextPath()%>/Ann/list.do"> 공지사항 </a></li>
 <%-- 	                        <li><a href="<%=request.getContextPath()%>/QnA/QnAlist.do"> 자주 하는 질문 </a></li> --%>
 	                        <li><a href="<%=request.getContextPath()%>/sub_Community/QnAboard.jsp"> 자주 하는 질문 </a></li>
 	                    </ul>

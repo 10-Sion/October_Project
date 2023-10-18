@@ -5,11 +5,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sql.DataSource;
+
 import VO.AttendeeVO;
 
 public class AttendeeDAO implements EventInterface.AttendeeDAO {
     private Connection connection;
-
+	private PreparedStatement pstmt;
+	private ResultSet rs;
+	
     public AttendeeDAO() {
         // 데이터베이스 연결 초기화
         this.connection = DatabaseConnection.getConnection();
