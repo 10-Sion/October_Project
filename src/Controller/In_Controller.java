@@ -37,8 +37,9 @@ public class In_Controller extends HttpServlet {
 
 	    @Override
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    	request.setCharacterEncoding("UTF-8");
 	    	String action = request.getParameter("action");
-	        request.setCharacterEncoding("UTF-8");
+	        
 	        
 	    //    String action = request.getPathInfo();  //  온라인 면접 신청 요청애 관한 2 단계 요청 주소  /onlineApplication.do"   받기 
 	        
