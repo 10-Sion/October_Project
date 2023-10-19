@@ -10,8 +10,14 @@ public class In_ScheduleVO { // 면접 스케줄 테이블 IntvwSched
     private Date IntvwDate; // 면접날짜
     private Time IntvwTime; // 면접시간
     private int CoID; // 기업id
+    private int Status; // 상태
     
-    
+	public int getStatus() {
+		return Status;
+	}
+	public void setStatus(int status) {
+		Status = status;
+	}
 	public int getSchID() {
 		return SchID;
 	}

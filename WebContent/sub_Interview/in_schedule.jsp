@@ -5,23 +5,24 @@
 <head>
 <%String sessionUser = (String) session.getAttribute("loginUser"); %>
     <meta charset="UTF-8">
-    <title>면접 일정 관리 페이지</title>
+    <title>면접 일정 추가 페이지</title>
 </head>
 <body>
 <jsp:include page="../sub_Event/subTop.jsp"/>
-    <h1>면접 일정 관리 페이지</h1>
 
+<br>
     <!-- 면접 일정 추가 양식 -->
-    <h2>면접 일정 추가</h2>
-    <form action="<%= request.getContextPath() %>/In_Controller" method="post">
+    <h2>기업용 면접 일정 추가</h2>
+    <form action="/ChuiUpExpo/In_Controller3" method="post">
         <input type="hidden" name="action" value="addSchedule">
+        <label for="coID">기업 참가번호:</label>
+        <input type="text" id="coID" name="coID" required> <br>
         <label for="intvwDate">면접 날짜:</label>
-        <input type="date" id="intvwDate" name="intvwDate" required>
+        <input type="date" id="intvwDate" name="intvwDate" required><br><br>
         <label for="intvwTime">면접 시간 (시:분):</label>
-		<input type="time" id="intvwTime" name="intvwTime" step="60" required>
+		<input type="time" id="intvwTime" name="intvwTime" step="60" required><br><br>
 
-        <label for="coID">회사 ID:</label>
-        <input type="text" id="coID" name="coID" required>
+        
         <input type="submit" value="추가">
     </form>
 
