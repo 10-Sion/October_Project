@@ -9,6 +9,7 @@ public class AttendeeVO {
     private String email;
     private String passwd;
     private int expoID;
+    private int status;
     
     
 	public int getAtndID() {
@@ -50,6 +51,12 @@ public class AttendeeVO {
 	public void setExpoID(int expoID) {
 		this.expoID = expoID;
 		
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
     

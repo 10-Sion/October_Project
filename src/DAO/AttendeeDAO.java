@@ -24,7 +24,7 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
     @Override
     public void addAttendee(AttendeeVO attendee) {
     	
-        String sql = "INSERT INTO Attendee (AtndName, Email, Passwd, ExpoID) VALUES (?, ?, SHA2(?, 256), ?)";
+        String sql = "INSERT INTO Attendee (AtndName, Email, Passwd, ExpoID, Status) VALUES (?, ?, SHA2(?, 256), ?, ?)";
         
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
         	
@@ -32,6 +32,7 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
             preparedStatement.setString(2, attendee.getEmail());
             preparedStatement.setString(3, attendee.getPasswd());
             preparedStatement.setInt(4, attendee.getExpoID());
+            preparedStatement.setInt(5, attendee.getStatus());
             
             preparedStatement.executeUpdate();
             
@@ -43,31 +44,32 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
 
     @Override
     public List<AttendeeVO> getAllAttendees() {
-        List<AttendeeVO> attendees = new ArrayList<>();
-        String sql = "SELECT * FROM Attendee";
-        
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-        	
-            while (resultSet.next()) {
-            	
+        List<AttendeeVO> list = new ArrayList<>();
+
+        //	수정 대기 중인 리스트만 가져옴
+        String sql = "SELECT AtndID, AtndName, Email, ExpoID, Status FROM Attendee WHERE Status <> 1 ORDER BY AtndID DESC";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
                 AttendeeVO attendee = new AttendeeVO();
-                attendee.setAtndID(resultSet.getInt("AtndID"));
-                attendee.setAtndName(resultSet.getString("AtndName"));
-                attendee.setEmail(resultSet.getString("Email"));
-                attendee.setPasswd(resultSet.getString("Passwd"));
-                attendee.setExpoID(resultSet.getInt("ExpoID"));
-                
-                attendees.add(attendee);
-                
+
+                attendee.setAtndID(rs.getInt("AtndID"));
+                attendee.setAtndName(rs.getString("AtndName"));
+                attendee.setEmail(rs.getString("Email"));
+                attendee.setExpoID(rs.getInt("ExpoID"));
+                attendee.setStatus(rs.getInt("Status"));
+
+                list.add(attendee);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            
         }
-        return attendees;
-        
+
+        return list;
     }
+
 
     @Override
     public AttendeeVO getAttendee(int attendeeId) {

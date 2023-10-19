@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DAO.qnaDAO;
 import VO.qnaVO;
@@ -37,6 +38,7 @@ public class qnaController extends HttpServlet {
 		String action = request.getPathInfo();
 		String nextPage = "";
 		System.out.println("요청 받은 주소 : " + action);
+		HttpSession session = request.getSession();
 		
 		if( action.equals("") || action == null) {
 			
@@ -44,13 +46,23 @@ public class qnaController extends HttpServlet {
 		
 		} else if(action.equals("/QnAlist.do")) {
 			
+			ArrayList qlist = new ArrayList();
 			qnaDAO qnaDAO = new qnaDAO();
 			
-			ArrayList qlist = new ArrayList();
-			
+			// 전체 글 조회
 			qlist = qnaDAO.selectQlist();
-			
 			request.setAttribute("qlist", qlist);
+			
+			// 전체 글 갯수 조회
+			int count = qnaDAO.getTotalRecord();
+			request.setAttribute("count", count);
+			
+			// AQnAboard.jsp 페이징 처리 부분에서 이전 또는 다음 또는 각 페이지 번호를 클릭했을 때
+			String nowPage = request.getParameter("nowPage");
+			String nowBlock = request.getParameter("Block");
+			
+			request.setAttribute("nowPage", nowPage);
+			request.setAttribute("nowBlock", nowBlock);
 			
 			nextPage = "/sub_Community/QnAboard.jsp";
 			
@@ -111,12 +123,28 @@ public class qnaController extends HttpServlet {
 		} else if (action.equals("/delQnA.do")) {
 			
 			qnaDAO qDao = new qnaDAO();
+			System.out.println(request.getAttribute("faqId"));
 			
 			int faqId = Integer.parseInt(request.getParameter("faqId"));
 			
 			qDao.delQnA(faqId);
 			
 			nextPage = "/sub_Community/QnAboard.jsp";
+			
+		} else if (action.equals("/brackPage.do")) {
+			
+			nextPage = "/mainPage/index.jsp";
+			
+		} else if (action.equals("/addQnAFrom.do")) {
+			
+			String loginUser = (String)session.getAttribute("loginUser");
+			
+			System.out.println("addQnAFrom 안 에서 받는 값" + loginUser);
+			
+			request.setAttribute("loginUser", loginUser);
+			
+			nextPage = "/sub_Community/addQnA.jsp";
+			
 		}
 
 		System.out.println("반환 되는 주소 : " + nextPage);

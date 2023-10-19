@@ -204,5 +204,25 @@ public class qnaDAO  {
 		
 	}
 	
+	// 전체 글 갯수 조회
+	public int getTotalRecord() {
+		// 조회된 글의 개수 저장
+		int total = 0;
+		String sql = "";
+		try {
+			
+			sql = "select count(*) as cnt from faq";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			total = rs.getInt("cnt");
+			
+		} catch (Exception e) {
+			System.out.println("getTotalRecord() 메소드 내부오류 : " + e);
+		} 
+		
+		return total;
+	}
+	
 	
 }

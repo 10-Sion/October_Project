@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ public class LoginController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse responsep) 
 							throws ServletException, IOException {
-		doHandle(request, responsep);
+		doHandle(request, responsep); 
 	}
 
 	@Override
@@ -39,7 +40,9 @@ public class LoginController extends HttpServlet {
 		String nextPage = "";
 		System.out.println("요청 받은 주소 : " + action);
 		PrintWriter out = response.getWriter();
+
 		HttpSession session = request.getSession(true);
+
 
 		if(action.equals("") || action == null) {
 			
@@ -118,13 +121,63 @@ public class LoginController extends HttpServlet {
 					}
 				}
 			}
+			System.out.println("return 값 : " + loginUser);			
+		
+		} else if ( action.equals("/logOutFrom.do")) {
 			
-//			System.out.println("return 값 : " + loginUser);
+			System.out.println("전달 받은 세션 값 : " + session);
+		    
+			// 세션을 삭제
+		    session.invalidate();
 			
+			nextPage = "/mainPage/index.jsp";
+			
+		} else if ( action.equals("/loginFrom.do")) {
+			
+			nextPage = "/mainPage/login.jsp";
+		
+		} else if ( action.equals("/kakaoLogin.do")) {
+			
+			LoginDAO lDao = new LoginDAO();
+			ArrayList<String> getDate = new ArrayList<String>();
+
+			String email = request.getParameter("email");
+			String name = request.getParameter("name");
+			
+			getDate.add(email);
+			getDate.add(name);
+			
+			getDate = getName(getDate);
+			
+			
+			lDao.kakaoLoing(email, name);
+			
+			
+			
+			nextPage = "/mainPage/index.jsp";
 		}
+		
+		
 		
 		System.out.println("반환 되는 주소 : " + nextPage);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
 	}
+	
+	// 양옆 "" 없애기 위한 메소드
+	public ArrayList<String> getName(ArrayList<String> getDate){
+		
+		ArrayList<String> cntName = new ArrayList<String>();
+		
+		String email = getDate.get(0);
+		String name = getDate.get(1);
+		
+		System.out.println( email.indexOf("\"") ); 
+		System.out.println( email.lastIndexOf("\"") );
+		
+		
+		
+		return null;
+	}
+	
 }
