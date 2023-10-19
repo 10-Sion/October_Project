@@ -40,6 +40,7 @@ public class CompanyController extends HttpServlet {
 		String keyField = "";
 		System.out.println("요청 받은 주소 : " + action);
 		PrintWriter out = response.getWriter();
+		System.out.println(request.getParameter("coName"));
 
 		if(action.equals("") || action == null) {
 			
