@@ -1,14 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
-    <%
-    // 여기에 request.setCharacterEncoding("UTF-8")을 추가
-    request.setCharacterEncoding("UTF-8");
-	
-    CompanyDAO companyDAO = new CompanyDAO();
-    List companyList = companyDAO.getAllCompanies();
-%>
+    
     
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Date" %>
@@ -22,19 +16,20 @@
 <head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <%String sessionUser = (String) session.getAttribute("loginUser"); %>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>면접 신청 페이지</title>
+    <meta charset="UTF-8">
+    <title>면접 신청 페이지</title>
    
 </head>
 <body>
+
+<% request.setCharacterEncoding("UTF-8"); %>
 <jsp:include page="../sub_Event/subTop.jsp"/>
     <h1>면접 신청 페이지</h1>
 
     <!-- 면접 신청 양식 -->
     <h2>면접 신청</h2>
-    <form action="<%= request.getContextPath()%>/In_Controller" method="post" accept-charset="UTF-8">
-        <input type="hidden" name="action" value="addAttendee">
-    
+    <form action="/ChuiUpExpo/In_Controller3" method="post">
+         <input type="hidden" name="action" value="addAttendee">
     
     <label for="atndName">신청자 이름:</label>
         <input type="text" id="atndName" name="atndName" required><br><br>
@@ -53,24 +48,33 @@
                 List<ExpoInfoVO> expoInfoList = expoInfoDAO.getAllExpos();
                 for (ExpoInfoVO expo : expoInfoList) {
             %>
-                <option value="<%=expo.getExpoID() %>"><%=expo.getExpoName() %></option>
+                <option value="<%= expo.getExpoID() %>"><%= expo.getExpoName() %></option>
             <%
                 }
             %>
         </select>
     	<br><br>
-        <label>면접 기업:</label>
+
+         <input type="hidden" name="action" value="addAttendee">
+ 
+        <label for="coName">면접 기업:</label>
 		<select name="coName1">
-				<option value="뭐가 문제니">뭐가 문제니</option>
+		<option value="" disabled selected>선택하세요.</option>
+		
 		    <%
-		    for(int i = 0; i<companyList.size(); i++) {
-		    	CompanyVO company = (CompanyVO)companyList.get(i);
-		    %>	    	
-		        <option value="<%=company.getCoName()%>"><%=company.getCoName()%></option>
+		    CompanyDAO companyDAO = new CompanyDAO();
+		    List<CompanyVO> companyList = companyDAO.getAllCompanies();
+		    
+		    for (CompanyVO company : companyList) {
+		    %>
+		    
+		    <!-- 사용자는 기업명을 선택하고, 값을 선택하면 해당 기업의 ID값을 받아 옴 -->
+		        <option value="<%= company.getCoName() %>"><%= company.getCoName() %></option>
 		    <%
 		    }
 		    %>
 		</select> 
+
        <br><br>
         <input type="submit" value="신청">
     </form>
