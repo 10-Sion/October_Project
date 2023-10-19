@@ -203,5 +203,13 @@ public class LoginDAO {
 		
 		return checkAdmID;
 	}
+	
+	// 카카오 로그인 조회 및 등록 메소드
+	public void kakaoLoing(String email, String name) {
+		
+//		System.out.println("다오 안쪽 이메일 값 :" + email);
+//		System.out.println("다오 안쪽 닉네임 값 :" + name);
+//		
+	}
 
 }
