@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,35 +43,54 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
         }
     }
     
-public int addAttendee1(AttendeeVO attendee) {
-    	
-        String sql = "INSERT INTO Attendee (AtndName, Email, Passwd, ExpoID, Status) VALUES (?, ?, SHA2(?, 256), ?, ?)";
-        int AtndID= 0;
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-        	
-        	String email = attendee.getEmail();
-            preparedStatement.setString(1, attendee.getAtndName());
-            preparedStatement.setString(2, email);
-            preparedStatement.setString(3, attendee.getPasswd());
-            preparedStatement.setInt(4, attendee.getExpoID());
-            preparedStatement.setInt(5, attendee.getStatus());
+    // 소이 사용
+    public int addAttendee1(AttendeeVO attendee) {
+        String insertSql = "INSERT INTO Attendee (AtndName, Email, Passwd, ExpoID, Status) VALUES (?, ?, SHA2(?, 256), ?, ?)";
+        String selectSql = "SELECT AtndID FROM Attendee WHERE Email = ?";
+        
+        int AtndID = 0;
+        
+        try {
+            // 새 참가자를 삽입합니다.
+            try (PreparedStatement preparedStatement = connection.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS)) {
+                preparedStatement.setString(1, attendee.getAtndName());
+                preparedStatement.setString(2, attendee.getEmail());
+                preparedStatement.setString(3, attendee.getPasswd());
+                preparedStatement.setInt(4, attendee.getExpoID());
+                preparedStatement.setInt(5, attendee.getStatus());
+                
+                int affectedRows = preparedStatement.executeUpdate();
+                
+                if (affectedRows == 0) {
+                    throw new SQLException("참가자 생성 실패, 영향을 받는 행 없음.");
+                }
+                
+                // 생성된 AtndID를 가져옵니다.
+                try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        AtndID = generatedKeys.getInt(1);
+                    } else {
+                        throw new SQLException("참가자 생성 실패, ID를 가져오지 못함.");
+                    }
+                }
+            }
             
-            preparedStatement.executeUpdate();
-            
-            sql = "select AtndID from Attendee where email = "+ email;
-            pstmt = connection.prepareStatement(sql);
-            rs =  preparedStatement.executeQuery();
-            
-            if(rs.next()) {
-            	AtndID = rs.getInt("AtndID");
-            	
+            // 이메일을 사용하여 AtndID를 선택합니다.
+            try (PreparedStatement selectStatement = connection.prepareStatement(selectSql)) {
+                selectStatement.setString(1, attendee.getEmail());
+                ResultSet rs = selectStatement.executeQuery();
+                
+                if (rs.next()) {
+                    AtndID = rs.getInt("AtndID");
+                }
             }
         } catch (SQLException e) {
-        	
             e.printStackTrace();
         }
+        
         return AtndID;
     }
+
 
     @Override
     public List<AttendeeVO> getAllAttendees() {

@@ -250,6 +250,10 @@ public class In_Controller extends HttpServlet {
 	            AttendeeDAO attendeeDAO = new AttendeeDAO();
 	            
             int AtndID = attendeeDAO.addAttendee1(attendee);
+            System.out.println("AtndID 값은 : " + AtndID);
+            
+         
+            
 
 	            // 사용자가 선택한 기업명을 입력 받음
 	            String coName = request.getParameter("coName1");
@@ -261,6 +265,8 @@ public class In_Controller extends HttpServlet {
 	            int coID = companyDAO.getCoIDByName(coName);
             
             System.out.println("해당 coID값은 :" + coID); // 굿
+            
+            
 	
 	            if (coID > 0) {
 	                // IntvwSchedDAO를 사용하여 CoID를 기반으로 SchID를 검색
@@ -268,19 +274,20 @@ public class In_Controller extends HttpServlet {
                 int schID = schedDAO.getSchIDByCoID(coID);
 	
              if (schID > 0) {
-                    // SchID 및 CoID를 사용하여 IntvwApplicant 객체를 생성하고 추가
-	                    In_ApplicantVO applicant = new In_ApplicantVO();
-	                    applicant.setAtndID(attendee.getAtndID()); // 참가자 ID를 설정
-	                    applicant.setSchID(schID); // 면접 일정 ID (SchID)를 설정
+            	 In_ApplicantVO applicant = new In_ApplicantVO();
+            	 applicant.setAtndID(AtndID); // 참가자 ID를 설정
+            	 applicant.setSchID(schID); // 면접 일정 ID (SchID)를 설정
+            	 applicant.setStatus(0); // status 값을 항상 0으로 설정
 
-	                    In_ApplicantDAO applicantDAO = new In_ApplicantDAO();
-	                    applicantDAO.addApplicant(applicant); // IntvwApplicant 테이블에 신청 정보 추가
+            	 In_ApplicantDAO applicantDAO = new In_ApplicantDAO();
+            	 applicantDAO.addApplicant(applicant); // IntvwApplicant 테이블에 신청 정보 추가
+
 
 						
-						  int atndID = applicant.getAtndID(); 
+						 
 						  int schhID = applicant.getSchID();
 						  
-						  System.out.println("atndID: " + atndID); System.out.println("schhID: " +
+						  System.out.println("schhID 값은 : " +
 						  schhID);
 						 
 	                    
