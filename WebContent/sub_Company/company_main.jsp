@@ -1,4 +1,3 @@
-
 <%@page import="VO.CompanyVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,8 +6,6 @@
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
 
-	
-	
 	String keyWord = "";
 	String keyField = "";
 	//페이징 처리 변수
@@ -24,9 +21,8 @@
 	int nowBlock = 0; //클릭한 페이지 번호가 속한 블럭 위치 번호 저장
 	int beginPerPage = 0; //각 페이지마다 보여지는 시작 글번호(맨위의 글번호) 저장
 
-	List list = (List)request.getAttribute("CompanyList");
+	List list = (List) request.getAttribute("CompanyList");
 	totalRecord = list.size();
-	
 
 	totalPage = (int) Math.ceil((double) totalRecord / numPerPage);
 	totalBlock = (int) Math.ceil((double) totalPage / pagePerBlock);
@@ -42,14 +38,13 @@
 		nowPage = Integer.parseInt(request.getAttribute("nowPage").toString());
 	}
 
-	
-	if(request.getAttribute("keyWord") != null){
-	 keyField = request.getAttribute("keyField").toString();
-	 keyWord = request.getAttribute("keyWord").toString();
+	if (request.getAttribute("keyWord") != null) {
+		keyField = request.getAttribute("keyField").toString();
+		keyWord = request.getAttribute("keyWord").toString();
 	}
-	
+
 	beginPerPage = nowPage * numPerPage;
-	
+
 	System.out.print("조회된 글의 갯수 : " + totalRecord);
 	System.out.print("현재 블럭 : " + nowBlock);
 	System.out.print("현재 페이지 : " + nowPage);
@@ -59,32 +54,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript">
-	function check() {
-		if (document.search.keyWord.value == "") {
-			alert("검색어를 입력하세요.");
-			document.search.keyWord.focus();
-			return;
-		}
-		document.search.submit();
-	}
-</script>
+<meta name="robots"
+	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
-	<h1 align="center">참가기업 목록</h1>
-	<form action="<%=contextPath%>/Lecture/ProLectureList.do" name="search"
-		method="post">
-		<table border=0 width=527 align=center cellpadding=4 cellspacing=0>
-			<td align=center valign=bottom><select name="keyField" size="1">
-					<option value="CoID">참가번호</option>
-					<option value="CoName">기업명</option>
-			</select> <input type="text" size="16" name="keyWord"> <input
-				type="button" value="찾기" onClick="check()"> <input
-				type="hidden" name="page" value="0"></td>
-		</table>
-	</form>
-	<div align="center" class="table">
+
+	<!-- Header -->
+	<header id="header">
+		<a href="index.html" class="logo"><strong>Binary</strong> by
+			TEMPLATED</a>
+		<nav>
+			<a href="#menu">Menu</a>
+		</nav>
+	</header>
+	<!-- Nav -->
+	<nav id="menu">
+		<ul class="links">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="generic.html">Generic</a></li>
+			<li><a href="elements.html">Elements</a></li>
+		</ul>
+	</nav>
+	<section id="main">
+		<div class="inner">
+			<div class="image fit">
+				<img src="/images/pic11.jpg" alt="">
+			</div>
+			<header>
+				<h1>Lorem ipsum dolor sit amet</h1>
+				<p class="info">
+					3 days ago by <a href="#">Jane Doe</a>
+				</p>
+			</header>
+			<div align="center" class="table">
 
 		<table>
 			<tr>
@@ -122,9 +126,17 @@
 			%>  
 		</table>
 	</div>
-</body>
-<footer>
-	<div align="center">
+		</div>
+	</section>
+	<!-- Footer -->
+	<footer id="footer">
+		<ul class="icons">
+			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon fa-instagram"><span
+					class="label">Instagram</span></a></li>
+		</ul>
+		<div align="center">
 	<table>
 		<tr>
 			<td>Page to
@@ -175,5 +187,16 @@
 		</tr>
 	</table>
 	</div>
-</footer>
+	</footer>
+	<div class="copyright">
+		Made with: <a href="https://templated.co/">Templated.co</a>
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+</body>
 </html>
