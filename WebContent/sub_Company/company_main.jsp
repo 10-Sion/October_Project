@@ -56,13 +56,11 @@
 
 <!DOCTYPE html>
 <html>
-<head>
 <meta charset="UTF-8">
 <meta name="robots"
 	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<%=contextPath %>/sub_Event/assets/css/main.css">
-</head>
 <body>	
 	<jsp:include page="/sub_Event/subTop.jsp"/>
 	<section id="main">
@@ -118,10 +116,10 @@
 	</section>
 	<!-- Footer -->
 	<footer id="footer">
-		<div align="center">
+		<div>
 		<table>
 		<tr>
-			<td>Page to
+			<td  style="align:center;"><font color="white">Page to
 <%
 			if (totalBlock > 0) {
 
@@ -151,11 +149,8 @@
  					break;
  				}
  			}
- %>
- 
- <%		//		4	>	3	s.23
- 
- 
+ %> 
+ <%		
 
  			if( totalBlock > nowBlock+1 ){																	
  %>																											
@@ -165,20 +160,18 @@
  <%
  			}
  %>			
- 			</td>
+ 			</font></td>
 		</tr>
 	</table>
 	</div>
 		<ul class="icons">
 			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-			<li><a href="#" class="icon fa-instagram"><span
-					class="label">Instagram</span></a></li>
+			<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 		</ul>
 	</footer>
 	<div class="copyright">
 		Made with: <a href="https://templated.co/">Templated.co</a>
 	</div>
-
 </body>
 </html>

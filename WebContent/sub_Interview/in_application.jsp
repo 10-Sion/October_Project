@@ -5,7 +5,9 @@
     <%
     // 여기에 request.setCharacterEncoding("UTF-8")을 추가
     request.setCharacterEncoding("UTF-8");
-    response.setCharacterEncoding("UTF-8");
+	
+    CompanyDAO companyDAO = new CompanyDAO();
+    List companyList = companyDAO.getAllCompanies();
 %>
     
 <%@ page import="java.util.List" %>
@@ -20,8 +22,8 @@
 <head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <%String sessionUser = (String) session.getAttribute("loginUser"); %>
-    <meta charset="UTF-8">
-    <title>면접 신청 페이지</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>면접 신청 페이지</title>
    
 </head>
 <body>
@@ -30,7 +32,7 @@
 
     <!-- 면접 신청 양식 -->
     <h2>면접 신청</h2>
-    <form action="<%= request.getContextPath() %>/In_Controller" method="post">
+    <form action="<%= request.getContextPath()%>/In_Controller" method="post" accept-charset="UTF-8">
         <input type="hidden" name="action" value="addAttendee">
     
     
@@ -51,31 +53,24 @@
                 List<ExpoInfoVO> expoInfoList = expoInfoDAO.getAllExpos();
                 for (ExpoInfoVO expo : expoInfoList) {
             %>
-                <option value="<%= expo.getExpoID() %>"><%= expo.getExpoName() %></option>
+                <option value="<%=expo.getExpoID() %>"><%=expo.getExpoName() %></option>
             <%
                 }
             %>
         </select>
     	<br><br>
-
-        <label for="coName">면접 기업:</label>
-		<select name="coName">
-		<option value="" disabled selected>선택하세요.</option>
-		
+        <label>면접 기업:</label>
+		<select name="coName1">
+				<option value="뭐가 문제니">뭐가 문제니</option>
 		    <%
-		    CompanyDAO companyDAO = new CompanyDAO();
-		    List<CompanyVO> companyList = companyDAO.getAllCompanies();
-		    
-		    for (CompanyVO company : companyList) {
-		    %>
-		    
-		    <!-- 사용자는 기업명을 선택하고, 값을 선택하면 해당 기업의 ID값을 받아 옴 -->
-		        <option value="<%= company.getCoName() %>"><%= company.getCoName() %></option>
+		    for(int i = 0; i<companyList.size(); i++) {
+		    	CompanyVO company = (CompanyVO)companyList.get(i);
+		    %>	    	
+		        <option value="<%=company.getCoName()%>"><%=company.getCoName()%></option>
 		    <%
 		    }
 		    %>
 		</select> 
-
        <br><br>
         <input type="submit" value="신청">
     </form>

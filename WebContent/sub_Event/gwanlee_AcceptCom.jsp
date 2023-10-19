@@ -7,7 +7,7 @@
 <jsp:useBean id="allCompanies" class="java.util.ArrayList" />
 
 <!-- status가 0인 company 리스트 가져오기 -->
-<c:set var="companies" value="<%= companyDAO.getCompanyList('CoName', '', 0) %>" />
+<c:set var="companies" value="<%=companyDAO.getCompanyList('CoName', '', 0) %>" />
 
 <html>
 <head>

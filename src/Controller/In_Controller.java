@@ -43,7 +43,8 @@ public class In_Controller extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String action = request.getParameter("action");
         request.setCharacterEncoding("UTF-8");
-        
+        response.setContentType("text/html; charset=utf-8");
+        response.setCharacterEncoding("UTF-8");
     //    String action = request.getPathInfo();  //  온라인 면접 신청 요청애 관한 2 단계 요청 주소  /onlineApplication.do"   받기 
         
         
@@ -226,7 +227,7 @@ public class In_Controller extends HttpServlet {
           
 
             applicantDAO.addApplicant(applicantVO);
-
+            
             // 신청이 완료되었습니다 알림을 표시
             request.setAttribute("message", "신청이 완료되었습니다");
        
@@ -237,6 +238,9 @@ public class In_Controller extends HttpServlet {
             String atndName = request.getParameter("atndName");
             String email = request.getParameter("email");
             String passwd = request.getParameter("passwd");
+           
+            String coName = new String(request.getParameter("coName1").getBytes("ISO-8859-1"), "UTF-8");
+            
             int expoID = Integer.parseInt(request.getParameter("expoID"));
             int status = 0;	// 승인 대기 :0
 
@@ -252,14 +256,36 @@ public class In_Controller extends HttpServlet {
             attendeeDAO.addAttendee(attendee);
 
             // 사용자가 선택한 기업명을 입력 받음
-            String coName = request.getParameter("coName");
+          
+          System.out.println("해당 컨트롤러 co이름값은 :" + coName);
+          
+          String kor_str = coName;
+
+          String[] ary = {"euc-kr","utf-8","iso-8859-1","ksc5601","x-windows-949"};
+
+          for( int i =0 ; i < ary.length; i++){
+
+          for(int j=0; j < ary.length ; j++){
+
+          if( i != j){
+
+          System.out.println( ary[i]+"=>"+ ary[j]+ " \r\n ==> " +new String(kor_str.getBytes(ary[i]),ary[j]));
+
+          }
+
+          }
+
+          }
+
+
+         
 
             // CompanyDAO를 사용하여 기업명을 기반으로 CoID를 검색
             CompanyDAO companyDAO = new CompanyDAO();
             int coID = companyDAO.getCoIDByName(coName);
             
             System.out.println("해당 coID값은 :" + coID); // -1
-
+             // -1
             if (coID > 0) {
                 // IntvwSchedDAO를 사용하여 CoID를 기반으로 SchID를 검색
                 In_ScheduleDAO schedDAO = new In_ScheduleDAO();
