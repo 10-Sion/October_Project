@@ -187,14 +187,12 @@ public class CompanyDAO {
         int coID = -1;
         String query = "SELECT CoID FROM Company WHERE CoName = ?";
         
-   
         System.out.println("coName: " + coName);
-
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, coName);
             ResultSet rs = preparedStatement.executeQuery();
-            // 요기부텅~
+            
             if (rs.next()) {
                 coID = rs.getInt("CoID");
             }

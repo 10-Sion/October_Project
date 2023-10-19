@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
+    <%
+    // 여기에 request.setCharacterEncoding("UTF-8")을 추가
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+%>
+    
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="VO.ExpoInfoVO" %>
