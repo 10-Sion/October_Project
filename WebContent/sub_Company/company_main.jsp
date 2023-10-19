@@ -2,10 +2,14 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+
+<c:set  var="contextPath"  value="${pageContext.request.contextPath}"/>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
-
+	String top = (String)request.getAttribute("top");
 	String keyWord = "";
 	String keyField = "";
 	//페이징 처리 변수
@@ -57,30 +61,14 @@
 <meta name="robots"
 	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="<%=contextPath %>/sub_Event/assets/css/main.css">
 </head>
-<body>
-
-	<!-- Header -->
-	<header id="header">
-		<a href="index.html" class="logo"><strong>Binary</strong> by
-			TEMPLATED</a>
-		<nav>
-			<a href="#menu">Menu</a>
-		</nav>
-	</header>
-	<!-- Nav -->
-	<nav id="menu">
-		<ul class="links">
-			<li><a href="index.html">Home</a></li>
-			<li><a href="generic.html">Generic</a></li>
-			<li><a href="elements.html">Elements</a></li>
-		</ul>
-	</nav>
+<body>	
+	<jsp:include page="/sub_Event/subTop.jsp"/>
 	<section id="main">
 		<div class="inner">
 			<div class="image fit">
-				<img src="/images/pic11.jpg" alt="">
+				<img src="<%=contextPath %>/sub_Event/images/pic11.jpg" alt="">
 			</div>
 			<header>
 				<h1>Lorem ipsum dolor sit amet</h1>
@@ -130,14 +118,8 @@
 	</section>
 	<!-- Footer -->
 	<footer id="footer">
-		<ul class="icons">
-			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-			<li><a href="#" class="icon fa-instagram"><span
-					class="label">Instagram</span></a></li>
-		</ul>
 		<div align="center">
-	<table>
+		<table>
 		<tr>
 			<td>Page to
 <%
@@ -187,16 +169,16 @@
 		</tr>
 	</table>
 	</div>
+		<ul class="icons">
+			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon fa-instagram"><span
+					class="label">Instagram</span></a></li>
+		</ul>
 	</footer>
 	<div class="copyright">
 		Made with: <a href="https://templated.co/">Templated.co</a>
 	</div>
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/skel.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
 </body>
 </html>

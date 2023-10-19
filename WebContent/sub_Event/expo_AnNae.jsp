@@ -9,7 +9,7 @@
     <title>Binary by TEMPLATED</title>
 </head>
 <body>
-    <jsp:include page="subTop.jsp"/>
+    <jsp:include page="./subTop.jsp"/>
     <!-- Banner -->
     <section id="banner">
         <div class="inner">

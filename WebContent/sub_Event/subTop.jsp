@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String contextPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="<%=contextPath%>/sub_Event/assets/css/main.css">
 </head>
 <body>
 	<!-- Header -->
@@ -28,7 +29,7 @@
         </ul>
         
         <ul class="links">
-            <li><a href="index.html">참여기업</a></li>
+            <li><a href="<%=request.getContextPath()%>/Company/list.do">참여기업</a></li>
             <li><a href="generic.html">온라인 면접</a></li>
             <li><a href="elements.html">커뮤니티</a></li>
         </ul>
@@ -36,10 +37,10 @@
 	
 	
 	    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="<%=contextPath%>/sub_Event/assets/js/jquery.min.js"></script>
+    <script src="<%=contextPath%>/sub_Event/assets/js/jquery.scrolly.min.js"></script>
+    <script src="<%=contextPath%>/sub_Event/assets/js/skel.min.js"></script>
+    <script src="<%=contextPath%>/sub_Event/assets/js/util.js"></script>
+    <script src="<%=contextPath%>/sub_Event/assets/js/main.js"></script>
 </body>
 </html>

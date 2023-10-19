@@ -12,7 +12,7 @@
 		sessionUser = loginUser;
 		session.setAttribute("loginUser", sessionUser);
 	}
-
+	
 	System.out.println("세션에 저장된 값: " + sessionUser);
 %>
 <head>
@@ -65,12 +65,11 @@
 	               	<li>
 	                <%-- 세션에 저장된 값이 있으면 로그아웃을 표시 --%>
 	                <% if (sessionUser != null && !sessionUser.isEmpty()) { %>
-	                    <a href="<%=request.getContextPath() %>/mainPage/logout.jsp" accesskey="6" title="">로그아웃</a>
+	                    <a href="<%=request.getContextPath()%>/mainPage/logout.jsp" accesskey="6" title="">로그아웃</a>
 	                <% } else { %>
-	                    <a href="<%=request.getContextPath() %>/mainPage/login.jsp" accesskey="6" title="">로그인</a>
+	                    <a href="<%=request.getContextPath()%>/mainPage/login.jsp" accesskey="6" title="">로그인</a>
 	                <% } %>
 	                </li>
-	               	
 	            </ul>
 	            
 	        </div>

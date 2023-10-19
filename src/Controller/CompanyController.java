@@ -63,6 +63,7 @@ public class CompanyController extends HttpServlet {
 			request.setAttribute("nowPage", nowPage);
 			request.setAttribute("nowBlock", nowBlock);
 			request.setAttribute("CompanyList", list);
+//			request.setAttribute("top", "../sub_Event/subTop.jsp");
 			
 			nextPage = "/sub_Company/company_main.jsp";
 			
@@ -74,7 +75,7 @@ public class CompanyController extends HttpServlet {
 			
 			request.setAttribute("CompanyInfo", vo);
 			
-			nextPage = "/sub_Company/company_Info.jsp";
+			nextPage = "../sub_Company/company_Info.jsp";
 		}
 		
 		
