@@ -48,48 +48,51 @@ public class CompanyDAO {
         }
     }
 
-    // 기업 전체 리스트 가져오는 메서드
-    public List<CompanyVO> getAllCompanies() {
+    // 특정 조건 기업 리스트 가져오는 메서드 (status 추가)
+    public List<CompanyVO> getCompanyList(String keyField, String keyWord, int status) {
         List<CompanyVO> list = new ArrayList<>();
-        
-        //	수정 대기 중인 리스트만 가져옴
-        String sql = "SELECT * FROM Company WHERE Status <> 1 ORDER BY CoID DESC";
-        
-        try (PreparedStatement pstmt = connection.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
-        	
-            while (rs.next()) {
-                CompanyVO com = new CompanyVO();
-                
-                com.setCoID(rs.getInt("CoID"));
-                com.setCoName(rs.getString("CoName"));
-                com.setCoDetails(rs.getString("CoDetails"));
-                com.setCoTel(rs.getString("Co_tel"));
-                com.setCoNumber(rs.getString("Co_number"));
-                com.setEmail(rs.getString("Email"));
-                com.setPasswd(rs.getString("Passwd"));
-                com.setStartDate(rs.getDate("StartDate"));
-                com.setEndDate(rs.getDate("EndDate"));
-                com.setExpoID(rs.getInt("ExpoID"));
-                com.setStatus(rs.getInt("Status"));
-                
-                list.add(com);
-                
+        String sql = "";
+        try {
+        	if (keyWord == null || keyWord.isEmpty()) {
+        	    sql = "SELECT * FROM Company WHERE Status <> " + status + " ORDER BY CoID DESC";
+        	} else {
+        	    sql = "SELECT * FROM Company WHERE Status <> " + status + " AND " + keyField + " LIKE '%" + keyWord + "%' ORDER BY CoID DESC";
+        	}
+
+
+            try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setInt(1, status);  // 직접 입력한 status 값 사용
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next()) {
+                    CompanyVO com = new CompanyVO();
+                    com.setCoID(rs.getInt("CoID"));
+                    com.setCoName(rs.getString("CoName"));
+                    com.setCoDetails(rs.getString("CoDetails"));
+                    com.setCoTel(rs.getString("Co_tel"));
+                    com.setCoNumber(rs.getString("Co_number"));
+                    com.setEmail(rs.getString("Email"));
+                    com.setStartDate(rs.getDate("startDate"));
+                    com.setEndDate(rs.getDate("endDate"));
+                    com.setExpoID(rs.getInt("ExpoID"));
+                    list.add(com);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            
         }
-        
         return list;
     }
+
 
 
     
     // 수락 처리를 위한 메서드
     public void acceptCompany(int companyId) {
     	
-        String sql = "UPDATE Company SET Accepted = 1 WHERE CoID = ?";
+        String sql = "UPDATE Company SET Status = 1 WHERE CoID = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, companyId);
@@ -105,6 +108,7 @@ public class CompanyDAO {
     	
     	List list = new ArrayList();
     	String sql = "";
+    	
     	try {
     		
         	if(keyWord == null || keyWord.isEmpty()) {

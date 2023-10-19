@@ -6,21 +6,22 @@
 <jsp:useBean id="companyDAO" class="DAO.CompanyDAO" />
 <jsp:useBean id="allCompanies" class="java.util.ArrayList" />
 
-<c:set var="allCompanies" value="${companyDAO.getCompanyList('CoName', '', 1)}" />
-
+<!-- status가 0인 company 리스트 가져오기 -->
+<c:set var="companies" value="<%= companyDAO.getCompanyList('CoName', '', 0) %>" />
 
 <html>
 <head>
     <title>Company List</title>
 </head>
 <body>
-    <jsp:include page="subTop.jsp"/>
+    <jsp:include page="subTop.jsp" />
 
-    <h1>Company List</h1>
+    <h1>Company List (Status 0)</h1>
     <table>
         <tr>
             <th>CoID</th>
             <th>CoName</th>
+            <th>CoDetails</th>
             <th>CoTel</th>
             <th>CoNumber</th>
             <th>Email</th>
@@ -30,10 +31,11 @@
             <th>Status</th>
         </tr>
 
-        <c:forEach var="company" items="${allCompanies}">
+        <c:forEach var="company" items="${companies}">
             <tr>
                 <td><c:out value="${company.coID}" /></td>
                 <td><c:out value="${company.coName}" /></td>
+                <td><c:out value="${company.coDetails}" /></td>
                 <td><c:out value="${company.coTel}" /></td>
                 <td><c:out value="${company.coNumber}" /></td>
                 <td><c:out value="${company.email}" /></td>

@@ -17,7 +17,10 @@ import DAO.*;
 public class EventController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+    	
+    	String action = request.getParameter("action");
 
         if (action == null) {
             response.sendRedirect("/ChuiUpExpo/sub_Event/expo_AnNae.jsp");
@@ -86,9 +89,9 @@ public class EventController extends HttpServlet {
             response.sendRedirect("/ChuiUpExpo/sub_Event/expo_SaJeon.jsp");
             
         } else if (action.equals("companyList")) {
-            // 모든 기업 정보 가져오기
+            // 모든 기업 정보 가져오기 (status가 1이 아닌 모든 기업)
             CompanyDAO companyDAO = new CompanyDAO();
-            List<CompanyVO> companies = companyDAO.getAllCompanies();
+            List<CompanyVO> companies = companyDAO.getCompanyList("CoName", "", 1); // status가 1이 아닌 기업을 가져오도록 설정
 
             request.setAttribute("companies", companies);
             request.getRequestDispatcher("/sub_Event/gwanlee_ComList.jsp").forward(request, response);
