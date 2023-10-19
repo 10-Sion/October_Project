@@ -50,19 +50,24 @@ public class CompanyDAO {
     }
 
     // 특정 조건 기업 리스트 가져오는 메서드 (status 추가)
+ // 특정 조건 기업 리스트 가져오는 메서드 (status 추가)
     public List<CompanyVO> getCompanyList(String keyField, String keyWord, int status) {
         List<CompanyVO> list = new ArrayList<>();
         String sql = "";
         try {
-        	if (keyWord == null || keyWord.isEmpty()) {
-        	    sql = "SELECT * FROM Company WHERE Status <> " + status + " ORDER BY CoID DESC";
-        	} else {
-        	    sql = "SELECT * FROM Company WHERE Status <> " + status + " AND " + keyField + " LIKE '%" + keyWord + "%' ORDER BY CoID DESC";
-        	}
-
+            if (keyWord == null || keyWord.isEmpty()) {
+                sql = "SELECT * FROM Company WHERE Status <> ? ORDER BY CoID DESC";
+            } else {
+                sql = "SELECT * FROM Company WHERE Status <> ? AND " + keyField + " LIKE ? ORDER BY CoID DESC";
+            }
 
             try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-                pstmt.setInt(1, status);  // 직접 입력한 status 값 사용
+                pstmt.setInt(1, status);  // Set the value for the first parameter
+
+                if (!keyWord.isEmpty()) {
+                    pstmt.setString(2, "%" + keyWord + "%"); // Set the value for the second parameter
+                }
+
                 ResultSet rs = pstmt.executeQuery();
 
                 while (rs.next()) {
@@ -86,6 +91,8 @@ public class CompanyDAO {
         }
         return list;
     }
+
+
 
 
 
