@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<% 
+	String path = request.getContextPath();
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -154,14 +157,14 @@
         <div class="content">
             <div class="inner">
                 <header>
-                    <h2><a href="generic.html">Magna porta aliquam</a></h2>
-                    <p class="info">3 days ago by <a href="#">Jane Doe</a></p>
+                    <h2>참가 기업</h2>
+                    <p class="info">전국의 우수한 기업들이 인재를 찾고 있습니다!</p>
                 </header>
                 <p>
-                    Nullam posuere erat vel placerat rutrum. Praesent ac consectetur dui, et congue quam. Donec aliquam lacinia condimentum. Integer porta massa sapien, commodo sodales diam suscipit vitae. Aliquam quis felis sed urna semper semper. Phasellus eu scelerisque mi. Vivamus aliquam nisl libero, sit amet scelerisque ligula laoreet vel.
+      		국내의 여러 기업들이 박람회에 참여하였습니다. 더보기를 눌러 참가한 기업 목록을 확인해보세요
                 </p>
                 <ul class="actions">
-                    <li><a href="generic.html" class="button alt">Read More</a></li>
+                    <li><a href="<%=path%>/Company/list.do" class="button alt">Read More</a></li>
                 </ul>
             </div>
             <div class="postnav">

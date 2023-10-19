@@ -41,6 +41,36 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
             e.printStackTrace();
         }
     }
+    
+public int addAttendee1(AttendeeVO attendee) {
+    	
+        String sql = "INSERT INTO Attendee (AtndName, Email, Passwd, ExpoID, Status) VALUES (?, ?, SHA2(?, 256), ?, ?)";
+        int AtndID= 0;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        	
+        	String email = attendee.getEmail();
+            preparedStatement.setString(1, attendee.getAtndName());
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, attendee.getPasswd());
+            preparedStatement.setInt(4, attendee.getExpoID());
+            preparedStatement.setInt(5, attendee.getStatus());
+            
+            preparedStatement.executeUpdate();
+            
+            sql = "select AtndID from Attendee where email = "+ email;
+            pstmt = connection.prepareStatement(sql);
+            rs =  preparedStatement.executeQuery();
+            
+            if(rs.next()) {
+            	AtndID = rs.getInt("AtndID");
+            	
+            }
+        } catch (SQLException e) {
+        	
+            e.printStackTrace();
+        }
+        return AtndID;
+    }
 
     @Override
     public List<AttendeeVO> getAllAttendees() {
