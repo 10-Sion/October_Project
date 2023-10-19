@@ -5,7 +5,7 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 
-<c:set  var="contextPath"  value="${pageContext.request.contextPath}"/>
+<c:set  var="Path"  value="${pageContext.request.contextPath}"/>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
@@ -69,10 +69,7 @@
 				<img src="<%=contextPath %>/sub_Event/images/pic11.jpg" alt="">
 			</div>
 			<header>
-				<h1>Lorem ipsum dolor sit amet</h1>
-				<p class="info">
-					3 days ago by <a href="#">Jane Doe</a>
-				</p>
+				<h1>참가 기업 목록</h1>
 			</header>
 			<div align="center" class="table">
 

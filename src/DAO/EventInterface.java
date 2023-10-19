@@ -17,5 +17,7 @@ public interface EventInterface {
         void addAttendee(AttendeeVO attendee);
         AttendeeVO getAttendee(int attendeeId);
         List<AttendeeVO> getAllAttendees();
+        int addAttendee1(AttendeeVO attendee);
     }
+
 }

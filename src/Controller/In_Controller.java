@@ -247,7 +247,8 @@ public class In_Controller extends HttpServlet {
             attendee.setStatus(status);	
 	
 	            AttendeeDAO attendeeDAO = new AttendeeDAO();
-            attendeeDAO.addAttendee(attendee);
+	            
+            int AtndID = attendeeDAO.addAttendee1(attendee);
 
 	            // 사용자가 선택한 기업명을 입력 받음
 	            String coName = request.getParameter("coName1");
@@ -280,7 +281,6 @@ public class In_Controller extends HttpServlet {
 						 * schhID);
 						 */
 	                    
-	                    
 	                    response.sendRedirect("/ChuiUpExpo/sub_Interview/in_application.jsp");
 	                } else {
 	                    // SchID를 찾을 수 없을 때의 에러 처리 로직
@@ -290,13 +290,12 @@ public class In_Controller extends HttpServlet {
 	                // CoID를 찾을 수 없을 때의 에러 처리 로직
 	                // 사용자에게 오류 메시지를 표시하거나 다른 조치를 취할 수 있습니다.
 	            }
-
+	            
        	
 	        	
 	        }
 	        
 	       }
-
 		@Override
 	    public void destroy() {
 	        super.destroy();
