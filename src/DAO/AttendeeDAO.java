@@ -72,25 +72,23 @@ public int addAttendee1(AttendeeVO attendee) {
         return AtndID;
     }
 
-    @Override
-    public List<AttendeeVO> getAllAttendees() {
+    public List<AttendeeVO> getAttendeeList(int status) {
         List<AttendeeVO> list = new ArrayList<>();
+        String sql = "SELECT * FROM Attendee WHERE Status = ? ORDER BY AtndID ASC";
 
-        //	수정 대기 중인 리스트만 가져옴
-        String sql = "SELECT AtndID, AtndName, Email, ExpoID, Status FROM Attendee WHERE Status <> 1 ORDER BY AtndID DESC";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, status);
 
-        try (PreparedStatement pstmt = connection.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
+            ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 AttendeeVO attendee = new AttendeeVO();
-
                 attendee.setAtndID(rs.getInt("AtndID"));
                 attendee.setAtndName(rs.getString("AtndName"));
                 attendee.setEmail(rs.getString("Email"));
+                attendee.setPasswd(rs.getString("Passwd"));
                 attendee.setExpoID(rs.getInt("ExpoID"));
                 attendee.setStatus(rs.getInt("Status"));
-
                 list.add(attendee);
             }
         } catch (SQLException e) {
@@ -100,10 +98,21 @@ public int addAttendee1(AttendeeVO attendee) {
         return list;
     }
 
+	@Override
+	public List<AttendeeVO> getAllAttendees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public AttendeeVO getAttendee(int attendeeId) {
-        
-        return null;
-    }
+	// 참가자 수락 메서드
+	public void acceptAllAttendees() {
+	    String sql = "UPDATE Attendee SET Status = 1 WHERE Status = 0";
+
+	    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+	        preparedStatement.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+
 }
