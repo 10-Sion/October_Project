@@ -50,7 +50,7 @@ public class CompanyDAO {
     }
 
     // 특정 조건 기업 리스트 가져오는 메서드 (status 추가)
- // 특정 조건 기업 리스트 가져오는 메서드 (status 추가)
+
     public List<CompanyVO> getCompanyList(String keyField, String keyWord, int status) {
         List<CompanyVO> list = new ArrayList<>();
         String sql = "";
@@ -81,6 +81,7 @@ public class CompanyDAO {
                     com.setStartDate(rs.getDate("startDate"));
                     com.setEndDate(rs.getDate("endDate"));
                     com.setExpoID(rs.getInt("ExpoID"));
+                    com.setStatus(rs.getInt("Status"));
                     list.add(com);
                 }
             } catch (SQLException e) {
