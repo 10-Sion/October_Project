@@ -49,14 +49,47 @@ public class CompanyDAO {
         }
     }
 
-    // 특정 조건 기업 리스트 가져오는 메서드 (status 추가)
+    // 특정 status 리스트화 메서드
+    public List<CompanyVO> getCompanyList(int status) {
+        List<CompanyVO> list = new ArrayList<>();
+        String sql = "SELECT * FROM Company WHERE Status = ? ORDER BY CoID DESC";
+        
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, status); // Set the value for the status parameter
 
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                CompanyVO com = new CompanyVO();
+                com.setCoID(rs.getInt("CoID"));
+                com.setCoName(rs.getString("CoName"));
+                com.setCoDetails(rs.getString("CoDetails"));
+                com.setCoTel(rs.getString("Co_tel"));
+                com.setCoNumber(rs.getString("Co_number"));
+                com.setEmail(rs.getString("Email"));
+                com.setStartDate(rs.getDate("startDate"));
+                com.setEndDate(rs.getDate("endDate"));
+                com.setExpoID(rs.getInt("ExpoID"));
+                com.setStatus(rs.getInt("Status"));
+                list.add(com);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    
+    // 특정 조건 기업 리스트 가져오는 메서드 (status 추가)
     public List<CompanyVO> getCompanyList(String keyField, String keyWord, int status) {
         List<CompanyVO> list = new ArrayList<>();
         String sql = "";
         try {
             if (keyWord == null || keyWord.isEmpty()) {
-                sql = "SELECT * FROM Company WHERE Status <> ? ORDER BY CoID DESC";
+            	sql = "SELECT * FROM Company WHERE Status <> ? ORDER BY CoID ASC, Status DESC";
+
             } else {
                 sql = "SELECT * FROM Company WHERE Status <> ? AND " + keyField + " LIKE ? ORDER BY CoID DESC";
             }
@@ -92,9 +125,6 @@ public class CompanyDAO {
         }
         return list;
     }
-
-
-
 
 
     

@@ -6,9 +6,9 @@
 <jsp:useBean id="companyDAO" class="DAO.CompanyDAO" />
 <jsp:useBean id="allCompanies" class="java.util.ArrayList" />
 
-<c:set var="allCompanies" value="${companyDAO.getCompanyList('CoName', '', 0)}" />
+<c:set var="allCompanies" value="${companyDAO.getCompanyList('', '', 0)}" />
 
-
+<!-- 수정 대기 리스트 -->
 <html>
 <head>
     <title>Company List</title>
