@@ -16,6 +16,7 @@
 <body>
     <jsp:include page="subTop.jsp"/>
 
+	<div>
     <h1>Company List</h1>
     <table>
         <tr>
@@ -44,5 +45,10 @@
             </tr>
         </c:forEach>
     </table>
+    </div>
+    
+    <div>
+    	
+    </div>
 </body>
 </html>

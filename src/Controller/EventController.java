@@ -21,9 +21,10 @@ public class EventController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
     	
     	String action = request.getParameter("action");
-
+    	String contextPath = request.getContextPath();
+    	
         if (action == null) {
-            response.sendRedirect("/ChuiUpExpo/sub_Event/expo_AnNae.jsp");
+            response.sendRedirect( contextPath+"/sub_Event/expo_AnNae.jsp");
             
         } else if (action.equals("addAttendee")) {
         	
@@ -45,7 +46,7 @@ public class EventController extends HttpServlet {
             AttendeeDAO attendeeDAO = new AttendeeDAO();
             attendeeDAO.addAttendee(attendee);
 
-            response.sendRedirect("/ChuiUpExpo/sub_Event/expo_SaJeon.jsp");
+            response.sendRedirect(contextPath +"/sub_Event/expo_SaJeon.jsp");
             
         } else if (action.equals("attendeeList")) {
             // 모든 Attendee 정보 가져오기
@@ -96,16 +97,7 @@ public class EventController extends HttpServlet {
             request.setAttribute("companies", companies);
             request.getRequestDispatcher("/sub_Event/gwanlee_ComList.jsp").forward(request, response);
             
-        } else if (action.equals("acceptCompany")) {
-            // 기업 수락 처리
-            int companyId = Integer.parseInt(request.getParameter("coID"));
-
-            CompanyDAO companyDAO = new CompanyDAO();
-            companyDAO.acceptCompany(companyId);
-
-            response.sendRedirect("/ChuiUpExpo/sub_Event/expo_CompanyAccepted.jsp");
-            
-	    }  else if (action.equals("SelectWhat")) {
+        } else if (action.equals("SelectWhat")) {
 	            // Expo 선택 변경 처리
 	            int selectedExpoID = Integer.parseInt(request.getParameter("expoID"));
 	            
@@ -130,7 +122,22 @@ public class EventController extends HttpServlet {
 	                response.getWriter().write("Selected Expo not found.");
 	                
 	            }
-	        } else {
+	            // 기업 전체 수락 처리
+	        } if (action.equals("acceptAllCompanies")) {
+	            CompanyDAO companyDAO = new CompanyDAO();
+	            companyDAO.acceptAllCompanies();
+	            
+	            response.sendRedirect(contextPath +"/sub_Event/gwanlee_WaitiUntilReg.jsp");
+	            
+	            // 참가자 전체 수락 처리
+	        } else if (action.equals("acceptAllAttendees")) {
+	            AttendeeDAO attendeeDAO = new AttendeeDAO();
+	            attendeeDAO.acceptAllAttendees();
+	            
+	            response.sendRedirect(contextPath +"/sub_Event/gwanlee_WaitiUntilReg.jsp");
+	            
+	        }
+ else {
             // 지원하지 않는 동작
             response.sendRedirect("error.jsp");
         }

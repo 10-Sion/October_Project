@@ -128,18 +128,14 @@ public class CompanyDAO {
 
 
     
-    // 수락 처리를 위한 메서드
-    public void acceptCompany(int companyId) {
-    	
-        String sql = "UPDATE Company SET Status = 1 WHERE CoID = ?";
+ // 수락 처리를 위한 메서드
+    public void acceptAllCompanies() {
+        String sql = "UPDATE Company SET Status = 1 WHERE Status = 0";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, companyId);
             preparedStatement.executeUpdate();
-            
         } catch (SQLException e) {
             e.printStackTrace();
-            
         }
     }
 
