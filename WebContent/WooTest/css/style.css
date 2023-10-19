@@ -1,0 +1,17 @@
+.grid {
+    flex-wrap: wrap;
+  }
+  .container::after,
+.row::after,
+.clearfix::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.container {
+  --bs-gutter-x: 2.5rem;
+}
+.btn.btn-rounded,
+.btn.btn-rounded::after {
+  border-radius: 4px;
+}

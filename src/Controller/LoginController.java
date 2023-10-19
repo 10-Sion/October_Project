@@ -40,7 +40,9 @@ public class LoginController extends HttpServlet {
 		String nextPage = "";
 		System.out.println("요청 받은 주소 : " + action);
 		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
+
+		HttpSession session = request.getSession(true);
+
 
 		if(action.equals("") || action == null) {
 			
@@ -73,6 +75,7 @@ public class LoginController extends HttpServlet {
 				// 관리자 체크 성공 시 request 에 AdmName 값 저장
 				} else {
 					request.setAttribute("loginUser", loginUser);
+					session.setAttribute("rolename", "관리자");
 					nextPage = "/mainPage/index.jsp";
 				}
 				
@@ -95,6 +98,7 @@ public class LoginController extends HttpServlet {
 						
 					} else {
 						request.setAttribute("loginUser", loginUser);
+						session.setAttribute("rolename", "기업");
 						nextPage = "/mainPage/index.jsp";
 					}
 					
@@ -112,6 +116,7 @@ public class LoginController extends HttpServlet {
 						nextPage = "/mainPage/login.jsp";
 					} else {
 						request.setAttribute("loginUser", loginUser);
+						session.setAttribute("rolename", "참가자");
 						nextPage = "/mainPage/index.jsp";
 					}
 				}

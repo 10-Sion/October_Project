@@ -63,8 +63,10 @@ public class CompanyController extends HttpServlet {
 			request.setAttribute("nowPage", nowPage);
 			request.setAttribute("nowBlock", nowBlock);
 			request.setAttribute("CompanyList", list);
+//			request.setAttribute("top", "../sub_Event/subTop.jsp");
 			
 			nextPage = "/sub_Company/company_main.jsp";
+			
 		}else if(action.equals("/Info.do")){
 			
 			int CoID = Integer.parseInt(request.getParameter("CoId"));
@@ -73,14 +75,14 @@ public class CompanyController extends HttpServlet {
 			
 			request.setAttribute("CompanyInfo", vo);
 			
-			nextPage = "/sub_Company/company_Info.jsp";
+			nextPage = "../sub_Company/company_Info.jsp";
 		}
 		
 		
 			
-		
-		
+		System.out.println("반환 되는 주소 : " + nextPage);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
-						  dispatcher.forward(request, response);
+		dispatcher.forward(request, response);
+		
 	}
 }

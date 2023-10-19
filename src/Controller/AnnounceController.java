@@ -75,7 +75,7 @@ public class AnnounceController extends HttpServlet {
 			
 			nextPage = "/sub_Community/Announce.jsp";
 			
-		}else if(action.equals("insert.do")){
+		}else if(action.equals("/insert.do")){
 			
 			AnnounceVO vo = new AnnounceVO();
 			

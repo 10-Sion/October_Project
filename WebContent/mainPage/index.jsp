@@ -4,6 +4,7 @@
 <%
 	String contextPath = request.getContextPath();
 	String loginUser = (String) request.getAttribute("loginUser");
+	String rolename = (String) session.getAttribute("rolname");
 	String sessionUser = (String) session.getAttribute("loginUser");
 
 	// sessionUser 값이 없으면, loginUser 값으로 세션을 설정
@@ -11,7 +12,7 @@
 		sessionUser = loginUser;
 		session.setAttribute("loginUser", sessionUser);
 	}
-
+	
 	System.out.println("세션에 저장된 값: " + sessionUser);
 %>
 <head>
@@ -65,12 +66,12 @@
 	               	<li>
 	                <%-- 세션에 저장된 값이 있으면 로그아웃을 표시 --%>
 	                <% if (sessionUser != null && !sessionUser.isEmpty()) { %>
+
 	                    <a href="<%=contextPath %>/login/logOutFrom.do" accesskey="6" title="">로그아웃</a>
 	                <% } else { %>
 	                    <a href="<%=contextPath %>/login/loginFrom.do" accesskey="6" title="">로그인</a>
 	                <% } %>
 	                </li>
-	               	
 	            </ul>
 	            
 	        </div>
