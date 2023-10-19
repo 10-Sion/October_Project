@@ -31,7 +31,9 @@
         
         <ul class="links">
             <li><a href="<%=request.getContextPath()%>/Company/list.do">참여기업</a></li>
-            <li><a href="generic.html">온라인 면접</a></li>
+            <li><a href="<%= request.getContextPath() %>/sub_Interview/in_application.jsp">온라인 면접</a></li>
+            <li><a href="<%= request.getContextPath() %>/sub_Interview/in_schedule.jsp">면접 공고 신청</a></li>
+            <li><a href="<%= request.getContextPath() %>/sub_Interview/in_admin.jsp">면접 관리자</a></li>
             <li><a href="elements.html">커뮤니티</a></li>
         </ul>
     </nav>
