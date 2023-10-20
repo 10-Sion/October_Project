@@ -9,7 +9,8 @@
 <body>
 	<jsp:include page="subTop.jsp"/>
 	
-	<a href="<%= request.getContextPath() %>/Controller/EventController?action=companyList">Company List</a>
+	<a href="gwanlee_ComList.jsp">기업 리스트</a>
+	<a href="gwanlee_ComNoRegList.jsp">기업 가입 대기 리스트</a>
 	
 </body>
 </html>

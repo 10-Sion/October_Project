@@ -10,7 +10,7 @@ String contextPath = request.getContextPath();
 <meta name="robots"
 	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="<%=contextPath %>/sub_Event/assets/css/main.css">
+<link rel="stylesheet" href="<%=contextPath%>/sub_Event/assets/css/main.css">
 </head>
 <style>
 
