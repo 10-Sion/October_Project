@@ -19,8 +19,10 @@
 </style>
 </head>
 <body>
+	<jsp:include page="/sub_Event/subTop.jsp" />
 	<form action="<%=request.getContextPath() %>/QnA/updateQnA.do?faqId=<%=qVo.getFaqid()%>&poster=<%=qVo.getPoster() %>" method="post">
     <div>
+    
         <h3>자주하는 질문</h3>
         <table border="1">
             <tr>

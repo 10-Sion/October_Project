@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% 
 	String path = request.getContextPath();
+	String sessionUser = (String) session.getAttribute("loginUser");
+	System.out.println("메인 세션 값 : " + sessionUser);
 %>
 <!DOCTYPE HTML>
 <html>
@@ -8,11 +10,11 @@
     <meta charset="utf-8">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="<%=path %>/sub_Event/assets/css/main.css">
     <title>Binary by TEMPLATED</title>
 </head>
 <body>
-    <jsp:include page="./subTop.jsp"/>
+    <jsp:include page="./subTop.jsp" />
     <!-- Banner -->
     <section id="banner">
         <div class="inner">
@@ -26,7 +28,7 @@
     <!-- One -->
     <article id="one" class="post style1">
         <div class="image">
-            <img src="images/pic14.jpg" alt="" data-position="75% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/pic14.jpg" alt="" data-position="75% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
@@ -51,7 +53,7 @@
     <!-- Two -->
 <article id="two" class="post invert style1 alt">
     <div class="image">
-        <img src="images/pic13.jpg" alt="" data-position="10% center" width="1400" height="788">
+        <img src="<%=path %>/sub_Event/images/pic13.jpg" alt="" data-position="10% center" width="1400" height="788">
     </div>
     <div class="content">
         <div class="inner">
@@ -77,7 +79,7 @@
     <!-- Three -->
     <article id="three" class="post style2">
         <div class="image">
-            <img src="images/pic12.jpg" alt="" data-position="80% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/pic12.jpg" alt="" data-position="80% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
@@ -102,7 +104,7 @@
     <!-- Four -->
     <article id="four" class="post invert style2 alt">
         <div class="image">
-            <img src="images/pic14.jpg" alt="" data-position="60% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/pic14.jpg" alt="" data-position="60% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
@@ -127,7 +129,7 @@
     <!-- Five -->
     <article id="five" class="post style3">
         <div class="image">
-            <img src="images/pic13.jpg" alt="" data-position="5% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/pic13.jpg" alt="" data-position="5% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
@@ -152,7 +154,7 @@
     <!-- Six -->
     <article id="six" class="post invert style3 alt">
         <div class="image">
-            <img src="images/pic12.jpg" alt="" data-position="80% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/pic12.jpg" alt="" data-position="80% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">

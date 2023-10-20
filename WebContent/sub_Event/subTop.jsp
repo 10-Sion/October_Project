@@ -1,6 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String contextPath = request.getContextPath(); %>
+<% 
+	String contextPath = request.getContextPath();
+	String loginUser = (String) request.getAttribute("loginUser");
+	String rolename = (String) session.getAttribute("rolname");
+	String sessionUser = (String) session.getAttribute("loginUser");
+	
+	// sessionUser 값이 없으면, loginUser 값으로 세션을 설정
+	if (sessionUser == null || sessionUser.isEmpty()) {
+		sessionUser = loginUser;
+		session.setAttribute("loginUser", sessionUser);
+	}
+	
+	System.out.println("세션에 저장된 값: " + sessionUser);
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +29,13 @@
         <a href="<%= request.getContextPath() %>/mainPage/index.jsp" class="logo">
             <strong>취업 박람회</strong>
         </a>
+        
         <nav>
+        	<% if (sessionUser != null && !sessionUser.isEmpty()) { %>
+                <a href="<%=contextPath %>/login/logOutFrom.do" ><strong><%=sessionUser %> 님 로그인 중</strong></a>
+            <% } else { %>
+                <a href="<%=contextPath %>/login/loginFrom.do" >로그인</a>
+            <% } %>
             <a href="#menu">Menu</a>
         </nav>
     </header>
@@ -36,7 +56,16 @@
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_application.jsp">온라인 면접</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_schedule.jsp">면접 공고 신청</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_admin.jsp">면접 관리자</a></li>
-            <li><a href="elements.html">커뮤니티</a></li>
+            <li><a href="<%=request.getContextPath()%>/QnA/QnAlist.do">자주하는 질문</a></li>
+<%--        <li><a href="<%=request.getContextPath()%>/login/loginFrom.do">로그인</a></li> --%>
+			<li>
+            <%-- 세션에 저장된 값이 있으면 로그아웃을 표시 --%>
+            <% if (sessionUser != null && !sessionUser.isEmpty()) { %>
+                <a href="<%=contextPath %>/login/logOutFrom.do" accesskey="6" title="">로그아웃</a>
+            <% } else { %>
+                <a href="<%=contextPath %>/login/loginFrom.do" accesskey="6" title="">로그인</a>
+            <% } %>
+            </li>
         </ul>
     </nav>
 	
