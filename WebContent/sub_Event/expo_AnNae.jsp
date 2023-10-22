@@ -14,6 +14,9 @@
 <body>
     <jsp:include page="./subTop.jsp"/>
     <!-- Banner -->
+    <div class="bannerImg">
+   			<img src="images/expoBanner.png">
+   	</div>
     <section id="banner">
         <div class="inner">
             <h1>취업 박람회</h1>
@@ -31,12 +34,12 @@
         <div class="content">
             <div class="inner">
                 <header>
-                    <h2><a href="generic.html">Ipsum lorem sed magna</a></h2>
-                    <p class="info">3 days ago by <a href="#">Jane Doe</a></p>
+                    <h2><a href="generic.html">박람회 안내</a></h2>
+                    <p class="info"> 2주간 진행되는  <a href="#">박람회 개요</a></p>
                 </header>
                 <p>
-                    Nullam posuere erat vel placerat rutrum. Praesent ac consectetur dui, et congue quam. Donec aliquam lacinia condimentum. Integer porta massa sapien, commodo sodales diam suscipit vitae. Aliquam quis felis sed urna semper semper. Phasellus eu scelerisque mi. Vivamus aliquam nisl libero, sit amet scelerisque ligula laoreet vel.
-                </p>
+					새로운 기회를 발견하고, 다양한 기업과 연결될 수 있는  
+				</p>
                 <ul class="actions">
                     <li><a href="generic.html" class="button alt">Read More</a></li>
                 </ul>
@@ -56,11 +59,11 @@
     <div class="content">
         <div class="inner">
             <header>
-                <h2><a href="generic.html">Donec ex risus mollis</a></h2>
-                <p class="info">3 days ago by <a href="#">Jane Doe</a></p>
+                <h2><a href="generic.html">참여 절차</a></h2>
+                <p class="info"> <a href="#">사전 안내</a></p>
             </header>
             <p>
-                Nullam posuere erat vel placerat rutrum. Praesent ac consectetur dui, et congue quam. Donec aliquam lacinia condimentum. Integer porta massa sapien, commodo sodales diam suscipit vitae. Aliquam quis felis sed urna semper semper. Phasellus eu scelerisque mi. Vivamus aliquam nisl libero, sit amet scelerisque ligula laoreet vel.
+				준비물 및 진행 절차 안내
             </p>
             <ul class="actions">
                 <li><a href="generic.html" class="button alt">Read More</a></li>
@@ -82,11 +85,11 @@
         <div class="content">
             <div class="inner">
                 <header>
-                    <h2><a href="generic.html">Sed tempus interdum</a></h2>
-                    <p class="info">3 days ago by <a href="#">Jane Doe</a></p>
+                    <h2><a href="generic.html">면접 안내</a></h2>
+                    <p class="info">온라인 신청과 <a href="#">면접 접수</a></p>
                 </header>
                 <p>
-                    Nullam posuere erat vel placerat rutrum. Praesent ac consectetur dui, et congue quam. Donec aliquam lacinia condimentum. Integer porta massa sapien, commodo sodales diam suscipit vitae. Aliquam quis felis sed urna semper semper. Phasellus eu scelerisque mi. Vivamus aliquam nisl libero, sit amet scelerisque ligula laoreet vel.
+					사전 및 면접 접수 안내
                 </p>
                 <ul class="actions">
                     <li><a href="generic.html" class="button alt">Read More</a></li>
@@ -107,11 +110,11 @@
         <div class="content">
             <div class="inner">
                 <header>
-                    <h2><a href="generic.html">Adipiscing sed urna</a></h2>
-                <p class="info">3 days ago by <a href="#">Jane Doe</a></p>
+                    <h2><a href="generic.html"> 찾아오시는 길</a></h2>
+                <p class="info">  <a href="#">박람회 장소</a></p>
                 </header>
                 <p>
-                    Nullam posuere erat vel placerat rutrum. Praesent ac consectetur dui, et congue quam. Donec aliquam lacinia condimentum. Integer porta massa sapien, commodo sodales diam suscipit vitae. Aliquam quis felis sed urna semper semper. Phasellus eu scelerisque mi. Vivamus aliquam nisl libero, sit amet scelerisque ligula laoreet vel.
+                    지도와 주소 안내
                 </p>
                 <ul class="actions">
                     <li><a href="generic.html" class=" button alt">Read More</a></li>
@@ -132,11 +135,11 @@
         <div class="content">
             <div class="inner">
                 <header>
-                    <h2><a href="generic.html">Interdum et rutrum</a></h2>
-                    <p class="info">3 days ago by <a href="#">Jane Doe</a></p>
+                    <h2><a href="generic.html">커뮤니티</a></h2>
+                    <p class="info">자주 묻는 사항과  <a href="#">공지사항</a></p>
                 </header>
                 <p>
-                    Nullam posuere erat vel placerat rutrum. Praesent ac consectetur dui, et congue quam. Donec aliquam lacinia condimentum. Integer porta massa sapien, commodo sodales diam suscipit vitae. Aliquam quis felis sed urna semper semper. Phasellus eu scelerisque mi. Vivamus aliquam nisl libero, sit amet scelerisque ligula laoreet vel.
+					참여 전 변동사항과 궁금한 점에 대해
                 </p>
                 <ul class="actions">
                     <li><a href="generic.html" class="button alt">Read More</a></li>

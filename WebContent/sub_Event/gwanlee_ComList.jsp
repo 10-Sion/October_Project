@@ -29,6 +29,7 @@
             <th>EndDate</th>
             <th>ExpoID</th>
             <th>Status</th>
+            <th>Edit</th>
         </tr>
 
         <c:forEach var="company" items="${allCompanies}">
@@ -42,6 +43,8 @@
                 <td><c:out value="${company.endDate}" /></td>
                 <td><c:out value="${company.expoID}" /></td>
                 <td><c:out value="${company.status}" /></td>
+              	<td><a href="<%= request.getContextPath() %>/Event?action=editCompany&coID=${company.coID}">수정</a></td>
+                
             </tr>
         </c:forEach>
     </table>

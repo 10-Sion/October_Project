@@ -136,13 +136,55 @@ public class EventController extends HttpServlet {
 	            
 	            response.sendRedirect(contextPath +"/sub_Event/gwanlee_WaitiUntilReg.jsp");
 	            
-	        }
- else {
+	        }  else {
             // 지원하지 않는 동작
             response.sendRedirect("error.jsp");
         }
     }
     
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+    	
+    	String action = request.getParameter("action");
+    	String contextPath = request.getContextPath();
+    	
+        if (action == null) {
+            response.sendRedirect( contextPath+"/sub_Event/expo_AnNae.jsp");
+
+        } else if (action.equals("editCompany")) {
+
+            int coID = Integer.parseInt(request.getParameter("coID"));
+
+            CompanyDAO companyDAO = new CompanyDAO();
+            CompanyVO company = companyDAO.getCompanyByID(coID);
+
+
+            request.setAttribute("company", company);
+
+            request.getRequestDispatcher(contextPath +"/sub_Event/gwanlee_EditCom.jsp").forward(request, response);
+
+        } else if (action.equals("saveCompanyChanges")) {
+            
+            int coID = Integer.parseInt(request.getParameter("coID"));
+            String coName = request.getParameter("coName"); 
+
+
+            CompanyVO updatedCompany = new CompanyVO();
+            updatedCompany.setCoID(coID);
+            updatedCompany.setCoName(coName);
+
+
+            CompanyDAO companyDAO = new CompanyDAO();
+            companyDAO.updateCompany(updatedCompany);
+
+
+            response.sendRedirect(contextPath +"/sub_Event/gwanlee_ComList.jsp");
+
+        } else {
+            
+        }
+    }
 
 }

@@ -280,6 +280,59 @@ public class CompanyDAO {
     }
 
 
+    //	기업 select
+    public CompanyVO getCompanyByID(int coID) {
+        CompanyVO company = null;
+        String sql = "SELECT * FROM Company WHERE CoID = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, coID);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                company = new CompanyVO();
+                company.setCoID(rs.getInt("CoID"));
+                company.setCoName(rs.getString("CoName"));
+                company.setCoDetails(rs.getString("CoDetails"));
+                company.setCoTel(rs.getString("Co_tel"));
+                company.setCoNumber(rs.getString("Co_number"));
+                company.setEmail(rs.getString("Email"));
+                company.setStartDate(rs.getDate("startDate"));
+                company.setEndDate(rs.getDate("endDate"));
+                company.setExpoID(rs.getInt("ExpoID"));
+                company.setStatus(rs.getInt("Status"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return company;
+    }
+
+    //	기업 update
+    public void updateCompany(CompanyVO updatedCompany) {
+        String sql = "UPDATE Company SET CoName = ?, CoDetails = ?, Co_tel = ?, Co_number = ?, Email = ?, " +
+                     "StartDate = ?, EndDate = ?, ExpoID = ?, Status = ? WHERE CoID = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, updatedCompany.getCoName());
+            pstmt.setString(2, updatedCompany.getCoDetails());
+            pstmt.setString(3, updatedCompany.getCoTel());
+            pstmt.setString(4, updatedCompany.getCoNumber());
+            pstmt.setString(5, updatedCompany.getEmail());
+            pstmt.setDate(6, new java.sql.Date(updatedCompany.getStartDate().getTime()));
+            pstmt.setDate(7, new java.sql.Date(updatedCompany.getEndDate().getTime()));
+            pstmt.setInt(8, updatedCompany.getExpoID());
+            pstmt.setInt(9, updatedCompany.getStatus());
+            pstmt.setInt(10, updatedCompany.getCoID());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 
