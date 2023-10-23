@@ -3,7 +3,7 @@
 <% 
 	String contextPath = request.getContextPath();
 	String loginUser = (String) session.getAttribute("loginUser"); // 로그인한 사람의 email
-	String rolename = (String) session.getAttribute("rolname");
+	String rolename = (String) session.getAttribute("rolename");
 	String sessionUser = (String) session.getAttribute("kakaoUser");
 	
 	// sessionUser 값이 없으면, loginUser 값으로 세션을 설정
@@ -58,7 +58,12 @@
             <li><a href="<%=request.getContextPath()%>/Ann/list.do">공지사항</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_application.jsp">온라인 면접</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_schedule.jsp">면접 공고 신청</a></li>
+            
+            <% if (rolename != null && rolename == "관리자"){%>
+			<li><a href="<%= request.getContextPath() %>/sub_Event/gwanlee_Index.jsp">참가자 관리</a></li>						
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_admin.jsp">면접 관리자</a></li>
+            <% } %>
+            
              <li><a href="<%= request.getContextPath() %>/sub_Interview/in_ex_application.jsp">박람회신청한 개인</a></li>
             <li><a href="<%=request.getContextPath()%>/QnA/QnAlist.do">자주하는 질문</a></li>
 <%--        <li><a href="<%=request.getContextPath()%>/login/loginFrom.do">로그인</a></li> --%>

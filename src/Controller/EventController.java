@@ -183,7 +183,16 @@ public class EventController extends HttpServlet {
 	                response.sendRedirect(contextPath + "/sub_Event/gwanlee_ComList.jsp");
 	                
 	            }
-	        } else {
+	        } else if (action.equals("deleteCompany")) {
+			    int coID = Integer.parseInt(request.getParameter("coID"));
+			    
+			    boolean success = new CompanyDAO().deleteCompany(coID);
+			    
+			    if (success) {
+
+			        response.sendRedirect(request.getContextPath() + "/sub_Event/gwanlee_WaitUntilReg.jsp");
+			    }
+			} else {
 
         }
     }

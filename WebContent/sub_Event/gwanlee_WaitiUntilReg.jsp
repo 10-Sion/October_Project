@@ -43,6 +43,7 @@
                 <th>EndDate</th>
                 <th>ExpoID</th>
                 <th>Status</th>
+                <th>Action</th>
             </tr>
 
             <c:forEach var="company" items="${allCompanies}">
@@ -56,6 +57,7 @@
                     <td><c:out value="${company.endDate}" /></td>
                     <td><c:out value="${company.expoID}" /></td>
                     <td><c:out value="${company.status}" /></td>
+					<td><a href="javascript:void(0);" onclick="deleteCompany(${company.coID})">Delete</a></td>
                 </tr>
             </c:forEach>
         </table>
@@ -86,5 +88,25 @@
     </div>
 
 	<script src="assets/js/GwanleeRegist.js"></script>
+	<script>
+		// 기업 삭제 메소드
+		function deleteCompany(coID) {
+		    if (confirm('정말로 삭제하시겠습니까?')) {
+		        $.ajax({
+		            type: "POST",
+		            url: "/ChuiUpExpo/Event",
+		            data: { action: 'deleteCompany', coID: coID },
+		            success: function(data) {
+		                if (data === 'success') {
+		                    alert('삭제 완료.');
+		                    location.reload();
+		                } else {
+		                    alert('삭제 중 오류가 발생했습니다.');
+		                }
+		            }
+		        });
+		    }
+		}
+	</script>
 </body>
 </html>

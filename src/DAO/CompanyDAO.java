@@ -373,9 +373,24 @@ public class CompanyDAO {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            
         }
     }
 
+    // 기업 삭제 메서드
+    public boolean deleteCompany(int coID) {
+        String sql = "DELETE FROM Company WHERE CoID = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, coID);
+            int affectedRows = preparedStatement.executeUpdate();
+
+            return affectedRows > 0; // 성공하면 true, 실패하면 false 반환
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 
