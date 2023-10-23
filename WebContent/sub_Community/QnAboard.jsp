@@ -57,7 +57,6 @@
 </script>
 </head>
 <body>
-	<div>
 	<jsp:include page="/sub_Event/subTop.jsp" />
 	<section id="main">
 		<div class="inner">
@@ -155,7 +154,6 @@
 	<%
 	}
 	%>
-    </div>
     </div>
 	</section>
 	<footer id="footer">
