@@ -70,6 +70,7 @@
 </script>
 </head>
 <body>
+	
 	<div>
 		<h3>자주하는 질문</h3>
 		<table border="1">

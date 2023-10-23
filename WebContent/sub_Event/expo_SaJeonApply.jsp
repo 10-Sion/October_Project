@@ -13,10 +13,10 @@
 </head>
 <body>
     <jsp:include page="subTop.jsp"/>
-    
+    <section id="main">
+		<div class="inner">
     <button id="showAttendeeForm">Attendee</button>
 	<button id="showCompanyForm">Company</button>
-    
     
     <!-- 일반 참가자 입력 폼 -->
     <div id="attendeeForm" style="display: none;">
@@ -129,7 +129,18 @@
     	<input type="submit" value="Add Company">
     </form>
     </div>
-    
+    </div>
+	</section>
+	<footer id="footer">
+	<ul class="icons">
+			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+		</ul>
+	</footer>
+	<div class="copyright">
+		Made with: <a href="https://templated.co/">Templated.co</a>
+	</div>
    	<script src="assets/js/selectWarigari.js"></script>
     	
 </body>
