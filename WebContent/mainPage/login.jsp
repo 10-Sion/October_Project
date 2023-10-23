@@ -23,7 +23,6 @@
 	window.Kakao.init("23d86cad894fb7312653fa454f67c02e");
 	
 	function kakaoLogin() {
-		
 		window.Kakao.Auth.login({
 			scope:'account_email, profile_nickname',
 			success: function(authObj) {
@@ -94,6 +93,8 @@ if (retryMessage !== null && retryMessage !== "") {
 }
 </script>
 </head>
+<section id="main">
+		<div class="inner">
 <body>
 	<jsp:include page="/sub_Event/subTop.jsp" />
     <form name="loginForm" action="<%=contextPath %>/login/login.do" method="post"  align="lift">
@@ -112,5 +113,7 @@ if (retryMessage !== null && retryMessage !== "") {
     <div>
     	<a href="javascript:kakaoLogin();"><img src="<%=contextPath%>/image/kakao_login_medium.png"></a>
     </div>
+    </div>
+	</section>
 </body>
 </html>

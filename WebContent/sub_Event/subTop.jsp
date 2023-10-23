@@ -12,7 +12,7 @@
 		session.setAttribute("loginUser", sessionUser);
 	}
 	
-	System.out.println("세션에 저장된 값: " + sessionUser);
+	System.out.println("subTop.jsp 에 저장된 세션 값 : " + sessionUser);
 
 %>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
 <body>
 	<!-- Header -->
     <header id="header">
-        <a href="<%= request.getContextPath() %>/mainPage/index.jsp" class="logo">
+        <a href="<%= request.getContextPath() %>/sub_Event/expo_AnNae.jsp" class="logo">
             <strong>취업 박람회</strong>
         </a>
         

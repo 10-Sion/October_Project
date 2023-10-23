@@ -136,7 +136,59 @@ public class EventController extends HttpServlet {
 	            
 	            response.sendRedirect(contextPath +"/sub_Event/gwanlee_WaitiUntilReg.jsp");
 	            
+	        } else if (action.equals("editCompany")) {
+	            int coID = Integer.parseInt(request.getParameter("coID"));
+
+	            CompanyDAO companyDAO = new CompanyDAO();
+	            CompanyVO company = companyDAO.getCompanyInfo(coID);
+
+	            if (company != null) {
+	                request.setAttribute("company", company);
+	                request.getRequestDispatcher("/editCompany.jsp").forward(request, response);
+	            } else {
+	                // 회사를 찾지 못한 경우의 처리
+	                response.sendRedirect(contextPath + "/sub_Event/gwanlee_ComList.jsp");
+	                
+	            }
+	            
+	        } else if (action.equals("updateCompany")) {
+	        	
+	            int coID = Integer.parseInt(request.getParameter("coID"));
+	            String coName = request.getParameter("coName");
+	            String coDetails = request.getParameter("coDetails");
+	            String coTel = request.getParameter("coTel");
+	            String coNumber = request.getParameter("coNumber");
+	            String email = request.getParameter("email");
+	            Date startDate = Date.valueOf(request.getParameter("startDate"));
+	            Date endDate = Date.valueOf(request.getParameter("endDate"));
+	            int expoID = Integer.parseInt(request.getParameter("expoID"));
+	            int status = Integer.parseInt(request.getParameter("status"));
+
+	            CompanyDAO companyDAO = new CompanyDAO();
+	            CompanyVO company = companyDAO.getCompanyInfo(coID);
+
+	            if (company != null) {
+	            	
+	                company.setCoName(coName);
+	                company.setCoDetails(coDetails);
+	                company.setCoTel(coTel);
+	                company.setCoNumber(coNumber);
+	                company.setEmail(email);
+	                company.setStartDate(startDate);
+	                company.setEndDate(endDate);
+	                company.setExpoID(expoID);
+	                company.setStatus(status);
+
+	                companyDAO.updateCompany(company);
+	                response.sendRedirect(contextPath + "/sub_Event/gwanlee_ComList.jsp");
+	                
+	            } else {
+	                // 회사를 찾지 못한 경우의 처리
+	                response.sendRedirect(contextPath + "/sub_Event/gwanlee_ComList.jsp");
+	            }
 	        }
+
+ 
  else {
 
         }

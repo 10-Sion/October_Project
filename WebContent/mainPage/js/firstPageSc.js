@@ -286,6 +286,6 @@ const moonPath = "M 27.5 0 C 34.791 0 41.79 2.899 46.945 8.055 C 52.101 13.21 55
 	
 			  // 3초 후에 페이지 이동
 			  setTimeout(() => {
-			    window.location.href = "index.jsp"; // index.jsp로 이동
+			    window.location.href = "../sub_Event/expo_AnNae.jsp"; // index.jsp로 이동
 			  }, 1800);
 		});

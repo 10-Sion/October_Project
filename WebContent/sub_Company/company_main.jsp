@@ -69,10 +69,10 @@
 				<img src="<%=contextPath %>/sub_Event/images/pic11.jpg" alt="">
 			</div>
 			<header>
-				<h1>참가 기업 목록</h1>
+				<h2 align="center">참가 기업 목록</h2>
 			</header>
 			<div align="center" class="table">
-
+	
 		<table>
 			<tr>
 				<th>참가번호</th>
