@@ -26,7 +26,7 @@
 <body>
 	<!-- Header -->
     <header id="header">
-        <a href="<%= request.getContextPath() %>/mainPage/index.jsp" class="logo">
+        <a href="<%= request.getContextPath() %>/sub_Event/expo_AnNae.jsp" class="logo">
             <strong>취업 박람회</strong>
         </a>
         

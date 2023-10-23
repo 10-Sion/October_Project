@@ -121,35 +121,37 @@ body, table, div {
           <tbody>
               <tr>
                   <td colspan="1"><span class="bg_color01">개막식</span></td>
-                  <td colspan="1"><span class="bg_color02">기업1</span></td>
-                  <td colspan="1"><span class="bg_color10">기업2</span></td>
+                  <td colspan="1"><span class="bg_color02">넥순</span></td>
+                  <td colspan="1"><span class="bg_color10">삼손전자</span></td>
+                  <td colspan="2"></td>
+              </tr>
+              <tr>
+              	  <td colspan="1"><span class="bg_color09">RG화학</span></td>
+                  <td colspan="1"></td>
+                  <td colspan="3"><span class="bg_color04">무신사</span></td>
+              </tr>
+              <tr>
+                  <td colspan="1"></td>
+                  <td colspan="3"><span class="bg_color05">스테플컴패니</span></td>
+                  <td colspan="1"></td>
+              </tr>
+              <tr>
+                  <td colspan="1"></td>
+                  <td colspan="2"><span class="bg_color06">예일</span></td>
                   <td colspan="2"></td>
               </tr>
               <tr>
                   <td colspan="1"></td>
-                  <td colspan="4"><span class="bg_color04">기업3</span></td>
-              </tr>
-              <tr>
-                  <td colspan="1"></td>
-                  <td colspan="3"><span class="bg_color05">기업4</span></td>
-                  <td colspan="1"></td>
-              </tr>
-              <tr>
-                  <td colspan="1"></td>
-                  <td colspan="2"><span class="bg_color06">기업5</span></td>
-                  <td colspan="2"></td>
-              </tr>
-              <tr>
-                  <td colspan="1"></td>
-                  <td colspan="4"><span class="bg_color07">기업10</span></td>
+                  <td colspan="4"><span class="bg_color07">겁없는형제들</span></td>
               </tr>
               <tr>
                   <td colspan="4"></td>
-                  <td colspan="1"><span class="bg_color08">기업6</span></td>
+                  <td colspan="1"><span class="bg_color08">아파치</span></td>
               </tr>
               <tr>
-                  <td colspan="4"></td>
-                  <td colspan="1"><span class="bg_color09">기업7</span></td>
+                  <td colspan="3"></td>
+                   <td colspan="1"><span class="bg_color03">KS물류</span></td>
+                  <td colspan="1"><span class="bg_color10">이리움</span></td>
               </tr>
           </tbody>
       </table>
