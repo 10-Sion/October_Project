@@ -125,6 +125,13 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
 
 	    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 	        preparedStatement.executeUpdate();
+	        
+	        rs = preparedStatement.executeQuery();
+	        
+	        if(rs.next()) {
+	        	
+	        }
+	        
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
