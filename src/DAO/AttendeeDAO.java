@@ -117,6 +117,33 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
 
         return list;
     }
+    @Override
+	public List<AttendeeVO> getAllAttendees() {
+    	 List<AttendeeVO> list = new ArrayList<>();
+         String sql = "SELECT * FROM Attendee";
+
+         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+
+             ResultSet rs = pstmt.executeQuery();
+
+             while (rs.next()) {
+                 AttendeeVO attendee = new AttendeeVO();
+                 attendee.setAtndID(rs.getInt("AtndID"));
+                 attendee.setAtndName(rs.getString("AtndName"));
+                 attendee.setEmail(rs.getString("Email"));
+                 attendee.setPasswd(rs.getString("Passwd"));
+                 attendee.setExpoID(rs.getInt("ExpoID"));
+                 attendee.setStatus(rs.getInt("Status"));
+                 list.add(attendee);
+             }
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+
+         return list;
+	}
+    
 
     @Override
 	public AttendeeVO getAttendee(String LoginEmail) {

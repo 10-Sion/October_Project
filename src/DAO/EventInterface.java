@@ -17,6 +17,7 @@ public interface EventInterface {
         void addAttendee(AttendeeVO attendee);
         int addAttendee1(AttendeeVO attendee);
         List<AttendeeVO> getAttendeeList(int status);
+        List<AttendeeVO> getAllAttendees();
         AttendeeVO getAttendee(String LoginEmail);
         void acceptAllAttendees();
         void UpdateAttendee();
