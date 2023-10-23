@@ -25,7 +25,6 @@
 	function kakaoLogin() {
 		window.Kakao.Auth.login({
 			scope:'account_email, profile_nickname',
-			prompt: 'login',
 			success: function(authObj) {
 				console.log(authObj);
 				
