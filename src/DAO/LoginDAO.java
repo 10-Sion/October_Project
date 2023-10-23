@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import VO.AttendeeVO;
+
 
 public class LoginDAO {
 
@@ -66,7 +68,7 @@ public class LoginDAO {
 					if( checkStatus == 0) {
 						checkUser = "관리자에게 문의 바람";
 					} else if( checkStatus == 1) {
-						checkUser = getUserName;
+						checkUser = checkEmail;
 					} else if( checkStatus == 2) {
 						checkUser = "관리자에게 문의 바람";
 					} else if( checkStatus == 3) {

@@ -15,9 +15,11 @@ public interface EventInterface {
 
     interface AttendeeDAO {	//	사전등록 참가자 DAO
         void addAttendee(AttendeeVO attendee);
-        List<AttendeeVO> getAttendeeList(int status);
-        List<AttendeeVO> getAllAttendees();
         int addAttendee1(AttendeeVO attendee);
+        List<AttendeeVO> getAttendeeList(int status);
+        AttendeeVO getAttendee(String LoginEmail);
+        void acceptAllAttendees();
+        void UpdateAttendee();
     }
 
 }

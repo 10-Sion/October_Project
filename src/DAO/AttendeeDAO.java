@@ -44,6 +44,7 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
     }
     
     // 소이 사용
+    @Override
     public int addAttendee1(AttendeeVO attendee) {
         String insertSql = "INSERT INTO Attendee (AtndName, Email, Passwd, ExpoID, Status) VALUES (?, ?, SHA2(?, 256), ?, ?)";
         String selectSql = "SELECT AtndID FROM Attendee WHERE Email = ?";
@@ -90,7 +91,7 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
         
         return AtndID;
     }
-
+    @Override
     public List<AttendeeVO> getAttendeeList(int status) {
         List<AttendeeVO> list = new ArrayList<>();
         String sql = "SELECT * FROM Attendee WHERE Status = ? ORDER BY AtndID ASC";
@@ -117,13 +118,21 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
         return list;
     }
 
-	@Override
-	public List<AttendeeVO> getAllAttendees() {
-		// TODO Auto-generated method stub
+    @Override
+	public AttendeeVO getAttendee(String LoginEmail) {
+		
+		String sql = "select * from  Attendee WHERE Email= " + LoginEmail ;
+
+	    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+	        preparedStatement.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 		return null;
 	}
 
 	// 참가자 수락 메서드
+    @Override
 	public void acceptAllAttendees() {
 	    String sql = "UPDATE Attendee SET Status = 1 WHERE Status = 0";
 
@@ -132,6 +141,12 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
+	}
+	
+	@Override
+	public void UpdateAttendee() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

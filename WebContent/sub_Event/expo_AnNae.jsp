@@ -17,7 +17,7 @@
     <jsp:include page="./subTop.jsp" />
     <!-- Banner -->
     <div class="bannerImg">
-   			<img src="images/expoBanner.png">
+   			<img src="<%=path %>/sub_Event/images/expoBanner.png">
    	</div>
     <section id="banner">
         <div class="inner">

@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DAO.AnnounceDAO;
 import Service.AnnounceService;
@@ -45,6 +46,7 @@ public class AnnounceController extends HttpServlet {
 		String nextPage = "" ; 
 		String keyWord = "";
 		String keyField = "";
+		HttpSession session = request.getSession(true);
 		System.out.println("요청 받은 주소 : " + action);
 		PrintWriter out = response.getWriter();
 		
@@ -90,6 +92,11 @@ public class AnnounceController extends HttpServlet {
 			announceService.InsertNotice(vo);	  
 			
 			nextPage = "/Ann/list.do";
+		}else if(action.equals("/attendeInfo.do")) {
+			
+			String LoginEmail = (String)session.getAttribute("checkEmail");
+			
+			
 		}
 		
 		System.out.println("반환 되는 주소 : " + nextPage);

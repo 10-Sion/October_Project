@@ -70,11 +70,11 @@ public class LoginController extends HttpServlet {
 				
 				if(loginUser.equals("가입된 정보와 일치하지 않습니다.")) {
 					loginUser = "가입된 정보와 일치하지 않습니다.";
-					request.setAttribute("Retry", loginUser);
+					session.setAttribute("Retry", loginUser);
 					nextPage = "/mainPage/login.jsp";
 				// 관리자 체크 성공 시 request 에 AdmName 값 저장
 				} else {
-					request.setAttribute("loginUser", loginUser);
+					session.setAttribute("loginUser", loginUser);
 					session.setAttribute("rolename", "관리자");
 					nextPage = "/sub_Event/expo_AnNae.jsp";
 				}
@@ -88,16 +88,16 @@ public class LoginController extends HttpServlet {
 					System.out.println("기업");
 					if( loginUser.equals("가입된 정보와 일치하지 않습니다.")) {
 						loginUser = "가입된 정보와 일치하지 않습니다.";
-						request.setAttribute("Retry", loginUser);
+						session.setAttribute("Retry", loginUser);
 						nextPage = "/mainPage/login.jsp";
 						
 					} else if( loginUser.equals("관리자에게 문의 바람")) {
 						loginUser = "가입 정보 변경 중 관리자 문의 바람";
-						request.setAttribute("Retry", loginUser);
+						session.setAttribute("Retry", loginUser);
 						nextPage = "/mainPage/login.jsp";
 						
 					} else {
-						request.setAttribute("loginUser", loginUser);
+						session.setAttribute("loginUser", loginUser);
 						session.setAttribute("rolename", "기업");
 						nextPage = "/sub_Event/expo_AnNae.jsp";
 					}
@@ -108,14 +108,14 @@ public class LoginController extends HttpServlet {
 
 					if( loginUser.equals("가입된 정보와 일치하지 않습니다.")) {
 						loginUser = "가입된 정보와 일치하지 않습니다.";
-						request.setAttribute("Retry", loginUser);
+						session.setAttribute("Retry", loginUser);
 						nextPage = "/mainPage/login.jsp";
 					} else if( loginUser.equals("관리자에게 문의 바람")) {
 						loginUser = "가입 정보 변경 중 관리자 문의 바람";
-						request.setAttribute("Retry", loginUser);
+						session.setAttribute("Retry", loginUser);
 						nextPage = "/mainPage/login.jsp";
 					} else {
-						request.setAttribute("loginUser", loginUser);
+						session.setAttribute("loginUser", loginUser);
 						session.setAttribute("rolename", "참가자");
 						nextPage = "/sub_Event/expo_AnNae.jsp";
 					}
@@ -147,7 +147,7 @@ public class LoginController extends HttpServlet {
 			int result = lDao.kakaoLoing(email);
 			
 			if(result == 1) {
-				session.setAttribute("loginUser", email);
+				session.setAttribute("kakaoUser", email);
 				session.setAttribute("rolename", "카카오 닉네임" + name);
 			}
 			

@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <% 
 	String contextPath = request.getContextPath();
-	String loginUser = (String) request.getAttribute("loginUser");
+	String loginUser = (String) session.getAttribute("loginUser"); // 로그인한 사람의 email
 	String rolename = (String) session.getAttribute("rolname");
-	String sessionUser = (String) session.getAttribute("loginUser");
+	String sessionUser = (String) session.getAttribute("kakaoUser");
 	
 	// sessionUser 값이 없으면, loginUser 값으로 세션을 설정
 	if (sessionUser == null || sessionUser.isEmpty()) {
@@ -48,6 +48,9 @@
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_JulCha.jsp">참여 절차</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_SaJeon.jsp">사전 등록</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_JiDo.jsp">찾아오시는 길</a></li>
+            <% if (rolename != null && rolename == "참가자"){%>
+			<li><a href="<%= request.getContextPath() %>/Ann/attendeInfo.do">참가정보 수정</a></li>			
+			<% } %>
         </ul>
         
         <ul class="links">
@@ -58,7 +61,6 @@
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_admin.jsp">면접 관리자</a></li>
             <li><a href="<%=request.getContextPath()%>/QnA/QnAlist.do">자주하는 질문</a></li>
 <%--        <li><a href="<%=request.getContextPath()%>/login/loginFrom.do">로그인</a></li> --%>
-			<li>
             <%-- 세션에 저장된 값이 있으면 로그아웃을 표시 --%>
             <% if (sessionUser != null && !sessionUser.isEmpty()) { %>
                 <a href="<%=contextPath %>/login/logOutFrom.do" accesskey="6" title="">로그아웃</a>

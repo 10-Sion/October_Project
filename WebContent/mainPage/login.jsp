@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
-    String Retry = (String)request.getAttribute("Retry");
+    String Retry = (String)session.getAttribute("Retry");
 
     String retryMessage = "";
    
