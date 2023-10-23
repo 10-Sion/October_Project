@@ -279,6 +279,28 @@ public class CompanyDAO {
         return coID;
     }
 
+    //	기업 수정 메서드
+    public void updateCompany(CompanyVO company) {
+        String sql = "UPDATE Company SET CoName = ?, CoDetails = ?, Co_tel = ?, Co_number = ?, " +
+                     "Email = ?, StartDate = ?, EndDate = ?, ExpoID = ?, Status = ? WHERE CoID = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, company.getCoName());
+            preparedStatement.setString(2, company.getCoDetails());
+            preparedStatement.setString(3, company.getCoTel());
+            preparedStatement.setString(4, company.getCoNumber());
+            preparedStatement.setString(5, company.getEmail());
+            preparedStatement.setDate(6, new java.sql.Date(company.getStartDate().getTime()));
+            preparedStatement.setDate(7, new java.sql.Date(company.getEndDate().getTime()));
+            preparedStatement.setInt(8, company.getExpoID());
+            preparedStatement.setInt(9, company.getStatus());
+            preparedStatement.setInt(10, company.getCoID());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

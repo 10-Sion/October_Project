@@ -1,27 +1,34 @@
-<%@page import="VO.ExpoInfoVO"%>
-<%@page import="DAO.ExpoInfoDAO"%>
-<%@page import="VO.CompanyVO"%>
-<%@page import="java.util.List"%>
-<%@page import="DAO.CompanyDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+    
+    
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="VO.ExpoInfoVO" %>
+<%@ page import="DAO.ExpoInfoDAO" %>
+<%@ page import="DAO.CompanyDAO" %>
+<%@ page import="VO.CompanyVO" %>
+
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8">
-<meta name="robots"
-	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="<%=path%>/sub_Event/assets/css/main.css">
-<body>			
-	<jsp:include page="../sub_Event/subTop.jsp"/>
-	<section id="main">
-		<div class="inner">
+<head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<%String sessionUser = (String) session.getAttribute("loginUser"); %>
+    <meta charset="UTF-8">
+    <title>면접 신청 페이지</title>
+   
+</head>
+<body>
+
+<% request.setCharacterEncoding("UTF-8"); %>
+<jsp:include page="../sub_Event/subTop.jsp"/>
+    <h1>면접 신청 페이지</h1>
+
     <!-- 면접 신청 양식 -->
-    <h2 align="center">면접 신청</h2>
-	 	<form action="/ChuiUpExpo/In_Controller3" method="post">
+    <h2>면접 신청</h2>
+    <form action="/ChuiUpExpo/In_Controller3" method="post">
          <input type="hidden" name="action" value="addAttendee">
     
     <label for="atndName">신청자 이름:</label>
@@ -71,17 +78,7 @@
        <br><br>
         <input type="submit" value="신청">
     </form>
-		</div>
-	</section>
-	<footer id="footer">
-	<ul class="icons">
-			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-			<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-		</ul>
-	</footer>
-	<div class="copyright">
-		Made with: <a href="https://templated.co/">Templated.co</a>
-	</div>
+	
+    <!-- 기타 면접 신청 관련 기능 추가 가능 -->
 </body>
 </html>

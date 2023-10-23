@@ -59,6 +59,8 @@
 <body>
 	<div>
 	<jsp:include page="/sub_Event/subTop.jsp" />
+	<section id="main">
+		<div class="inner">
 		<h3>자주하는 질문</h3>
 		<table border="1">
 			<tr>
@@ -154,5 +156,17 @@
 	}
 	%>
     </div>
+    </div>
+	</section>
+	<footer id="footer">
+	<ul class="icons">
+			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+		</ul>
+	</footer>
+	<div class="copyright">
+		Made with: <a href="https://templated.co/">Templated.co</a>
+	</div>
 </body>
 </html>

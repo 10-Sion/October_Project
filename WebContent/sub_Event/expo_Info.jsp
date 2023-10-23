@@ -15,7 +15,7 @@
 
 </style>
 <body>			
-	<jsp:include page="/sub_Event/subTop.jsp"/>
+	<jsp:include page="../sub_Event/subTop.jsp"/>
 	<section id="main">
 		<div class="inner">
 			<div class="image fit">

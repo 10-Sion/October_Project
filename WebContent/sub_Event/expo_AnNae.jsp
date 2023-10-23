@@ -16,6 +16,9 @@
 <body>
     <jsp:include page="./subTop.jsp" />
     <!-- Banner -->
+    <div class="bannerImg">
+   			<img src="images/expoBanner.png">
+   	</div>
     <section id="banner">
         <div class="inner">
             <h1>예일 취업 박람회</h1>

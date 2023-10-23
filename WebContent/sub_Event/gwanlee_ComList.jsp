@@ -32,18 +32,20 @@
         </tr>
 
         <c:forEach var="company" items="${allCompanies}">
-            <tr>
-                <td><c:out value="${company.coID}" /></td>
-                <td><c:out value="${company.coName}" /></td>
-                <td><c:out value="${company.coTel}" /></td>
-                <td><c:out value="${company.coNumber}" /></td>
-                <td><c:out value="${company.email}" /></td>
-                <td><c:out value="${company.startDate}" /></td>
-                <td><c:out value="${company.endDate}" /></td>
-                <td><c:out value="${company.expoID}" /></td>
-                <td><c:out value="${company.status}" /></td>
-            </tr>
-        </c:forEach>
+	    <tr>
+	        <!-- 이 부분에서 수정 버튼을 클릭하면 해당 기업 정보를 수정할 JSP 페이지로 이동할 수 있도록 링크를 추가합니다 -->
+	        <td><c:out value="${company.coID}" /></td>
+	        <td><c:out value="${company.coName}" /></td>
+	        <td><c:out value="${company.coTel}" /></td>
+	        <td><c:out value="${company.coNumber}" /></td>
+	        <td><c:out value="${company.email}" /></td>
+	        <td><c:out value="${company.startDate}" /></td>
+	        <td><c:out value="${company.endDate}" /></td>
+	        <td><c:out value="${company.expoID}" /></td>
+	        <td><c:out value="${company.status}" /></td>
+	        <td><a href="updateCompany.jsp?coID=${company.coID}">수정</a></td>
+	    </tr>
+	</c:forEach>
     </table>
     </div>
     

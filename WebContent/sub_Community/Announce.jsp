@@ -55,8 +55,11 @@
 	<link rel="stylesheet"
 		href="<%=contextPath%>/sub_Event/assets/css/main.css">
 	<body>
-		<h1 align="center">공지사항</h1>
+		
 		<jsp:include page="/sub_Event/subTop.jsp" />
+		<section id="main">
+		<div class="inner">
+		<h2 align="center">공지사항</h2>
 		<div align="center" class="table">
 	
 			<table>
@@ -95,6 +98,8 @@
 				%>
 			</table>
 		</div>
+		</div>
+	</section>
 	<footer id="footer">
 		<div >
 			<table >
@@ -144,6 +149,7 @@
 			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 			<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 		</ul>
+		
 	</footer>
 	<div class="copyright">
 		Made with: <a href="https://templated.co/">Templated.co</a>
