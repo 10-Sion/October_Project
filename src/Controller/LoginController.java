@@ -46,7 +46,7 @@ public class LoginController extends HttpServlet {
 
 		if(action.equals("") || action == null) {
 			
-			nextPage = "/mainPage/index.jsp";
+			nextPage = "/sub_Event/expo_AnNae.jsp";
 
 		}else if( action.equals("/login.do")) {
 			
@@ -76,7 +76,7 @@ public class LoginController extends HttpServlet {
 				} else {
 					request.setAttribute("loginUser", loginUser);
 					session.setAttribute("rolename", "관리자");
-					nextPage = "/mainPage/index.jsp";
+					nextPage = "/sub_Event/expo_AnNae.jsp";
 				}
 				
 				
@@ -99,7 +99,7 @@ public class LoginController extends HttpServlet {
 					} else {
 						request.setAttribute("loginUser", loginUser);
 						session.setAttribute("rolename", "기업");
-						nextPage = "/mainPage/index.jsp";
+						nextPage = "/sub_Event/expo_AnNae.jsp";
 					}
 					
 				} else if(checkType.equals("Atnd")){
@@ -117,7 +117,7 @@ public class LoginController extends HttpServlet {
 					} else {
 						request.setAttribute("loginUser", loginUser);
 						session.setAttribute("rolename", "참가자");
-						nextPage = "/mainPage/index.jsp";
+						nextPage = "/sub_Event/expo_AnNae.jsp";
 					}
 				}
 			}
@@ -130,7 +130,7 @@ public class LoginController extends HttpServlet {
 			// 세션을 삭제
 		    session.invalidate();
 			
-			nextPage = "/mainPage/index.jsp";
+			nextPage = "/sub_Event/expo_AnNae.jsp";
 			
 		} else if ( action.equals("/loginFrom.do")) {
 			
@@ -140,44 +140,28 @@ public class LoginController extends HttpServlet {
 			
 			LoginDAO lDao = new LoginDAO();
 			ArrayList<String> getDate = new ArrayList<String>();
-
+			
 			String email = request.getParameter("email");
 			String name = request.getParameter("name");
 			
-			getDate.add(email);
-			getDate.add(name);
+			int result = lDao.kakaoLoing(email);
 			
-			getDate = getName(getDate);
+			if(result == 1) {
+				session.setAttribute("loginUser", email);
+				session.setAttribute("rolename", "카카오 닉네임" + name);
+			}
 			
+			System.out.println("리절트셋 : " + result);
+			out.print(result);
 			
-			lDao.kakaoLoing(email, name);
-			
-			
-			
-			nextPage = "/mainPage/index.jsp";
+			return;
 		}
-		
-		
 		
 		System.out.println("반환 되는 주소 : " + nextPage);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
 	}
 	
-	// 양옆 "" 없애기 위한 메소드
-	public ArrayList<String> getName(ArrayList<String> getDate){
-		
-		ArrayList<String> cntName = new ArrayList<String>();
-		
-		String email = getDate.get(0);
-		String name = getDate.get(1);
-		
-		System.out.println( email.indexOf("\"") ); 
-		System.out.println( email.lastIndexOf("\"") );
-		
-		
-		
-		return null;
-	}
+
 	
 }

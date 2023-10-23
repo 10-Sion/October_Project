@@ -2063,16 +2063,12 @@
 
 	input[type="checkbox"],
 	input[type="radio"] {
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
-		display: block;
-		float: left;
-		margin-right: -2em;
-		opacity: 1;
-		width: 1em;
-		height: 1em;
+
+		display: inline-block; /* 변경: block에서 inline-block으로 */
+	    margin-right: 10px; /* 변경: 음수 마진 제거, 필요에 따라 조정 */
+	    opacity: 1;
+	    width: 20px; /* 변경: 더 큰 크기로 조정 */
+	    height: 20px; /* 변경: 더 큰 크기로 조정 */
 	}
 
 		input[type="checkbox"] + label,

@@ -2,23 +2,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	String contextPath = request.getContentType();
     String loginUser = (String)request.getAttribute("loginUser");
     System.out.println(loginUser);
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css"
-    href="<%=request.getContextPath()%>/mainPage/css/QnAboard.css">
+
+<%-- <link rel="stylesheet" href="<%=contextPath%>/sub_Event/assets/css/main.css"> --%>
+		
+<meta name="robots"
+		content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
+
 <title>질문 수정</title>
 <style>
 </style>
 </head>
 <body>
+<jsp:include page="/sub_Event/subTop.jsp" />
 	<form action="<%=request.getContextPath() %>/QnA/addQnA.do?loginUser=<%=loginUser %>" method="post">
     <div>
         <h3>자주하는 질문</h3>
+        
         <table border="1">
             <tr>
                 <th>질문</th>

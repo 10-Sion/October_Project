@@ -1,18 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- jQuery 라이브러리 추가 -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
-        integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"
-        crossorigin="anonymous"></script>
-
-    <script>
+<!-- jQuery 라이브러리 추가 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script>
         // 페이지가 로드될 때 실행되는 함수
         $(function () {
             $("#btn-kakao-login").click(function (event) {
@@ -91,29 +88,28 @@
         }
     </script>
 
-    <style>
-        /* 추가 스타일: 경고 메시지에 빨간색 텍스트 스타일 적용 */
-        #alert-kakao-login {
-            color: red;
-        }
-    </style>
+<style>
+/* 추가 스타일: 경고 메시지에 빨간색 텍스트 스타일 적용 */
+#alert-kakao-login {
+	color: red;
+}
+</style>
 </head>
 <body>
-    <!-- 카카오 로그인 버튼 추가 -->
-    <a id="btn-kakao-login" href="#"> <img
-        src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
-        width="200" alt="카카오 로그인 버튼" />
-    </a>
+	<!-- 카카오 로그인 버튼 추가 -->
+	<a id="btn-kakao-login" href="#"> <img
+		src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
+		width="200" alt="카카오 로그인 버튼" />
+	</a>
 
-    <!-- 추가: 사용자 정보 표시 영역 -->
-    <div id="user-info"></div>
+	<!-- 추가: 사용자 정보 표시 영역 -->
+	<div id="user-info"></div>
 
-    <form id="form-kakao-login" method="post" action="kakao-login">
-        <input type="hidden" name="email" />
-        <input type="hidden" name="name" />
-        <input type="hidden" name="img" />
-    </form>
+	<form id="form-kakao-login" method="post" action="kakao-login">
+		<input type="hidden" name="email" /> <input type="hidden" name="name" />
+		<input type="hidden" name="img" />
+	</form>
 
-    <div class="alert alert-danger d-none" id="alert-kakao-login"></div>
+	<div class="alert alert-danger d-none" id="alert-kakao-login"></div>
 </body>
 </html>

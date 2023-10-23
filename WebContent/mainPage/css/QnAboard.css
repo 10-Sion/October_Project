@@ -25,15 +25,6 @@ th, td {
 	padding: 10px;
 }
 
-th {
-	background-color: green;
-	color: white;
-}
-
-tr:nth-child(odd) {
-	background-color: #f0f0f0;
-}
-
 .answer-row {
 	display: none; /* 초기에는 숨겨짐 */
 	background-color: #f0f0f0;

@@ -133,7 +133,7 @@ public class qnaController extends HttpServlet {
 			
 		} else if (action.equals("/brackPage.do")) {
 			
-			nextPage = "/mainPage/index.jsp";
+			nextPage = "/sub_Event/expo_AnNae.jsp";
 			
 		} else if (action.equals("/addQnAFrom.do")) {
 			

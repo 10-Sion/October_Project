@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% 
 	String path = request.getContextPath();
+	String sessionUser = (String) session.getAttribute("loginUser");
+	System.out.println("메인 세션 값 : " + sessionUser);
 %>
 <!DOCTYPE HTML>
 <html>
@@ -8,18 +10,18 @@
     <meta charset="utf-8">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="<%=path %>/sub_Event/assets/css/main.css">
     <title>Binary by TEMPLATED</title>
 </head>
 <body>
-    <jsp:include page="./subTop.jsp"/>
+    <jsp:include page="./subTop.jsp" />
     <!-- Banner -->
     <div class="bannerImg">
    			<img src="images/expoBanner.png">
    	</div>
     <section id="banner">
         <div class="inner">
-            <h1>취업 박람회</h1>
+            <h1>예일 취업 박람회</h1>
             <ul class="actions">
                 <li><a href="#one" class="button alt scrolly big">Continue</a></li>
             </ul>
@@ -29,19 +31,18 @@
     <!-- One -->
     <article id="one" class="post style1">
         <div class="image">
-            <img src="images/pic14.jpg" alt="" data-position="75% center" width="1400" height="788">
+            <img src="<%=path%>/sub_Event/images/one.jpg" alt="" data-position="75% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
                 <header>
-                    <h2><a href="generic.html">박람회 안내</a></h2>
-                    <p class="info"> 2주간 진행되는  <a href="#">박람회 개요</a></p>
+                    <h2><a href="<%=path%>/sub_Event/expo_Info.jsp">박람회 개요</a></h2>
                 </header>
                 <p>
-					새로운 기회를 발견하고, 다양한 기업과 연결될 수 있는  
-				</p>
+                    2주 동안 개최되는 취업 준비생들을 위한 온라인 박람회 입니다. 참가하셔서 여러 기업에 면접을 보고 일자리를 얻을 기회들을 찾아보세요.
+                </p>
                 <ul class="actions">
-                    <li><a href="generic.html" class="button alt">Read More</a></li>
+                    <li><a href="<%=path%>/sub_Event/expo_Info.jsp" class="button alt">Read More</a></li>
                 </ul>
             </div>
             <div class="postnav">
@@ -54,19 +55,18 @@
     <!-- Two -->
 <article id="two" class="post invert style1 alt">
     <div class="image">
-        <img src="images/pic13.jpg" alt="" data-position="10% center" width="1400" height="788">
+        <img src="<%=path %>/sub_Event/images/sign.jpg" alt="" data-position="10% center" width="1400" height="788">
     </div>
     <div class="content">
         <div class="inner">
             <header>
-                <h2><a href="generic.html">참여 절차</a></h2>
-                <p class="info"> <a href="#">사전 안내</a></p>
+                <h2><a href="<%=path %>/sub_Event/expo_JulCha.jsp">참여절차</a></h2>
             </header>
             <p>
-				준비물 및 진행 절차 안내
+                	참여절차를 확인 해보세요.
             </p>
             <ul class="actions">
-                <li><a href="generic.html" class="button alt">Read More</a></li>
+                <li><a href="<%=path %>/sub_Event/expo_JulCha.jsp" class="button alt">Read More</a></li>
             </ul>
         </div>
         
@@ -80,19 +80,18 @@
     <!-- Three -->
     <article id="three" class="post style2">
         <div class="image">
-            <img src="images/pic12.jpg" alt="" data-position="80% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/input.jpg" alt="" data-position="80% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
                 <header>
-                    <h2><a href="generic.html">면접 안내</a></h2>
-                    <p class="info">온라인 신청과 <a href="#">면접 접수</a></p>
+                    <h2><a href="<%=path %>/sub_Event/expo_SaJeonApply.jsp">사전등록 신청</a></h2>
                 </header>
                 <p>
-					사전 및 면접 접수 안내
+                    	사전등록을 클릭하시면 박람회에 참여하여 면접 진행의 혜택을 누릴 수 있습니다.
                 </p>
                 <ul class="actions">
-                    <li><a href="generic.html" class="button alt">Read More</a></li>
+                    <li><a href="<%=path %>/sub_Event/expo_SaJeonApply.jsp" class="button alt">사전등록 하러가기</a></li>
                 </ul>
             </div>
             <div class="postnav">
@@ -105,19 +104,15 @@
     <!-- Four -->
     <article id="four" class="post invert style2 alt">
         <div class="image">
-            <img src="images/pic14.jpg" alt="" data-position="60% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/location.png" alt="" data-position="60% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
                 <header>
-                    <h2><a href="generic.html"> 찾아오시는 길</a></h2>
-                <p class="info">  <a href="#">박람회 장소</a></p>
+                    <h2><a href="<%=path %>/sub_Event/expo_JiDo.jsp">찾아오시는 길</a></h2>
                 </header>
-                <p>
-                    지도와 주소 안내
-                </p>
                 <ul class="actions">
-                    <li><a href="generic.html" class=" button alt">Read More</a></li>
+                    <li><a href="<%=path %>/sub_Event/expo_JiDo.jsp" class=" button alt">위치 보기</a></li>
                 </ul>
             </div>
             <div class="postnav">
@@ -130,19 +125,18 @@
     <!-- Five -->
     <article id="five" class="post style3">
         <div class="image">
-            <img src="images/pic13.jpg" alt="" data-position="5% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/Qna.jpg" alt="" data-position="5% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
                 <header>
-                    <h2><a href="generic.html">커뮤니티</a></h2>
-                    <p class="info">자주 묻는 사항과  <a href="#">공지사항</a></p>
+                    <h2><a href="<%=path %>/QnA/QnAlist.do">자주하는 질문</a></h2>
                 </header>
                 <p>
-					참여 전 변동사항과 궁금한 점에 대해
+                    	참가자들이 자주 물어보시는 질문들 입니다. 박람회에 관하여 궁금하신 점이 있으시면 클릭하세요.
                 </p>
                 <ul class="actions">
-                    <li><a href="generic.html" class="button alt">Read More</a></li>
+                    <li><a href="<%=path %>/QnA/QnAlist.do" class="button alt">QnA</a></li>
                 </ul>
             </div>
             <div class="postnav">
@@ -155,7 +149,7 @@
     <!-- Six -->
     <article id="six" class="post invert style3 alt">
         <div class="image">
-            <img src="images/pic12.jpg" alt="" data-position="80% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/companys.jpg" alt="" data-position="80% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">

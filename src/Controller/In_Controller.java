@@ -68,7 +68,7 @@ public class In_Controller extends HttpServlet {
 	                applicantDAO.updateApplicant(applicantVO);
 	            }
 
-	            response.sendRedirect(request.getContextPath() + "/In_Controller");
+	            response.sendRedirect(request.getContextPath() + "/In_Controller3");
 	            
 	        } else if (action.equals("approvedList")) {
 	            // 승인된 목록을 가져와서 포워딩
@@ -96,23 +96,23 @@ public class In_Controller extends HttpServlet {
 	            
 	            // 삭제 로직 구현
 	            applicantDAO.deleteApplicant(appID);
-	            response.sendRedirect(request.getContextPath() + "/In_Controller");
+	            response.sendRedirect(request.getContextPath() + "/In_Controller3");
 	            
+	           // 관리자 - 기업 
 	        } else if (action.equals("approveSchedule")) {
 	        	// 승인 기능 수행
 	            int schID = Integer.parseInt(request.getParameter("schID"));
 	            
 	            // 승인 로직 구현
-	            In_ScheduleVO schedule = scheduleDAO.getScheduleByID(schID);
+	            In_ScheduleVO scheduleVO = scheduleDAO.getScheduleByID(schID);
 	            
-	            if (schedule != null) {
+	            if (scheduleVO != null) {
 	                // 여기에서 승인 처리
-	                // 예를 들어, 승인 상태를 업데이트하거나 다른 작업을 수행합니다.
-	                // 승인이 성공하면, 해당 기업의 일정 승인 상태를 변경합니다.
-	                scheduleDAO.updateSchedule(schedule);
+	            	scheduleVO.setStatus(1); // 승인 상태로 변경 (1은 승인을 나타내는 값)
+	                scheduleDAO.updateSchedule(scheduleVO);
 	            }
-
-	            response.sendRedirect(request.getContextPath() + "/In_Controller");
+	         
+	           response.sendRedirect(request.getContextPath() + "/In_Controller3");
 	            
 	        } else if (action.equals("updateSchedule")) {
 	        	// 수정 기능 수행
@@ -134,7 +134,7 @@ public class In_Controller extends HttpServlet {
 	            // 삭제 로직 구현
 	            scheduleDAO.deleteSchedule(schID);
 
-	            response.sendRedirect(request.getContextPath() + "/In_Controller");
+	            response.sendRedirect(request.getContextPath() + "/In_Controller3");
 	        
 	        
 	        }
@@ -162,13 +162,14 @@ public class In_Controller extends HttpServlet {
 	            applicantDAO.updateApplicant(applicantVO);
 
 	            // 수정 완료 후 다시 관리자 페이지로 리다이렉트
-	            response.sendRedirect(request.getContextPath() + "/In_Controller");
+	            response.sendRedirect(request.getContextPath() + "/In_Controller3");
 	        } 
 	        
 	        else if (action.equals("updateSchedule")) {
 	            // 기업 면접일정 수정 처리
 	            int schID = Integer.parseInt(request.getParameter("schID"));
 	            Date intvwDate = Date.valueOf(request.getParameter("intvwDate"));
+	            int status = Integer.parseInt(request.getParameter("status"));
 
 	            // 시간 데이터 처리 부분
 	            String intvwTimeStr = request.getParameter("intvwTime");
@@ -181,20 +182,22 @@ public class In_Controller extends HttpServlet {
 	            scheduleVO.setSchID(schID);
 	            scheduleVO.setIntvwDate(intvwDate);
 	            scheduleVO.setIntvwTime(intvwTime);
+	            scheduleVO.setStatus(status);
 
 	            // 데이터베이스에서 일정 수정
 	            scheduleDAO.updateSchedule(scheduleVO);
 
 	            // 수정 완료 후 다시 관리자 페이지로 리다이렉트
-	            response.sendRedirect(request.getContextPath() + "/In_Controller");
+	            response.sendRedirect(request.getContextPath() + "/In_Controller3");
 	            
-	        } // 기업 면접 공고 일정 추가
-	        else if (action.equals("addSchedule")) {
+	        } 
+	       		// 기업 면접 공고 일정 추가 !!
+	        	else if (action.equals("addSchedule")) {
+	        	int coID = Integer.parseInt(request.getParameter("coID"));
 	            Date intvwDate = Date.valueOf(request.getParameter("intvwDate"));
+	            int Status = Integer.parseInt(request.getParameter("Status"));
 	           
-	            int coID = Integer.parseInt(request.getParameter("coID"));
-	            
-	            // 시간 데이터 처리 부분
+	             // 시간 데이터 처리 부분
 	            String intvwTimeStr = request.getParameter("intvwTime");
 	            		 
 	            
@@ -202,14 +205,15 @@ public class In_Controller extends HttpServlet {
 	            Time intvwTime = Time.valueOf(fixedTimeStr);
 
 	            In_ScheduleVO scheduleVO = new In_ScheduleVO();
+	            scheduleVO.setCoID(coID);
 	            scheduleVO.setIntvwDate(intvwDate);
 	            scheduleVO.setIntvwTime(intvwTime);
-	            scheduleVO.setCoID(coID);
+	            scheduleVO.setStatus(0);
 
 	            scheduleDAO.addSchedule(scheduleVO);
 
 	            // 면접 일정관리 페이지로 포워딩
-	            response.sendRedirect("/ChuiUpExpo/sub_Interview/in_schedule.jsp");
+	            response.sendRedirect("/ChuiUpExpo/sub_Interview/in_schedule.jsp");         
 
 	        }
 	       // 일반 면접신청 추가
@@ -247,9 +251,15 @@ public class In_Controller extends HttpServlet {
 	            attendee.setExpoID(expoID);
             attendee.setStatus(status);	
 	
+           
+            
 	            AttendeeDAO attendeeDAO = new AttendeeDAO();
 	            
             int AtndID = attendeeDAO.addAttendee1(attendee);
+            System.out.println("AtndID 값은 : " + AtndID);
+            
+         
+            
 
 	            // 사용자가 선택한 기업명을 입력 받음
 	            String coName = request.getParameter("coName1");
@@ -260,7 +270,9 @@ public class In_Controller extends HttpServlet {
             CompanyDAO companyDAO = new CompanyDAO();
 	            int coID = companyDAO.getCoIDByName(coName);
             
-            System.out.println("해당 coID값은 :" + coID); // -1
+            System.out.println("해당 coID값은 :" + coID); // 굿
+            
+            
 	
 	            if (coID > 0) {
 	                // IntvwSchedDAO를 사용하여 CoID를 기반으로 SchID를 검색
@@ -268,32 +280,28 @@ public class In_Controller extends HttpServlet {
                 int schID = schedDAO.getSchIDByCoID(coID);
 	
              if (schID > 0) {
-                    // SchID 및 CoID를 사용하여 IntvwApplicant 객체를 생성하고 추가
-	                    In_ApplicantVO applicant = new In_ApplicantVO();
-	                    applicant.setAtndID(attendee.getAtndID()); // 참가자 ID를 설정
-	                    applicant.setSchID(schID); // 면접 일정 ID (SchID)를 설정
+            	 In_ApplicantVO applicant = new In_ApplicantVO();
+            	 applicant.setAtndID(AtndID); // 참가자 ID를 설정
+            	 applicant.setSchID(schID); // 면접 일정 ID (SchID)를 설정
+            	 applicant.setStatus(0); // status 값을 항상 0으로 설정
 
-	                    In_ApplicantDAO applicantDAO = new In_ApplicantDAO();
-	                    applicantDAO.addApplicant(applicant); // IntvwApplicant 테이블에 신청 정보 추가
+            	 In_ApplicantDAO applicantDAO = new In_ApplicantDAO();
+            	 applicantDAO.addApplicant(applicant); // IntvwApplicant 테이블에 신청 정보 추가
 
-						/*
-						 * int atndID = applicant.getAtndID(); int schhID = applicant.getSchID();
-						 * System.out.println("atndID: " + atndID); System.out.println("schhID: " +
-						 * schhID);
-						 */
+
+						
+						 
+						  int schhID = applicant.getSchID();
+						  
+						  System.out.println("schhID 값은 : " +
+						  schhID);
+						 
 	                    
 	                    response.sendRedirect("/ChuiUpExpo/sub_Interview/in_application.jsp");
-	                } else {
-	                    // SchID를 찾을 수 없을 때의 에러 처리 로직
-	                    // 사용자에게 오류 메시지를 표시하거나 다른 조치를 취할 수 있습니다.
-	                }
-	            } else {
-	                // CoID를 찾을 수 없을 때의 에러 처리 로직
-	                // 사용자에게 오류 메시지를 표시하거나 다른 조치를 취할 수 있습니다.
+	               
+            
+             } 
 	            }
-	            
-       	
-	        	
 	        }
 	        
 	       }

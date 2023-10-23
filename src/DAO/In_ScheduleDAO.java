@@ -22,13 +22,14 @@ public class In_ScheduleDAO {
 
     // 면접 일정을 데이터베이스에 추가하는 메서드
     public void addSchedule(In_ScheduleVO schedule) {
-        String query = "INSERT INTO IntvwSched (IntvwDate, IntvwTime, CoID) VALUES (?, ?, ?)";
+        String query = "INSERT INTO IntvwSched (IntvwDate, IntvwTime, CoID, Status) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setDate(1, (Date) schedule.getIntvwDate());
             preparedStatement.setTime(2, schedule.getIntvwTime());
             preparedStatement.setInt(3, schedule.getCoID());
-
+            preparedStatement.setInt(4, schedule.getStatus());
+            
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -50,6 +51,7 @@ public class In_ScheduleDAO {
                 schedule.setIntvwDate(resultSet.getDate("IntvwDate"));
                 schedule.setIntvwTime(resultSet.getTime("IntvwTime"));
                 schedule.setCoID(resultSet.getInt("CoID"));
+                schedule.setStatus(resultSet.getInt("Status"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,16 +62,19 @@ public class In_ScheduleDAO {
 
     // 면접 일정을 업데이트하는 메서드
     public void updateSchedule(In_ScheduleVO schedule) {
-        String query = "UPDATE IntvwSched SET IntvwDate = ?, IntvwTime = ? WHERE SchID = ?";
+    	String query = "UPDATE IntvwSched SET IntvwDate = ?, IntvwTime = ?, Status = ? WHERE SchID = ?";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setDate(1, (Date) schedule.getIntvwDate());
-            preparedStatement.setTime(2, schedule.getIntvwTime());
-            preparedStatement.setInt(3, schedule.getSchID());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    	try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+    	    preparedStatement.setDate(1, (Date) schedule.getIntvwDate());
+    	    preparedStatement.setTime(2, schedule.getIntvwTime());
+    	    preparedStatement.setInt(3, schedule.getStatus());
+    	    preparedStatement.setInt(4, schedule.getSchID());
+    	    
+    	    preparedStatement.executeUpdate();
+    	} catch (SQLException e) {
+    	    e.printStackTrace();
+    	}
+
     }
 
     // 면접 일정을 ID를 기반으로 삭제하는 메서드
@@ -96,6 +101,7 @@ public class In_ScheduleDAO {
                 schedule.setIntvwDate(resultSet.getDate("IntvwDate"));
                 schedule.setIntvwTime(resultSet.getTime("IntvwTime"));
                 schedule.setCoID(resultSet.getInt("CoID"));
+                schedule.setStatus(resultSet.getInt("Status"));
                 schedules.add(schedule);
             }
         } catch (SQLException e) {

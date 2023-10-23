@@ -7,10 +7,11 @@
     <title>신청 정보 수정</title>
 </head>
 <body>
+<jsp:include page="../sub_Event/subTop.jsp"/>
 <h1>일반 면접 신청 정보 수정</h1>
 
 <%-- 신청 정보를 수정하기 위한 폼 --%>
-<form action="<%= request.getContextPath() %>/In_Controller" method="post">
+<form action="<%= request.getContextPath() %>/In_Controller3" method="post">
     <input type="hidden" name="action" value="updateApplicant">
     <input type="hidden" name="appID" value="${applicant.appID}">
 

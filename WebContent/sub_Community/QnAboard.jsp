@@ -4,6 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	String contextPath = request.getContextPath();	
+
     ArrayList qlist = (ArrayList)request.getAttribute("qlist");
     qnaVO qVo = new qnaVO();
 	// 페이징
@@ -34,10 +36,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<link rel="stylesheet"
+		href="<%=contextPath%>/sub_Event/assets/css/main.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/mainPage/css/QnAboard.css">
-
+	<meta name="robots"
+		content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <title>자주하는 질문</title>
 <script>
@@ -53,6 +58,7 @@
 </head>
 <body>
 	<div>
+	<jsp:include page="/sub_Event/subTop.jsp" />
 		<h3>자주하는 질문</h3>
 		<table border="1">
 			<tr>

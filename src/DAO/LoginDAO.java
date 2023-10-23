@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+
 public class LoginDAO {
 
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/Expo";
@@ -205,11 +206,31 @@ public class LoginDAO {
 	}
 	
 	// 카카오 로그인 조회 및 등록 메소드
-	public void kakaoLoing(String email, String name) {
+	public int kakaoLoing(String email) {
 		
-//		System.out.println("다오 안쪽 이메일 값 :" + email);
-//		System.out.println("다오 안쪽 닉네임 값 :" + name);
-//		
+		int check = 0;
+		
+		String sql = "select email from attendee where Email="+email;
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				check = 1;
+			} else {
+				check = 0;
+					
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("kakaoLoing 메소드 내부오류 : " + e);
+		}
+		
+		
+		return check;
 	}
 
 }
