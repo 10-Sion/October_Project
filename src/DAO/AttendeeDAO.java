@@ -150,10 +150,40 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
 	    }
 	}
 	
+
 	@Override
 	public void UpdateAttendee() {
 		// TODO Auto-generated method stub
 		
 	}
+
+	// 소이 사용
+	// 이메일로 참가자 조회 후 반환
+	@Override
+    public AttendeeVO getAttendeeByEmail(String email) {
+        String sql = "SELECT * FROM Attendee WHERE Email = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, email);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                AttendeeVO attendee = new AttendeeVO();
+                attendee.setAtndID(rs.getInt("AtndID"));
+                attendee.setAtndName(rs.getString("AtndName"));
+                attendee.setEmail(rs.getString("Email"));
+                attendee.setExpoID(rs.getInt("ExpoID"));
+                // 다른 필드도 설정
+
+                return attendee;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null; // 해당 이메일로 참가자를 찾지 못한 경우
+    }
+
 
 }

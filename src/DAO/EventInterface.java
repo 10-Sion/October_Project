@@ -20,6 +20,7 @@ public interface EventInterface {
         AttendeeVO getAttendee(String LoginEmail);
         void acceptAllAttendees();
         void UpdateAttendee();
+        AttendeeVO getAttendeeByEmail(String email);
     }
 
 }

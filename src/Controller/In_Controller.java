@@ -137,13 +137,18 @@ public class In_Controller extends HttpServlet {
 	            response.sendRedirect(request.getContextPath() + "/In_Controller3");
 	        
 	        
-	        }
+	        } 
+	        
+	        
+	        
+	        
 	    }
 	    @Override
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    	  request.setCharacterEncoding("UTF-8");
 		        response.setCharacterEncoding("UTF-8");
 	        String action = request.getParameter("action");
+	        String userEmail = (String) request.getSession().getAttribute("loginUser");
 	      
 	        
 	       if (action.equals("updateApplicant")) {
@@ -301,6 +306,39 @@ public class In_Controller extends HttpServlet {
 	               
             
              } 
+             else if (action.equals("add_in_ex")) {
+             // 로그인 한 회원이 온라인 면접 신청
+             // 사용자가 선택한 기업명을 입력 받음
+	            String coName1 = request.getParameter("coName1");
+	            System.out.println(coName1);
+	            
+	        
+	            // CompanyDAO를 사용하여 기업명을 기반으로 CoID를 검색
+	            CompanyDAO companyDAO1 = new CompanyDAO();
+	            int coID1 = companyDAO1.getCoIDByName(coName1);
+        
+	            if (coID1 > 0) {
+	                // IntvwSchedDAO를 사용하여 CoID를 기반으로 SchID를 검색
+	                In_ScheduleDAO schedDAO1 = new In_ScheduleDAO();
+	                int schID1 = schedDAO1.getSchIDByCoID(coID1);
+	
+	         if (schID1 > 0) {
+         	 In_ApplicantVO applicant = new In_ApplicantVO();
+         	 applicant.setAtndID(AtndID); // 참가자 ID를 설정
+         	 applicant.setSchID(schID1); // 면접 일정 ID (SchID)를 설정
+         	 applicant.setStatus(0); // status 값을 항상 0으로 설정
+
+         	 In_ApplicantDAO applicantDAO = new In_ApplicantDAO();
+         	 applicantDAO.addApplicant(applicant); // IntvwApplicant 테이블에 신청 정보 추가
+
+         	 int schhID = applicant.getSchID();
+						  
+
+	         response.sendRedirect("/ChuiUpExpo/sub_Interview/in_ex_application.jsp");
+	               
+	         }
+          } 
+             }
 	            }
 	        }
 	        

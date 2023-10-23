@@ -12,7 +12,7 @@
 		session.setAttribute("loginUser", sessionUser);
 	}
 	
-	System.out.println("세션에 저장된 값: " + sessionUser);
+	System.out.println("subTop.jsp 에 저장된 세션 값 : " + sessionUser);
 
 %>
 <!DOCTYPE html>
@@ -59,6 +59,7 @@
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_application.jsp">온라인 면접</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_schedule.jsp">면접 공고 신청</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_admin.jsp">면접 관리자</a></li>
+             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_ex_application.jsp">박람회신청한 개인</a></li>
             <li><a href="<%=request.getContextPath()%>/QnA/QnAlist.do">자주하는 질문</a></li>
 <%--        <li><a href="<%=request.getContextPath()%>/login/loginFrom.do">로그인</a></li> --%>
             <%-- 세션에 저장된 값이 있으면 로그아웃을 표시 --%>

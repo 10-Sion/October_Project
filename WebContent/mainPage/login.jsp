@@ -23,7 +23,6 @@
 	window.Kakao.init("23d86cad894fb7312653fa454f67c02e");
 	
 	function kakaoLogin() {
-		
 		window.Kakao.Auth.login({
 			scope:'account_email, profile_nickname',
 			success: function(authObj) {
