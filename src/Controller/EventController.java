@@ -138,8 +138,7 @@ public class EventController extends HttpServlet {
 	            
 	        }
  else {
-            // 지원하지 않는 동작
-            response.sendRedirect("error.jsp");
+
         }
     }
     
