@@ -12,7 +12,7 @@
 		session.setAttribute("loginUser", sessionUser);
 	}
 	
-	System.out.println("세션에 저장된 값: " + sessionUser);
+	System.out.println("subTop.jsp 에 저장된 세션 값 : " + sessionUser);
 
 %>
 <!DOCTYPE html>
