@@ -306,7 +306,7 @@ public class In_Controller extends HttpServlet {
 	               
             
              } 
-             
+             else if (action.equals("add_in_ex")) {
              // 로그인 한 회원이 온라인 면접 신청
              // 사용자가 선택한 기업명을 입력 받음
 	            String coName1 = request.getParameter("coName1");
@@ -336,7 +336,7 @@ public class In_Controller extends HttpServlet {
 
 	         response.sendRedirect("/ChuiUpExpo/sub_Interview/in_ex_application.jsp");
 	               
-         
+	         }
           } 
              }
 	            }
