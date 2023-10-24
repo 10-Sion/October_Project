@@ -6,11 +6,11 @@
 <%String sessionUser = (String) session.getAttribute("loginUser"); %>
 <head>
     <meta charset="UTF-8">
-    <title>승인된 상태 목록</title>
+    <title>면접 신청 목록 - 승인된 신청</title>
 </head>
 <body>
 <jsp:include page="../sub_Event/subTop.jsp"/>
-    <h1>승인된 상태 목록</h1>
+    <h1>면접 신청 목록 - 승인된 신청</h1>
     <table>
         <tr>
             <th>신청 ID</th>
