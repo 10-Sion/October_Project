@@ -28,7 +28,7 @@
 
     <h1>Update Company Information</h1>
     
-    <form action="updateCompanyAction.jsp" method="post">
+    <form action="<%= request.getContextPath() %>/Event?action=updateCompany" method="post">
         <input type="hidden" name="coID" value="<%= coID %>" />
         
         <label for="coName">Company Name:</label>

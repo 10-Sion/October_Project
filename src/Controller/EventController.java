@@ -162,7 +162,7 @@ public class EventController extends HttpServlet {
 	            Date startDate = Date.valueOf(request.getParameter("startDate"));
 	            Date endDate = Date.valueOf(request.getParameter("endDate"));
 	            int expoID = Integer.parseInt(request.getParameter("expoID"));
-	            int status = Integer.parseInt(request.getParameter("status"));
+	            int status = 1; // 수정시 일반 status 반영
 
 	            CompanyDAO companyDAO = new CompanyDAO();
 	            CompanyVO company = companyDAO.getCompanyInfo(coID);
@@ -182,14 +182,17 @@ public class EventController extends HttpServlet {
 	                companyDAO.updateCompany(company);
 	                response.sendRedirect(contextPath + "/sub_Event/gwanlee_ComList.jsp");
 	                
-	            } else {
-	                // 회사를 찾지 못한 경우의 처리
-	                response.sendRedirect(contextPath + "/sub_Event/gwanlee_ComList.jsp");
 	            }
-	        }
+	        } else if (action.equals("deleteCompany")) {
+			    int coID = Integer.parseInt(request.getParameter("coID"));
+			    
+			    boolean success = new CompanyDAO().deleteCompany(coID);
+			    
+			    if (success) {
 
- 
- else {
+			        response.sendRedirect(request.getContextPath() + "/sub_Event/gwanlee_WaitUntilReg.jsp");
+			    }
+			} else {
 
         }
     }
