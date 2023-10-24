@@ -12,7 +12,8 @@
 		session.setAttribute("loginUser", sessionUser);
 	}
 	
-	System.out.println("subTop.jsp 에 저장된 세션 값 : " + sessionUser);
+	System.out.println("subTop.jsp 11에 저장된 세션 값 : " + loginUser);
+	System.out.println("subTop.jsp 에 저장된 세션 이름 값 : " + rolename);
 
 %>
 <!DOCTYPE html>
@@ -48,8 +49,8 @@
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_JulCha.jsp">참여 절차</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_SaJeonApply.jsp">사전 등록</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_JiDo.jsp">찾아오시는 길</a></li>
-            <% if (rolename != null && rolename == "참가자"){%>
-			<li><a href="<%= request.getContextPath() %>/Ann/attendeInfo.do">참가정보 수정</a></li>			
+            <% if(  "참가자".equals(rolename)){%>
+			<li><a href="<%= request.getContextPath() %>/Ann/Check.do">참가정보 수정</a></li>			
 			<% } %>
         </ul>
         

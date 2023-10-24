@@ -22,7 +22,6 @@
 			</div>
 	 <div style="margin-bottom: 15px;"></div>	</div>
 	</section>
-	<!-- Footer -->
     <footer id="footer">
         <ul class="icons">
             <li><a href="https://twitter.com/jjencshk" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -30,6 +29,9 @@
             <li><a href="https://www.instagram.com/b.yeil_official/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
         </ul>
     </footer>
+	<div class="copyright">
+		Made with: <a href="https://templated.co/">Templated.co</a>
+	</div>
 
 
 	<script>

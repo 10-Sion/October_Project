@@ -1,23 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.List" %>
+<%@ page import="VO.AttendeeVO" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="Path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8">
-<meta name="robots"
-	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="<%=path%>/sub_Event/assets/css/main.css">
-
-<body>			
-	<jsp:include page="../sub_Event/subTop.jsp"/>
+<body>
+    <jsp:include page="subTop.jsp"/>
 	<section id="main">
 		<div class="inner">
-	 <div style="margin-bottom: 15px;"></div>
-	<img src="<%=path%>/sub_Event/images/procedure.png" alt="" data-position="center" width="1000" height="1100" margin-bottom= "20px">
-	</div>
+	<form action ="${Path}/Ann/CheckPro.do" method="post">
+   	<table>
+   		<tr>
+   			<td>비밀번호 입력<input type = "password" name="Passwd"></td>
+   		</tr>	
+	</table>
+		<button type="submit" >입력하기</button>
+	</form>
+	 </div>
 	</section>
     <footer id="footer">
         <ul class="icons">

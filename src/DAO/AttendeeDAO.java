@@ -146,23 +146,29 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
     
 
     @Override
-	public AttendeeVO getAttendee(String LoginEmail) {
+	public AttendeeVO getAttendee(String loginEmail) {
 		
-		String sql = "select * from  Attendee WHERE Email= " + LoginEmail ;
-
+		String sql = "select * from Attendee WHERE Email = '" + loginEmail +"'" ;
+		AttendeeVO attendee = null;
 	    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-	        preparedStatement.executeUpdate();
+	        
 	        
 	        rs = preparedStatement.executeQuery();
-	        
+	       
 	        if(rs.next()) {
-	        	
+	        	 attendee = new AttendeeVO();
+	             attendee.setAtndID(rs.getInt("AtndID"));
+	             attendee.setAtndName(rs.getString("AtndName"));
+	             attendee.setEmail(rs.getString("Email"));
+	             attendee.setPasswd(rs.getString("Passwd"));
+	             attendee.setExpoID(rs.getInt("ExpoID"));
+	             attendee.setStatus(rs.getInt("Status"));
 	        }
 	        
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
-		return null;
+		return attendee;
 	}
 
 	// 참가자 수락 메서드
@@ -212,6 +218,90 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
         return null; // 해당 이메일로 참가자를 찾지 못한 경우
     }
 
+
+	public String getExpoName(int ExpoID) {
+		String sql = "select ExpoName from ExpoInfo where expoID = " + ExpoID;
+		String ExpoName = "";
+		try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+           
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                ExpoName = rs.getString("ExpoName");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return ExpoName;
+	}
+
+	public int UpdateAttend(AttendeeVO vo) {
+		String sql = "update Attendee set AtndName = ? , Email = ? where AtndID = ? ";
+		int result = 0;
+		
+		try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+         pstmt.setString(1, vo.getAtndName());
+         pstmt.setString(2, vo.getEmail());
+         pstmt.setInt(3, vo.getAtndID());
+			
+         result = pstmt.executeUpdate();
+
+          
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return result;
+	}
+
+	public int DelAttend(int atndID) {
+		String sql = "delete from Attendee where atndID = " + atndID ;
+		int result = 0;
+		try {
+			pstmt = connection.prepareStatement(sql);
+			result = pstmt.executeUpdate();
+			
+			
+			
+		}catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        }
+		return result;
+	}
+
+	public boolean CheckPass(String passwd, String loginEmail) {
+		boolean result = false;
+		String sql = "SELECT * FROM Attendee WHERE Email = ? AND Passwd = SHA2(?, 256)";   
+		try {
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1, loginEmail);
+			pstmt.setString(2, passwd);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = true;
+			}
+			
+		}catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+				pstmt.close();
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        }
+		return result;
+	}
+
 	// 소이사용
 	// 주어진 이메일을 사용하여 Attendee 테이블에서 AtndID 값을 조회하는 역할
 	public int getAtndIDByEmail(String email) {
@@ -230,6 +320,7 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
 	    }
 
 	    return atndID;
+
 	}
 
 

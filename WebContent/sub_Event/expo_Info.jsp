@@ -15,15 +15,11 @@
 	<jsp:include page="../sub_Event/subTop.jsp"/>
 	<section id="main">
 		<div class="inner">
-			<div class="image fit">
-				<img src="<%=path%>/sub_Event/images/procedure.png" alt="">
-			</div>
 	 <div style="margin-bottom: 15px;"></div>
 	<img src="<%=path%>/sub_Event/images/Yeil.png" alt="" data-position="center" width="1000" height="1100" margin-bottom= "20px">
 	</div>
 	<jsp:include page="/sub_Event/Exo_Sch.jsp"/>
 	</section>
-	<!-- Footer -->
     <footer id="footer">
         <ul class="icons">
             <li><a href="https://twitter.com/jjencshk" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -31,6 +27,9 @@
             <li><a href="https://www.instagram.com/b.yeil_official/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
         </ul>
     </footer>
+	<div class="copyright">
+		Made with: <a href="https://templated.co/">Templated.co</a>
+	</div>
 
 </body>
 </html>

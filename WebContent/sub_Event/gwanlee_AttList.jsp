@@ -14,7 +14,8 @@
 </head>
 <body>
 	<jsp:include page="subTop.jsp"/>
-
+	<section id="main">
+		<div class="inner">
     <h1>Attendee List</h1>
     <table>
         <tr>
@@ -35,5 +36,14 @@
             </tr>
         </c:forEach>
     </table>
+     </div>
+	</section>
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://twitter.com/jjencshk" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="https://www.facebook.com/yeilit/?locale=ko_KR" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="https://www.instagram.com/b.yeil_official/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        </ul>
+    </footer>
 </body>
 </html>
