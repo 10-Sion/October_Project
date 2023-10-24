@@ -18,7 +18,25 @@
 		font: inherit;
 		vertical-align: baseline;
 	}
-	
+    .left_gwan {
+    	padding-top: 4%;
+        float: left;
+        width: 50%;
+       	height: 100%;
+       	background-size: cover;
+    }
+	.left_gwan h1 {
+		padding-left: 10%;
+	}
+
+    .right_gwan {
+    	padding: 13% 0 0 11%;
+        float: right;
+        width: 50%;
+        height: 100%;
+        background-image: url("../../images/gwanBack.jpeg");
+        background-size: cover;
+    }	
 .images {
 	display: flex;
 	flex-direction: row;
