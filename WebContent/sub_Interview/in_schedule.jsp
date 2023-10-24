@@ -27,7 +27,7 @@
 		<input type="time" id="intvwTime" name="intvwTime" step="60" required><br><br>
 
         
-        <input type="submit" value="추가">
+        <input type="submit" value="추가" onclick="showMsg(true)">
     </form>
 
     <!-- 오류 메시지 표시 -->
@@ -46,5 +46,18 @@
 	<div class="copyright">
 		Made with: <a href="https://templated.co/">Templated.co</a>
 	</div>
+	
+	<script type="text/javascript">
+	function showMsg(success) {
+        if (success) {
+            alert("신청이 완료되었습니다");
+        } else {
+            alert("신청을 실패하였습니다");
+        }
+     // 페이지 리로드
+        location.reload();
+    }
+	</script>
+	
 </body>
 </html>

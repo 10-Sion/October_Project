@@ -211,7 +211,7 @@ public class In_Controller extends HttpServlet {
 	        	else if (action.equals("addSchedule")) {
 	        	int coID = Integer.parseInt(request.getParameter("coID"));
 	            Date intvwDate = Date.valueOf(request.getParameter("intvwDate"));
-	            int Status = Integer.parseInt(request.getParameter("Status"));
+	            int Status = 0;
 	           
 	             // 시간 데이터 처리 부분
 	            String intvwTimeStr = request.getParameter("intvwTime");
@@ -224,7 +224,7 @@ public class In_Controller extends HttpServlet {
 	            scheduleVO.setCoID(coID);
 	            scheduleVO.setIntvwDate(intvwDate);
 	            scheduleVO.setIntvwTime(intvwTime);
-	            scheduleVO.setStatus(0);
+	            scheduleVO.setStatus(Status);
 
 	            scheduleDAO.addSchedule(scheduleVO);
 
