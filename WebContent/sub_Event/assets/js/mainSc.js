@@ -12,3 +12,34 @@
             scrollTop: scrollTop
         }, 1000); // 1초 동안 스크롤이 이동하도록 설정
     }, 1000); // 1초 후에 스크롤링 시작
+
+// 마우스 휠 이동 처리(각 section 이동)
+document.addEventListener('DOMContentLoaded', function () {
+    const sections = document.querySelectorAll('.post'); // 섹션을 나타내는 클래스 선택자로 변경
+
+    let currentSectionIndex = 0;
+    let isThrottled = false;
+
+    function scrollToSection(sectionIndex) {
+        const position = sections[sectionIndex].offsetTop;
+        window.scrollTo({
+            top: position,
+            behavior: 'smooth',
+        });
+    }
+
+    document.addEventListener('wheel', (event) => {
+        if (isThrottled) return;
+        isThrottled = true;
+
+        setTimeout(() => {
+            isThrottled = false;
+        }, 1000);
+
+        const direction = event.deltaY > 0 ? 1 : -1;
+        if (currentSectionIndex + direction >= 0 && currentSectionIndex + direction < sections.length) {
+            currentSectionIndex += direction;
+            scrollToSection(currentSectionIndex);
+        }
+    });
+});
