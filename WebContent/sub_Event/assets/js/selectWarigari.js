@@ -1,11 +1,14 @@
 // Attendee 폼 표시
+	    
 	    $("#showAttendeeForm").click(function() {
+	    	$(".images").hide();
 	        $("#attendeeForm").show();
 	        $("#companyForm").hide();
 	    });
 	
 	    // Company 폼 표시
 	    $("#showCompanyForm").click(function() {
+	    	$(".images").hide();
 	        $("#attendeeForm").hide();
 	        $("#companyForm").show();
 	    });

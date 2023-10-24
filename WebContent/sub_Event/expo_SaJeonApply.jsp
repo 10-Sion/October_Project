@@ -13,10 +13,17 @@
 </head>
 <body>
     <jsp:include page="subTop.jsp"/>
+    
     <section id="main">
 		<div class="inner">
+		
     <button id="showAttendeeForm">Attendee</button>
 	<button id="showCompanyForm">Company</button>
+    
+    <div class="images">
+    <img src="images/apply.jpeg">
+    <h1>사전 등록 신청</h1>
+    </div>
     
     <!-- 일반 참가자 입력 폼 -->
     <div id="attendeeForm" style="display: none;">

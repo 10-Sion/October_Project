@@ -19,6 +19,28 @@
 		vertical-align: baseline;
 	}
 	
+.images {
+	display: flex;
+	flex-direction: row;
+}	
+.images h1 {
+	position: absolute;
+	left: 850px;
+	top: 430px;
+}
+
+.inner button {
+	position: absolute;
+	top: 100px;
+	
+}
+#showAttendeeForm {
+	left : 50px;
+}
+#showCompanyForm {
+	left : 200px;
+}
+	
 .chamImg {
 	padding-bottom: 5%;
 	
@@ -26,6 +48,10 @@
 .beachido img{	
 
 	margin-left: 20%;
+}
+
+.inner buttom {
+	padding-bottom: 300px;
 }
 	
 .image.fit img {
