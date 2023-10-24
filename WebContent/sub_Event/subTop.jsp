@@ -46,7 +46,7 @@
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_AnNae.jsp">메인</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_Info.jsp">박람회 개요</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_JulCha.jsp">참여 절차</a></li>
-            <li><a href="<%= request.getContextPath() %>/sub_Event/expo_SaJeon.jsp">사전 등록</a></li>
+            <li><a href="<%= request.getContextPath() %>/sub_Event/expo_SaJeonApply.jsp">사전 등록</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_JiDo.jsp">찾아오시는 길</a></li>
             <% if (rolename != null && rolename == "참가자"){%>
 			<li><a href="<%= request.getContextPath() %>/Ann/attendeInfo.do">참가정보 수정</a></li>			
