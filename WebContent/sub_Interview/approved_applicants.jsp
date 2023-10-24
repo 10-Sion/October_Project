@@ -3,14 +3,24 @@
 
 <!DOCTYPE html>
 <html>
-<%String sessionUser = (String) session.getAttribute("loginUser"); %>
+<%String sessionUser = (String) session.getAttribute("loginUser"); 
+String path = request.getContextPath();
+%>
+	
 <head>
     <meta charset="UTF-8">
+    <meta name="robots"
+	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="<%=path%>/sub_Event/assets/css/main.css">
+
     <title>면접 신청 목록 - 승인된 신청</title>
 </head>
 <body>
 <jsp:include page="../sub_Event/subTop.jsp"/>
-    <h1>면접 신청 목록 - 승인된 신청</h1>
+<section id="main">
+		<div class="inner">
+    <h1 align="center">면접 신청 목록 - 승인된 신청</h1>
     <table>
         <tr>
             <th>신청 ID</th>
@@ -27,5 +37,15 @@
             </tr>
         </c:forEach>
     </table>
+    
+    </div>
+	</section>
+	<footer id="footer">
+	<ul class="icons">
+			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+		</ul>
+	</footer>
 </body>
 </html>
