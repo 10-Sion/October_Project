@@ -7,8 +7,8 @@
 <html>
 <head>
 <!-- jQuery 라이브러리 추가 -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
         // 페이지가 로드될 때 실행되는 함수
         $(function () {
