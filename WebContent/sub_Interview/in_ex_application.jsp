@@ -31,7 +31,7 @@ AttendeeVO attendee = attendeeDAO.getAttendeeByEmail(userEmail);
 
 <p>참가자명: <%= attendee.getAtndName() %></p>
 <p>이메일: <%= attendee.getEmail() %></p>
-<p>박람회 ID: <%= attendee.getExpoID() %></p>
+
 
 	<!-- 아래 IntvwApplicant 테이블 저장 -->
     

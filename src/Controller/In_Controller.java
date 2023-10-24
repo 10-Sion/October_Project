@@ -137,7 +137,17 @@ public class In_Controller extends HttpServlet {
 	            response.sendRedirect(request.getContextPath() + "/In_Controller3");
 	        
 	        
-	        } 
+	        } else if (action.equals("scheduleList")) {
+               
+                // 승인된 면접 일정 목록을 가져옴
+                List<In_ScheduleVO> approvedSchedules = scheduleDAO.getApprovedSchedules();
+                
+                // 가져온 목록을 request에 저장
+                request.setAttribute("approvedSchedules", approvedSchedules);
+
+                // scheduleList.jsp로 포워드
+                request.getRequestDispatcher("sub_Interview/scheduleList.jsp").forward(request, response);
+            }
 	        
 	        
 	        

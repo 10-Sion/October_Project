@@ -29,6 +29,11 @@
 			<h1 align="center">면접 관리자 페이지</h1>
 			<!-- 면접 신청 정보 -->
 			<h2>면접 신청 정보</h2>
+			<!-- 승인된 목록 버튼 -->
+			<a
+				href="<%=request.getContextPath()%>/In_Controller3?action=approvedList">면접
+				신청 승인 목록</a>
+				
 			<table>
 				<tr>
 					<th>신청 ID</th>
@@ -68,13 +73,16 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<!-- 승인된 목록 버튼 -->
-			<a
-				href="<%=request.getContextPath()%>/In_Controller3?action=approvedList">면접
-				신청 승인된 목록</a>
+			
 
+			<br><br>
 			<!-- 면접 일정 정보 -->
 			<h2>면접 일정 정보</h2>
+			<!-- 승인된 목록 버튼 -->
+			<a
+				href="<%=request.getContextPath()%>/In_Controller3?action=scheduleList">면접
+				일정 승인 목록</a>
+				
 			<table>
 				<tr>
 					<th>일정 ID</th>
