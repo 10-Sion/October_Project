@@ -130,5 +130,38 @@ public class In_ScheduleDAO {
         return schID;
     }
     
+    // 승인된 상태의 면접 일정 정보를 가져오기
+    public List<In_ScheduleVO> getApprovedSchedules() {
+        List<In_ScheduleVO> approvedSchedules = new ArrayList<>();
+        String query = "SELECT * FROM IntvwSched WHERE Status = 1";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                In_ScheduleVO schedule = new In_ScheduleVO();
+                schedule.setSchID(resultSet.getInt("SchID"));
+                schedule.setIntvwDate(resultSet.getDate("IntvwDate"));
+                schedule.setIntvwTime(resultSet.getTime("IntvwTime"));
+                schedule.setCoID(resultSet.getInt("CoID"));
+                schedule.setStatus(resultSet.getInt("Status"));
+                approvedSchedules.add(schedule);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return approvedSchedules;
+    }
+
+    
 
 }
+
+
+
+
+
+
+
+
+
