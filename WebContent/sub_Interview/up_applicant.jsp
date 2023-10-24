@@ -2,15 +2,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%String sessionUser = (String) session.getAttribute("loginUser"); %>
+<%String sessionUser = (String) session.getAttribute("loginUser"); 
+String path = request.getContextPath();
+%>
     <meta charset="UTF-8">
+    <meta name="robots"
+	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="<%=path%>/sub_Event/assets/css/main.css">
+
     <title>신청 정보 수정</title>
 </head>
 <body>
 <jsp:include page="../sub_Event/subTop.jsp"/>
 <section id="main">
 		<div class="inner">
+<<<<<<< HEAD
 <h1>일반 면접 신청 정보 수정</h1>
+=======
+<h1 align="center">일반 면접 신청 정보 수정</h1>
+>>>>>>> e27c777474d9ddc90e0c922446635b5b6e14e7ff
 
 <%-- 신청 정보를 수정하기 위한 폼 --%>
 <form action="<%= request.getContextPath() %>/In_Controller3" method="post">

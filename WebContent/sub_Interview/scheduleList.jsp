@@ -6,9 +6,16 @@
 
 <!DOCTYPE html>
 <html>
-<%String sessionUser = (String) session.getAttribute("loginUser"); %>
+<%String sessionUser = (String) session.getAttribute("loginUser");
+String path = request.getContextPath();
+%>
 <head>
     <meta charset="UTF-8">
+    <meta name="robots"
+	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="<%=path%>/sub_Event/assets/css/main.css">
+    
     <title>면접 일정 목록 - 승인된 일정</title>
 </head>
 <body>

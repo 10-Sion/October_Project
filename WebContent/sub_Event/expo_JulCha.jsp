@@ -11,16 +11,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<%=path%>/sub_Event/assets/css/main.css">
 
-<body>			
+<body> 			<!--  onload="pop()" -->
 	<jsp:include page="../sub_Event/subTop.jsp"/>
+	
 	<section id="main">
 		<div class="inner">
 			<div class="image fit">
-				<img src="<%=path%>/sub_Event/images/pic11.jpg" alt="">
+				<img class="chamImg" src="<%=path%>/sub_Event/images/cham1.png" alt="">
+				<img class="chamImg" src="<%=path%>/sub_Event/images/cham2.png" alt="">
 			</div>
-	 <div style="margin-bottom: 15px;"></div>
-	<img src="<%=path%>/sub_Event/images/procedure.png" alt="" data-position="center" width="1000" height="1100" margin-bottom= "20px">
-	</div>
+	 <div style="margin-bottom: 15px;"></div>	</div>
 	</section>
     <footer id="footer">
         <ul class="icons">
@@ -32,5 +32,12 @@
 	<div class="copyright">
 		Made with: <a href="https://templated.co/">Templated.co</a>
 	</div>
+
+
+	<script>
+		function pop() {
+		    window.open("PopUp.jsp", "pop", "width=450,height=550,history=no,resizable=no,status=no,scrollbars=yes,menubar=no");
+		}
+	</script>
 </body>
 </html>

@@ -16,7 +16,6 @@
 %>
 
 
-
 <meta charset="UTF-8">
 <title>면접 관리자 페이지</title>
 </head>
@@ -28,7 +27,7 @@
 		<div class="inner">
 			<h1 align="center">면접 관리자 페이지</h1>
 			<!-- 면접 신청 정보 -->
-			<h2>면접 신청 정보</h2>
+			<h2>개인 면접 신청 정보</h2>
 			<!-- 승인된 목록 버튼 -->
 			<a
 				href="<%=request.getContextPath()%>/In_Controller3?action=approvedList">면접
@@ -77,7 +76,7 @@
 
 			<br><br>
 			<!-- 면접 일정 정보 -->
-			<h2>면접 일정 정보</h2>
+			<h2>기업 면접 일정 정보</h2>
 			<!-- 승인된 목록 버튼 -->
 			<a
 				href="<%=request.getContextPath()%>/In_Controller3?action=scheduleList">면접

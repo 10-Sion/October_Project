@@ -10,10 +10,7 @@
 	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<%=path%>/sub_Event/assets/css/main.css">
-<style>
-	.
 
-</style>
 <body>			
 	<jsp:include page="../sub_Event/subTop.jsp"/>
 	<section id="main">
@@ -33,5 +30,6 @@
 	<div class="copyright">
 		Made with: <a href="https://templated.co/">Templated.co</a>
 	</div>
+
 </body>
 </html>
