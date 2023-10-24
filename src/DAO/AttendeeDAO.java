@@ -218,6 +218,7 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
         return null; // 해당 이메일로 참가자를 찾지 못한 경우
     }
 
+
 	public String getExpoName(int ExpoID) {
 		String sql = "select ExpoName from ExpoInfo where expoID = " + ExpoID;
 		String ExpoName = "";
@@ -299,6 +300,27 @@ public class AttendeeDAO implements EventInterface.AttendeeDAO {
 			}
         }
 		return result;
+	}
+
+	// 소이사용
+	// 주어진 이메일을 사용하여 Attendee 테이블에서 AtndID 값을 조회하는 역할
+	public int getAtndIDByEmail(String email) {
+	    String sql = "SELECT AtndID FROM Attendee WHERE Email = ?";
+	    int atndID = 0; // 기본값 0으로 초기화
+
+	    try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+	        pstmt.setString(1, email);
+	        ResultSet rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            atndID = rs.getInt("AtndID");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return atndID;
+
 	}
 
 

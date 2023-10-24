@@ -57,10 +57,19 @@
         <ul class="links">
             <li><a href="<%=request.getContextPath()%>/Company/list.do">참여기업</a></li>
             <li><a href="<%=request.getContextPath()%>/Ann/list.do">공지사항</a></li>
-            <li><a href="<%= request.getContextPath() %>/sub_Interview/in_application.jsp">온라인 면접</a></li>
+            <li><a href="<%= request.getContextPath() %>/sub_Interview/in_application.jsp">온라인 면접 신청</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_schedule.jsp">면접 공고 신청</a></li>
+            
+            <% if (rolename != null && rolename == "관리자"){%>
+			<li><a href="<%= request.getContextPath() %>/sub_Event/gwanlee_Index.jsp">참가자 관리</a></li>						
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_admin.jsp">면접 관리자</a></li>
-             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_ex_application.jsp">박람회신청한 개인</a></li>
+            <% } %>
+            
+            <!-- 로그인 성공시에만 보이는 온라인 면접 신청 화면 -->
+            <% if (sessionUser != null && !sessionUser.isEmpty()) { %>
+    		<li><a href="<%= request.getContextPath() %>/sub_Interview/in_ex_application.jsp">온라인 면접 신청</a></li>
+			<% } %>
+
             <li><a href="<%=request.getContextPath()%>/QnA/QnAlist.do">자주하는 질문</a></li>
 <%--        <li><a href="<%=request.getContextPath()%>/login/loginFrom.do">로그인</a></li> --%>
             <%-- 세션에 저장된 값이 있으면 로그아웃을 표시 --%>

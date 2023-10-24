@@ -19,7 +19,7 @@
 	<section id="main">
 		<div class="inner">
 			<div class="image fit">
-				<img src="<%=path%>/sub_Event/images/pic11.jpg" alt="">
+				<img src="<%=path%>/sub_Event/images/procedure.png" alt="">
 			</div>
 	 <div style="margin-bottom: 15px;"></div>
 	<img src="<%=path%>/sub_Event/images/Yeil.png" alt="" data-position="center" width="1000" height="1100" margin-bottom= "20px">

@@ -33,7 +33,7 @@
 
         <c:forEach var="company" items="${allCompanies}">
 	    <tr>
-	        <!-- 이 부분에서 수정 버튼을 클릭하면 해당 기업 정보를 수정할 JSP 페이지로 이동할 수 있도록 링크를 추가합니다 -->
+
 	        <td><c:out value="${company.coID}" /></td>
 	        <td><c:out value="${company.coName}" /></td>
 	        <td><c:out value="${company.coTel}" /></td>

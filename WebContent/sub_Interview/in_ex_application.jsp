@@ -16,25 +16,28 @@
     <title>로그인 회원 개인 온라인 면접 신청</title>
 </head>
 <body>
+<jsp:include page="../sub_Event/subTop.jsp" />
+
     <h1>온라인 면접 신청</h1>
 
-    <%
-    // 로그인한 사용자의 이메일을 세션에서 가져옵니다.
-    String userEmail = (String) session.getAttribute("loginUser");
-    
-    // AttendeeDAO를 사용하여 참가자 정보를 가져옵니다.
-    AttendeeDAO attendeeDAO = new AttendeeDAO();
-    AttendeeVO attendee = attendeeDAO.getAttendeeByEmail(userEmail);
-    %>
+  <%
+// 로그인한 사용자의 이메일을 세션에서 가져옵니다.
+String userEmail = (String) session.getAttribute("loginUser");
 
-    <h2>참가자명: <%= attendee.getAtndName() %></h2>
-    <p>이메일: <%= attendee.getEmail() %></p>
-    <p>박람회 ID: <%= attendee.getExpoID() %></p>
+// AttendeeDAO를 사용하여 참가자 정보를 가져옵니다.
+AttendeeDAO attendeeDAO = new AttendeeDAO();
+AttendeeVO attendee = attendeeDAO.getAttendeeByEmail(userEmail);
+%>
+
+<p>참가자명: <%= attendee.getAtndName() %></p>
+<p>이메일: <%= attendee.getEmail() %></p>
+<p>박람회 ID: <%= attendee.getExpoID() %></p>
 
 	<!-- 아래 IntvwApplicant 테이블 저장 -->
     
     <form action="/ChuiUpExpo/In_Controller3" method="post">
     <input type="hidden" name="action" value="add_in_ex">
+    <input type="hidden" name="userEmail" value="<%= userEmail %>">
  
         <label for="coName">면접 기업:</label>
 		<select name="coName1">

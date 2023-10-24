@@ -49,6 +49,54 @@ public class CompanyDAO {
         }
     }
 
+    // 여러개의 status를 가져와 기업을 리스트화
+    /* 좀 더 손 봐야할듯....
+     * 
+    public List<CompanyVO> getCompanyList(int... statuses) {
+        List<CompanyVO> list = new ArrayList<>();
+        String sql = "SELECT * FROM Company WHERE Status IN (";
+        
+        for (int i = 0; i < statuses.length; i++) {
+            sql += "?";
+            if (i < statuses.length - 1) {
+                sql += ",";
+            }
+        }
+        
+        sql += ") ORDER BY CoID ASC, Status DESC";
+        
+        try {
+            try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                for (int i = 0; i < statuses.length; i++) {
+                    pstmt.setInt(i + 1, statuses[i]);
+                }
+                
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next()) {
+                    CompanyVO com = new CompanyVO();
+                    com.setCoID(rs.getInt("CoID"));
+                    com.setCoName(rs.getString("CoName"));
+                    com.setCoDetails(rs.getString("CoDetails"));
+                    com.setCoTel(rs.getString("Co_tel"));
+                    com.setCoNumber(rs.getString("Co_number"));
+                    com.setEmail(rs.getString("Email"));
+                    com.setStartDate(rs.getDate("startDate"));
+                    com.setEndDate(rs.getDate("endDate"));
+                    com.setExpoID(rs.getInt("ExpoID"));
+                    com.setStatus(rs.getInt("Status"));
+                    list.add(com);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+*/
+    
     // 특정 status 리스트화 메서드
     public List<CompanyVO> getCompanyList(int status) {
         List<CompanyVO> list = new ArrayList<>();
@@ -88,7 +136,7 @@ public class CompanyDAO {
         String sql = "";
         try {
             if (keyWord == null || keyWord.isEmpty()) {
-            	sql = "SELECT * FROM Company WHERE Status <> ? ORDER BY CoID ASC, Status DESC";
+            	sql = "SELECT * FROM Company WHERE Status <> ? ORDER BY Status DESC";
 
             } else {
                 sql = "SELECT * FROM Company WHERE Status <> ? AND " + keyField + " LIKE ? ORDER BY CoID DESC";
@@ -182,37 +230,63 @@ public class CompanyDAO {
     	return list;
     }
 
-	public CompanyVO getCompanyInfo(int coID) {
-		String sql = "";
-		CompanyVO com = null;
-    	try {
-    		
-      		sql = "select * from company where Status = 1 and CoID="+ coID+  " order by CoID desc";
-      			
-			PreparedStatement pstmt = connection.prepareStatement(sql);
-			
-			ResultSet rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				
-				com = new CompanyVO();
-				
-				com.setCoID(rs.getInt("CoID"));
-				com.setCoName(rs.getString("CoName"));
-				com.setCoDetails(rs.getString("CoDetails"));
-				com.setCoTel(rs.getString("Co_tel"));
-				com.setCoNumber(rs.getString("Co_number"));
-				com.setEmail(rs.getString("Email"));
-				com.setStartDate(rs.getDate("startDate"));
-				com.setEndDate(rs.getDate("endDate"));
-				com.setExpoID(rs.getInt("ExpoID"));
-			}	
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    	return com;
-	}
+    //	Status를 필터링하는 메서드
+    public CompanyVO getActiveCompanyInfo(int coID) {
+        String sql = "SELECT * FROM company WHERE Status = 1 AND CoID = ? ORDER BY CoID DESC";
+        CompanyVO com = null;
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, coID);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                com = new CompanyVO();
+                com.setCoID(rs.getInt("CoID"));
+                com.setCoName(rs.getString("CoName"));
+                com.setCoDetails(rs.getString("CoDetails"));
+                com.setCoTel(rs.getString("Co_tel"));
+                com.setCoNumber(rs.getString("Co_number"));
+                com.setEmail(rs.getString("Email"));
+                com.setStartDate(rs.getDate("startDate"));
+                com.setEndDate(rs.getDate("endDate"));
+                com.setExpoID(rs.getInt("ExpoID"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return com;
+    }
+
+    // id를 통해 기업을 가져오는 메서드
+    public CompanyVO getCompanyInfo(int coID) {
+        String sql = "SELECT * FROM company WHERE CoID = ? ORDER BY CoID DESC";
+        
+        CompanyVO com = null;
+        
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, coID);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                com = new CompanyVO();
+                com.setCoID(rs.getInt("CoID"));
+                com.setCoName(rs.getString("CoName"));
+                com.setCoDetails(rs.getString("CoDetails"));
+                com.setCoTel(rs.getString("Co_tel"));
+                com.setCoNumber(rs.getString("Co_number"));
+                com.setEmail(rs.getString("Email"));
+                com.setStartDate(rs.getDate("startDate"));
+                com.setEndDate(rs.getDate("endDate"));
+                com.setExpoID(rs.getInt("ExpoID"));
+                com.setStatus(rs.getInt("Status"));
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        }
+        return com;
+    }
+
     
     private void handleExpoSelect(HttpServletRequest request, HttpServletResponse response, int selectedExpoID) throws ServletException, IOException {
         // 선택한 Expo에 대한 정보를 데이터베이스에서 가져오는 코드
@@ -299,9 +373,24 @@ public class CompanyDAO {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            
         }
     }
 
+    // 기업 삭제 메서드
+    public boolean deleteCompany(int coID) {
+        String sql = "DELETE FROM Company WHERE CoID = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, coID);
+            int affectedRows = preparedStatement.executeUpdate();
+
+            return affectedRows > 0; // 성공하면 true, 실패하면 false 반환
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 
