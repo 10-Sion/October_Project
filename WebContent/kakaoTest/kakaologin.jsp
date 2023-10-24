@@ -19,6 +19,7 @@
                 // 카카오 로그인 서비스 초기화 및 실행
                 Kakao.init('23d86cad894fb7312653fa454f67c02e');
                 Kakao.Auth.login({
+                	
                     success: function (auth) {
                         Kakao.API.request({
                             url: '/v2/user/me',
