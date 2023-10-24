@@ -137,19 +137,30 @@ public class In_Controller extends HttpServlet {
 	            response.sendRedirect(request.getContextPath() + "/In_Controller3");
 	        
 	        
-	        } 
+	        } else if (action.equals("scheduleList")) {
+               
+                // 승인된 면접 일정 목록을 가져옴
+                List<In_ScheduleVO> approvedSchedules = scheduleDAO.getApprovedSchedules();
+                
+                // 가져온 목록을 request에 저장
+                request.setAttribute("approvedSchedules", approvedSchedules);
+
+                // scheduleList.jsp로 포워드
+                request.getRequestDispatcher("sub_Interview/scheduleList.jsp").forward(request, response);
+            }
 	        
 	        
 	        
 	        
 	    }
 	    @Override
-	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+	    		throws ServletException, IOException {
 	    	  request.setCharacterEncoding("UTF-8");
 		        response.setCharacterEncoding("UTF-8");
 	        String action = request.getParameter("action");
-	        String userEmail = (String) request.getSession().getAttribute("loginUser");
-	      
+	       
+	        String userEmail = request.getParameter("userEmail");
 	        
 	       if (action.equals("updateApplicant")) {
 	            // 일반인 면접신청 수정 처리
@@ -200,7 +211,7 @@ public class In_Controller extends HttpServlet {
 	        	else if (action.equals("addSchedule")) {
 	        	int coID = Integer.parseInt(request.getParameter("coID"));
 	            Date intvwDate = Date.valueOf(request.getParameter("intvwDate"));
-	            int Status = Integer.parseInt(request.getParameter("Status"));
+	            int Status = 0;
 	           
 	             // 시간 데이터 처리 부분
 	            String intvwTimeStr = request.getParameter("intvwTime");
@@ -213,7 +224,7 @@ public class In_Controller extends HttpServlet {
 	            scheduleVO.setCoID(coID);
 	            scheduleVO.setIntvwDate(intvwDate);
 	            scheduleVO.setIntvwTime(intvwTime);
-	            scheduleVO.setStatus(0);
+	            scheduleVO.setStatus(Status);
 
 	            scheduleDAO.addSchedule(scheduleVO);
 
@@ -305,42 +316,57 @@ public class In_Controller extends HttpServlet {
 	                    response.sendRedirect("/ChuiUpExpo/sub_Interview/in_application.jsp");
 	               
             
-             } 
-             else if (action.equals("add_in_ex")) {
-             // 로그인 한 회원이 온라인 면접 신청
-             // 사용자가 선택한 기업명을 입력 받음
-	            String coName1 = request.getParameter("coName1");
-	            System.out.println(coName1);
-	            
-	        
-	            // CompanyDAO를 사용하여 기업명을 기반으로 CoID를 검색
-	            CompanyDAO companyDAO1 = new CompanyDAO();
-	            int coID1 = companyDAO1.getCoIDByName(coName1);
-        
-	            if (coID1 > 0) {
-	                // IntvwSchedDAO를 사용하여 CoID를 기반으로 SchID를 검색
-	                In_ScheduleDAO schedDAO1 = new In_ScheduleDAO();
-	                int schID1 = schedDAO1.getSchIDByCoID(coID1);
-	
-	         if (schID1 > 0) {
-         	 In_ApplicantVO applicant = new In_ApplicantVO();
-         	 applicant.setAtndID(AtndID); // 참가자 ID를 설정
-         	 applicant.setSchID(schID1); // 면접 일정 ID (SchID)를 설정
-         	 applicant.setStatus(0); // status 값을 항상 0으로 설정
-
-         	 In_ApplicantDAO applicantDAO = new In_ApplicantDAO();
-         	 applicantDAO.addApplicant(applicant); // IntvwApplicant 테이블에 신청 정보 추가
-
-         	 int schhID = applicant.getSchID();
-						  
-
-	         response.sendRedirect("/ChuiUpExpo/sub_Interview/in_ex_application.jsp");
-	               
-	         }
-          } 
-             }
+             }  
 	            }
-	        }
+	        } // 요기 추가
+	        else if (action.equals("add_in_ex")) {
+                // 로그인 한 회원이 온라인 면접 신청
+	        	AttendeeVO attendee = new AttendeeVO();
+	        	attendee.setEmail(userEmail); // attendee 객체에 이메일 설정
+	        	
+                // 사용자가 선택한 기업명을 입력 받음
+   	            String coName1 = request.getParameter("coName1");
+   	            System.out.println("사용자가 선택한 기업은 :" + coName1);
+   	            
+   	        
+   	            // CompanyDAO를 사용하여 기업명을 기반으로 CoID를 검색
+   	            CompanyDAO companyDAO1 = new CompanyDAO();
+   	            int coID1 = companyDAO1.getCoIDByName(coName1);
+   	            
+   	            System.out.println("coID1값은 : " + coID1);
+   	            
+ 
+   	            if (coID1 > 0) {
+   	            	// AttendeeDAO를 사용하여 이메일을 기반으로 AtndID를 검색
+   	   	            AttendeeDAO attendeeDAO = new AttendeeDAO();
+   	   	            int AtndID1 = attendeeDAO.getAtndIDByEmail(attendee.getEmail());
+   	   	            
+   	                // IntvwSchedDAO를 사용하여 CoID를 기반으로 SchID를 검색
+   	                In_ScheduleDAO schedDAO1 = new In_ScheduleDAO();
+   	                int schID1 = schedDAO1.getSchIDByCoID(coID1);
+   	                
+   	                System.out.println("AtindID값은 :" + AtndID1);
+   	                System.out.println("schID1값은 :" + schID1);
+   	
+   	         if (schID1 > 0) {
+            	 In_ApplicantVO applicant = new In_ApplicantVO();
+            	 applicant.setAtndID(AtndID1); // 참가자 ID를 설정
+            	 applicant.setSchID(schID1); // 면접 일정 ID (SchID)를 설정
+            	 applicant.setStatus(0); // status 값을 항상 0으로 설정
+
+            	 In_ApplicantDAO applicantDAO = new In_ApplicantDAO();
+            	 applicantDAO.addApplicant(applicant); // IntvwApplicant 테이블에 신청 정보 추가
+
+            	
+   	         response.sendRedirect("/ChuiUpExpo/sub_Interview/in_ex_application.jsp");
+   	               
+   	         }
+           
+         } 
+            }
+	       
+	       
+
 	        
 	       }
 		@Override
@@ -348,4 +374,4 @@ public class In_Controller extends HttpServlet {
 	        super.destroy();
 	        DatabaseConnection.closeConnection();
 	    }
-	}
+	} 

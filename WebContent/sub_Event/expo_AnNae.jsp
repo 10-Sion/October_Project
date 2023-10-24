@@ -16,13 +16,10 @@
 <body>
     <jsp:include page="./subTop.jsp" />
     <!-- Banner -->
-    <div class="bannerImg">
-   			<img src="<%=path %>/sub_Event/images/expoBanner.png">
-   	</div>
     <section id="banner">
-        <div class="inner">
-            <h1>예일 취업 박람회</h1>
+        <div class="inner">        
             <ul class="actions">
+            <img class="bannerImg" src="<%=path %>/sub_Event/images/lastBanner.png" >
                 <li><a href="#one" class="button alt scrolly big">Continue</a></li>
             </ul>
         </div>
@@ -31,7 +28,7 @@
     <!-- One -->
     <article id="one" class="post style1">
         <div class="image">
-            <img src="<%=path%>/sub_Event/images/one.jpg" alt="" data-position="75% center" width="1400" height="788">
+            <img src="<%=path%>/sub_Event/images/first.jpeg" alt="" data-position="75% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
@@ -39,7 +36,8 @@
                     <h2><a href="<%=path%>/sub_Event/expo_Info.jsp">박람회 개요</a></h2>
                 </header>
                 <p>
-                    2주 동안 개최되는 취업 준비생들을 위한 온라인 박람회 입니다. 참가하셔서 여러 기업에 면접을 보고 일자리를 얻을 기회들을 찾아보세요.
+                    2주 동안 개최되는 취업 준비생들을 위한 온라인 박람회 입니다. <br>
+                    여러 기업이 참여하는 면접과 행사를 통해 꿈을 실현해보세요! 
                 </p>
                 <ul class="actions">
                     <li><a href="<%=path%>/sub_Event/expo_Info.jsp" class="button alt">Read More</a></li>
@@ -55,15 +53,16 @@
     <!-- Two -->
 <article id="two" class="post invert style1 alt">
     <div class="image">
-        <img src="<%=path %>/sub_Event/images/sign.jpg" alt="" data-position="10% center" width="1400" height="788">
+        <img src="<%=path %>/sub_Event/images/second.jpeg" alt="" data-position="10% center" width="1400" height="788">
     </div>
     <div class="content">
         <div class="inner">
             <header>
-                <h2><a href="<%=path %>/sub_Event/expo_JulCha.jsp">참여절차</a></h2>
+                <h2><a href="<%=path %>/sub_Event/expo_JulCha.jsp">참여 절차</a></h2>
             </header>
             <p>
-                	참여절차를 확인 해보세요.
+                참가 전 미리 알아두면 <br>
+                좋을 절차들을 간단히 정리해뒀습니다.
             </p>
             <ul class="actions">
                 <li><a href="<%=path %>/sub_Event/expo_JulCha.jsp" class="button alt">Read More</a></li>
@@ -80,7 +79,7 @@
     <!-- Three -->
     <article id="three" class="post style2">
         <div class="image">
-            <img src="<%=path %>/sub_Event/images/input.jpg" alt="" data-position="80% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/third.jpeg" alt="" data-position="80% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
@@ -88,7 +87,8 @@
                     <h2><a href="<%=path %>/sub_Event/expo_SaJeonApply.jsp">사전등록 신청</a></h2>
                 </header>
                 <p>
-                    	사전등록을 클릭하시면 박람회에 참여하여 면접 진행의 혜택을 누릴 수 있습니다.
+                    사전등록을 통해 현장에서의	<br>
+                    서류 작성을 간소화하거나 없애버리세요!
                 </p>
                 <ul class="actions">
                     <li><a href="<%=path %>/sub_Event/expo_SaJeonApply.jsp" class="button alt">사전등록 하러가기</a></li>
@@ -104,7 +104,7 @@
     <!-- Four -->
     <article id="four" class="post invert style2 alt">
         <div class="image">
-            <img src="<%=path %>/sub_Event/images/location.png" alt="" data-position="60% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/forth.jpeg" alt="" data-position="60% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
@@ -112,7 +112,7 @@
                     <h2><a href="<%=path %>/sub_Event/expo_JiDo.jsp">찾아오시는 길</a></h2>
                 </header>
                 <ul class="actions">
-                    <li><a href="<%=path %>/sub_Event/expo_JiDo.jsp" class=" button alt">위치 보기</a></li>
+                    <li><a href="<%=path %>/sub_Event/expo_JiDo.jsp" class=" button alt">지도 보기</a></li>
                 </ul>
             </div>
             <div class="postnav">
@@ -125,7 +125,7 @@
     <!-- Five -->
     <article id="five" class="post style3">
         <div class="image">
-            <img src="<%=path %>/sub_Event/images/Qna.jpg" alt="" data-position="5% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/fifth.jpeg" alt="" data-position="5% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
@@ -149,16 +149,17 @@
     <!-- Six -->
     <article id="six" class="post invert style3 alt">
         <div class="image">
-            <img src="<%=path %>/sub_Event/images/companys.jpg" alt="" data-position="80% center" width="1400" height="788">
+            <img src="<%=path %>/sub_Event/images/last.jpeg" alt="" data-position="80% center" width="1400" height="788">
         </div>
         <div class="content">
             <div class="inner">
                 <header>
                     <h2>참가 기업</h2>
-                    <p class="info">전국의 우수한 기업들이 인재를 찾고 있습니다!</p>
+                    <p class="info">굴지 기업들이 탐내는 박람회</p>
                 </header>
                 <p>
-      		국내의 여러 기업들이 박람회에 참여하였습니다. 더보기를 눌러 참가한 기업 목록을 확인해보세요
+      				국내의 여러 기업들이 박람회에 참여하였습니다. <br>
+      				더보기를 눌러 참가한 기업 목록을 확인해보세요
                 </p>
                 <ul class="actions">
                     <li><a href="<%=path%>/Company/list.do" class="button alt">Read More</a></li>
@@ -174,11 +175,13 @@
     <!-- Footer -->
     <footer id="footer">
         <ul class="icons">
-            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="https://twitter.com/jjencshk" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="https://www.facebook.com/yeilit/?locale=ko_KR" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="https://www.instagram.com/b.yeil_official/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
         </ul>
     </footer>
 
+
+	<script src="<%=path%>/sub_Event/assets/js/mainSc.js"></script>
 </body>
 </html>

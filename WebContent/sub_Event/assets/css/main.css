@@ -18,6 +18,16 @@
 		font: inherit;
 		vertical-align: baseline;
 	}
+	
+.chamImg {
+	padding-bottom: 5%;
+	
+}
+.beachido img{	
+
+	margin-left: 20%;
+}
+	
 .image.fit img {
 	width: 100%;
 	height: auto;
@@ -3302,21 +3312,36 @@
 		}
 
 /* Banner */
+
+		.bannerImg {
+			padding: 0;
+			background-color: #2056ac;
+			
+		}
+
 		.bannerImg img{
 			width: 100%;
 			height: 250px;
+			margin: 0;
 		}
 
+		.bannerImg {
+			width: 85%;
+		}
 
 		#banner {
-		    background-color: #2056ac;
+		    background-color: #3648b9;
 		    background-size: cover; /* 배경 이미지를 뷰포트에 맞게 확대/축소합니다. */
 		    background-repeat: no-repeat; /* 배경 이미지 반복을 중지합니다. */
 		    background-position: center center; /* 이미지 중앙 정렬 */
 		    color: rgba(255, 255, 255, 0.75);
 		    text-align: center;
 		    cursor: default;
-		    padding: 10em 4em 9em 4em;
+		    padding: 5em 4em 9em 4em;
+		}
+
+		#banner button {
+			margin: 20px 0;
 		}
 
 		#banner input, #banner select, #banner textarea {

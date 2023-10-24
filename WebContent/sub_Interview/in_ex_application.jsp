@@ -9,32 +9,45 @@
 <%@ page import="DAO.CompanyDAO" %>
 <%@ page import="VO.CompanyVO" %>
 
+ <%
+// 로그인한 사용자의 이메일을 세션에서 가져옵니다.
+String userEmail = (String) session.getAttribute("loginUser");
+  String path = request.getContextPath();
+
+// AttendeeDAO를 사용하여 참가자 정보를 가져옵니다.
+AttendeeDAO attendeeDAO = new AttendeeDAO();
+AttendeeVO attendee = attendeeDAO.getAttendeeByEmail(userEmail);
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="robots"
+	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="<%=path%>/sub_Event/assets/css/main.css">
+
     <title>로그인 회원 개인 온라인 면접 신청</title>
 </head>
 <body>
-    <h1>온라인 면접 신청</h1>
+<jsp:include page="../sub_Event/subTop.jsp" />
+<section id="main">
+		<div class="inner">
 
-    <%
-    // 로그인한 사용자의 이메일을 세션에서 가져옵니다.
-    String userEmail = (String) session.getAttribute("loginUser");
-    
-    // AttendeeDAO를 사용하여 참가자 정보를 가져옵니다.
-    AttendeeDAO attendeeDAO = new AttendeeDAO();
-    AttendeeVO attendee = attendeeDAO.getAttendeeByEmail(userEmail);
-    %>
+    <h1 align="center">온라인 면접 신청</h1>
 
-    <h2>참가자명: <%= attendee.getAtndName() %></h2>
-    <p>이메일: <%= attendee.getEmail() %></p>
-    <p>박람회 ID: <%= attendee.getExpoID() %></p>
+ 
+
+<p>참가자명: <%= attendee.getAtndName() %></p>
+<p>이메일: <%= attendee.getEmail() %></p>
+
 
 	<!-- 아래 IntvwApplicant 테이블 저장 -->
     
     <form action="/ChuiUpExpo/In_Controller3" method="post">
     <input type="hidden" name="action" value="add_in_ex">
+    <input type="hidden" name="userEmail" value="<%= userEmail %>">
  
         <label for="coName">면접 기업:</label>
 		<select name="coName1">
@@ -57,6 +70,18 @@
        <br><br>
         <input type="submit" value="신청">
     </form>
+    </div>
+	</section>
+	<footer id="footer">
+	<ul class="icons">
+			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+		</ul>
+	</footer>
+	<div class="copyright">
+		Made with: <a href="https://templated.co/">Templated.co</a>
+	</div>
     
 </body>
 </html>

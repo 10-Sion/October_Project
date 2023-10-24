@@ -27,7 +27,7 @@
 		<input type="time" id="intvwTime" name="intvwTime" step="60" required><br><br>
 
         
-        <input type="submit" value="추가">
+        <input type="submit" value="추가" onclick="showMsg(true)">
     </form>
 
     <!-- 오류 메시지 표시 -->
@@ -36,15 +36,28 @@
     </c:if>
 		</div>
 	</section>
-	<footer id="footer">
-	<ul class="icons">
-			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-			<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-		</ul>
-	</footer>
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://twitter.com/jjencshk" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="https://www.facebook.com/yeilit/?locale=ko_KR" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="https://www.instagram.com/b.yeil_official/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        </ul>
+    </footer>
 	<div class="copyright">
 		Made with: <a href="https://templated.co/">Templated.co</a>
 	</div>
+	
+	<script type="text/javascript">
+	function showMsg(success) {
+        if (success) {
+            alert("신청이 완료되었습니다");
+        } else {
+            alert("신청을 실패하였습니다");
+        }
+     // 페이지 리로드
+        location.reload();
+    }
+	</script>
+	
 </body>
 </html>

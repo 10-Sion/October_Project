@@ -62,7 +62,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<%=contextPath %>/sub_Event/assets/css/main.css">
 <body>	
-	<jsp:include page="/sub_Event/subTop.jsp"/>
+	
+	<section id="main">
+		<div class="inner">
 	<section id="main">
 		<div class="inner">
 			<div class="image fit">
@@ -162,11 +164,11 @@
 	</table>
 	</div>
 		<ul class="icons">
-			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-			<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-		</ul>
-	</footer>
+            <li><a href="https://twitter.com/jjencshk" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="https://www.facebook.com/yeilit/?locale=ko_KR" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="https://www.instagram.com/b.yeil_official/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        </ul>
+    </footer>
 	<div class="copyright">
 		Made with: <a href="https://templated.co/">Templated.co</a>
 	</div>
