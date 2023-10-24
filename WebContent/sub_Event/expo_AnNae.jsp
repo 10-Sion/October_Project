@@ -182,6 +182,6 @@
     </footer>
 
 
-	<script src="assets/js/mainSc.js"></script>
+	<script src="<%=path%>/sub_Event/assets/js/mainSc.js"></script>
 </body>
 </html>
