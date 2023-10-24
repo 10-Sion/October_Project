@@ -8,6 +8,8 @@
 </head>
 <body>
     <h1>Edit Company</h1>
+    <section id="main">
+		<div class="inner">
     <form action="EventController" method="post">
         <input type="hidden" name="action" value="saveCompanyChanges">
         <input type="hidden" name="coID" value="${company.coID}">
@@ -34,5 +36,14 @@
     
     <a href="your_original_company_list.jsp">Back to Company List</a>
     <!-- Add any additional content or styling here -->
+    </div>
+	</section>
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://twitter.com/jjencshk" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="https://www.facebook.com/yeilit/?locale=ko_KR" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="https://www.instagram.com/b.yeil_official/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        </ul>
+    </footer>
 </body>
 </html>
