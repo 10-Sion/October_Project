@@ -2,13 +2,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%String sessionUser = (String) session.getAttribute("loginUser"); %>
+<%String sessionUser = (String) session.getAttribute("loginUser"); 
+String path = request.getContextPath();
+%>
     <meta charset="UTF-8">
+    <meta name="robots"
+	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="<%=path%>/sub_Event/assets/css/main.css">
+
     <title>신청 정보 수정</title>
 </head>
 <body>
 <jsp:include page="../sub_Event/subTop.jsp"/>
-<h1>일반 면접 신청 정보 수정</h1>
+<section id="main">
+		<div class="inner">
+<h1 align="center">일반 면접 신청 정보 수정</h1>
 
 <%-- 신청 정보를 수정하기 위한 폼 --%>
 <form action="<%= request.getContextPath() %>/In_Controller3" method="post">
@@ -26,6 +35,18 @@
 
     <button type="submit">수정</button>
 </form>
+</div>
+	</section>
+	<footer id="footer">
+	<ul class="icons">
+			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+		</ul>
+	</footer>
+	<div class="copyright">
+		Made with: <a href="https://templated.co/">Templated.co</a>
+	</div>
 
 <%-- 기타 내용 추가 가능 --%>
 
