@@ -18,6 +18,46 @@
 		font: inherit;
 		vertical-align: baseline;
 	}
+    .left_gwan {
+    	padding-top: 4%;
+        float: left;
+        width: 50%;
+       	height: 100%;
+       	background-size: cover;
+    }
+	.left_gwan h1 {
+		padding-left: 10%;
+	}
+
+    .right_gwan {
+    	padding: 13% 0 0 11%;
+        float: right;
+        width: 50%;
+        height: 100%;
+        background-image: url("../../images/gwanBack.jpeg");
+        background-size: cover;
+    }	
+.images {
+	display: flex;
+	flex-direction: row;
+}	
+.images h1 {
+	position: absolute;
+	left: 850px;
+	top: 430px;
+}
+
+.inner button {
+	position: absolute;
+	top: 100px;
+	
+}
+#showAttendeeForm {
+	left : 50px;
+}
+#showCompanyForm {
+	left : 200px;
+}
 	
 .chamImg {
 	padding-bottom: 5%;
@@ -26,6 +66,10 @@
 .beachido img{	
 
 	margin-left: 20%;
+}
+
+.inner buttom {
+	padding-bottom: 300px;
 }
 	
 .image.fit img {

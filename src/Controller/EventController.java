@@ -46,7 +46,7 @@ public class EventController extends HttpServlet {
             AttendeeDAO attendeeDAO = new AttendeeDAO();
             attendeeDAO.addAttendee(attendee);
 
-            response.sendRedirect(contextPath +"/sub_Event/expo_SaJeon.jsp");
+            response.sendRedirect(contextPath +"/sub_Event/expo_SaJeonApply.jsp");
             
         } else if (action.equals("attendeeList")) {
             // 모든 Attendee 정보 가져오기
@@ -87,7 +87,7 @@ public class EventController extends HttpServlet {
             companyDAO.addCompany(company);
             
 
-            response.sendRedirect("/ChuiUpExpo/sub_Event/expo_SaJeon.jsp");
+            response.sendRedirect("/ChuiUpExpo/sub_Event/expo_SaJeonApply.jsp");
             
         } else if (action.equals("companyList")) {
             // 모든 기업 정보 가져오기 (status가 1이 아닌 모든 기업)

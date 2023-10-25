@@ -106,7 +106,7 @@ if (retryMessage !== null && retryMessage !== "") {
         	<input type="radio" name="type" value="Comp">
         </div>
         이메일 : <input type="text" name="email"><br>
-        비밀번호 : <input type="text" name="pwd"><br>
+        비밀번호 : <input type="password" name="pwd"><br>
         <input type="button" value="로그인" onclick="validateForm()">
         <input type="button" value="돌아가기" onclick="goToIndexPage()">
     </form>
