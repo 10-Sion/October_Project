@@ -33,7 +33,8 @@
         
         <nav>
         	<% if (sessionUser != null && !sessionUser.isEmpty()) { %>
-                <a href="<%=contextPath %>/login/logOutFrom.do" ><strong><%=sessionUser %> 님 로그인 중</strong></a>
+        		<strong><%=sessionUser %> 님 로그인 중</strong>
+                <a href="<%=contextPath %>/login/logOutFrom.do" >로그아웃</a>
             <% } else { %>
                 <a href="<%=contextPath %>/login/loginFrom.do" >로그인</a>
             <% } %>
