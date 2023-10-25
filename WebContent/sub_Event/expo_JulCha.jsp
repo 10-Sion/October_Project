@@ -18,7 +18,7 @@
 		<div class="inner">
 			<div class="image fit">
 				<img class="chamImg" src="<%=path%>/sub_Event/images/cham1.png" alt="">
-				<img class="chamImg" src="<%=path%>/sub_Event/images/cham2.png" alt="">
+				<img class="chamImg" src="<%=path%>/sub_Event/images/julcha.png" alt="">
 			</div>
 	 <div style="margin-bottom: 15px;"></div>	</div>
 	</section>

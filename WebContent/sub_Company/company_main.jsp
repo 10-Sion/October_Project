@@ -62,9 +62,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<%=contextPath %>/sub_Event/assets/css/main.css">
 <body>	
-	
-	<section id="main">
-		<div class="inner">
+	<jsp:include page="/sub_Event/subTop.jsp"/>
 	<section id="main">
 		<div class="inner">
 			<div class="image fit">

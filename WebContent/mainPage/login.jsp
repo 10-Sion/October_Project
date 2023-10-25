@@ -49,10 +49,10 @@
 	                        	    name: JSON.stringify(kakao_account.profile.nickname)},
 	                        dataType:"text",
 	                        success: function(response) {
-	                            // 없어도됌
 	                            console.log(response);
 	                            if(response == "1"){
 	                            	location.href="<%=contextPath%>/sub_Event/expo_AnNae.jsp";
+	                            	
 	                            } else {
 	                            	alert("사전 등록을 먼저 해주세요.");
 	                            	location.href="<%=contextPath%>/sub_Event/expo_SaJeonApply.jsp";
@@ -93,16 +93,16 @@ if (retryMessage !== null && retryMessage !== "") {
 }
 </script>
 </head>
+<jsp:include page="/sub_Event/subTop.jsp" />
 <section id="main">
 		<div class="inner">
-<body>
-	<jsp:include page="/sub_Event/subTop.jsp" />
+<body>	
     <form name="loginForm" action="<%=contextPath %>/login/login.do" method="post"  align="lift">
         <h3>개인 및 기업 로그인</h3>
         <div>
         	<label>개인</label>
         	<input type="radio" name="type" value="Atnd"> <br>
-        	<label>기업</label>
+        	<label>기업 & 관리자</label>
         	<input type="radio" name="type" value="Comp">
         </div>
         이메일 : <input type="text" name="email"><br>
@@ -113,7 +113,8 @@ if (retryMessage !== null && retryMessage !== "") {
     <div>
     	<a href="javascript:kakaoLogin();"><img src="<%=contextPath%>/image/kakao_login_medium.png"></a>
     </div>
+    </body>
     </div>
 	</section>
-</body>
+
 </html>
