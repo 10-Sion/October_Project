@@ -47,7 +47,11 @@
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_AnNae.jsp">메인</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_Info.jsp">박람회 개요</a></li>
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_JulCha.jsp">참여 절차</a></li>
-            <li><a href="<%= request.getContextPath() %>/sub_Event/expo_SaJeonApply.jsp">사전 등록</a></li>
+       
+       <% if (!"관리자".equals(rolename)) { %>
+        <li><a href="<%= request.getContextPath() %>/sub_Event/expo_SaJeonApply.jsp">사전 등록</a></li>
+    <% } %>
+       
             <li><a href="<%= request.getContextPath() %>/sub_Event/expo_JiDo.jsp">찾아오시는 길</a></li>
             <% if(  "참가자".equals(rolename)){%>
 			<li><a href="<%= request.getContextPath() %>/Ann/Check.do">참가정보 수정</a></li>			
@@ -58,16 +62,15 @@
             <li><a href="<%=request.getContextPath()%>/Company/list.do">참여기업</a></li>
             <li><a href="<%=request.getContextPath()%>/Ann/list.do">공지사항</a></li>
            
-           <% if (sessionUser != null && !sessionUser.isEmpty()) { %>
-   		 <!-- 로그인한 사용자의 메뉴 항목 -->
-   		 <li><a href="<%= request.getContextPath() %>/sub_Interview/in_ex_application.jsp">개인 온라인 면접 신청</a></li>
-		<% } else { %>
-    	<!-- 로그인하지 않은 사용자의 메뉴 항목 -->
-    	<li><a href="<%= request.getContextPath() %>/sub_Interview/in_application.jsp">개인 온라인 면접 신청</a></li>
-		<% } %>
-           
-			
+           <% if (!"관리자".equals(rolename)) { %>
+            <!-- 사용자가 관리자가 아닌 경우에만 이러한 메뉴 항목을 표시합니다 -->
+            <% if (sessionUser != null && !sessionUser.isEmpty()) { %>
+                <li><a href="<%= request.getContextPath() %>/sub_Interview/in_ex_application.jsp">개인 온라인 면접 신청</a></li>
+            <% } else { %>
+                <li><a href="<%= request.getContextPath() %>/sub_Interview/in_application.jsp">개인 온라인 면접 신청</a></li>
+            <% } %>
             <li><a href="<%= request.getContextPath() %>/sub_Interview/in_schedule.jsp">기업 면접 공고 신청</a></li>
+        <% } %>
             
             <% if (rolename != null && rolename == "관리자"){%>
 			<li><a href="<%= request.getContextPath() %>/sub_Event/gwanlee_Index.jsp">참가자 관리</a></li>						
