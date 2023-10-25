@@ -10,11 +10,12 @@
 	<section id="main">
 		<div class="inner">
 	<form action ="${Path}/Ann/CheckPro.do" method="post">
-   	<table>
-   		<tr>
-   			<td>비밀번호 입력<input type = "password" name="Passwd"></td>
-   		</tr>	
-	</table>
+	   	<table>
+	   		<tr>
+	   			<td>비밀번호 입력<input type = "password" name="Passwd"></td>
+	   		</tr>
+		</table>	
+		<p></p>
 		<button type="submit" >입력하기</button>
 	</form>
 	 </div>

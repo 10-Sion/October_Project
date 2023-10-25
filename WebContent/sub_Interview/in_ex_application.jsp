@@ -1,3 +1,4 @@
+<%@page import="VO.In_ScheduleVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="VO.AttendeeVO" %>
@@ -55,20 +56,21 @@ AttendeeVO attendee = attendeeDAO.getAttendeeByEmail(userEmail);
 		
 		    <%
 		    CompanyDAO companyDAO = new CompanyDAO();
-		    List<CompanyVO> companyList = companyDAO.getAllCompanies();
+		    List<In_ScheduleVO> companyList = companyDAO.getAllIntvwSched();
 		    
-		    for (CompanyVO company : companyList) {
+		    for (In_ScheduleVO company : companyList) {
+		    	int coid = company.getCoID();
+		    	String name = companyDAO.getCoName(coid);
 		    %>
-		    
 		    <!-- 사용자는 기업명을 선택하고, 값을 선택하면 해당 기업의 ID값을 받아 옴 -->
-		        <option value="<%= company.getCoName() %>"><%= company.getCoName() %></option>
+		        <option value="<%=name%>">&nbsp;<%=name%>&nbsp;<%=company.getIntvwDate()%>일&nbsp;<%=company.getIntvwTime()%>&nbsp;면접</option>
 		    <%
 		    }
 		    %>
 		</select> 
 
        <br><br>
-        <input type="submit" value="신청" onclick="showMsg(true)">
+        <button type="submit">신청</button>
     </form>
     </div>
 	</section>
