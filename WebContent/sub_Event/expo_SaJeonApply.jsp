@@ -15,7 +15,7 @@
     <jsp:include page="subTop.jsp"/>
     
     <section id="main">
-		<div class="inner">
+		<div class="inner apply">
 		
     <button id="showAttendeeForm">개인</button>
 	<button id="showCompanyForm">기업</button>
