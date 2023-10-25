@@ -17,11 +17,6 @@
 	<section id="main">
 		<div class="inner">
 		
-		<div class="beachido">
-			<h1>부스 배치도</h1>
-			<img src="<%= path %>/sub_Event/images/Jido1.png">
-		</div>
-		
 		<div class="maps">
 		<h1>행사 장소</h1>
 		<h3>부산광역시 부산진구 중앙대로 631</h3>
