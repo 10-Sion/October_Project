@@ -68,7 +68,7 @@ AttendeeVO attendee = attendeeDAO.getAttendeeByEmail(userEmail);
 		</select> 
 
        <br><br>
-        <input type="submit" value="신청">
+        <input type="submit" value="신청" onclick="showMsg(true)">
     </form>
     </div>
 	</section>
@@ -82,6 +82,18 @@ AttendeeVO attendee = attendeeDAO.getAttendeeByEmail(userEmail);
 	<div class="copyright">
 		Made with: <a href="https://templated.co/">Templated.co</a>
 	</div>
+    
+  <script type="text/javascript">
+	function showMsg(success) {
+        if (success) {
+            alert("신청이 완료되었습니다");
+        } else {
+            alert("신청을 실패하였습니다");
+        }
+     // 페이지 리로드
+        location.reload();
+    }
+	</script>
     
 </body>
 </html>
