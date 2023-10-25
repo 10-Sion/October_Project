@@ -63,7 +63,7 @@ AttendeeVO attendee = attendeeDAO.getAttendeeByEmail(userEmail);
 		    	String name = companyDAO.getCoName(coid);
 		    %>
 		    <!-- 사용자는 기업명을 선택하고, 값을 선택하면 해당 기업의 ID값을 받아 옴 -->
-		        <option value="<%=name%>"><%=name%></option>
+		        <option value="<%=name%>">&nbsp;<%=name%>&nbsp;<%=company.getIntvwDate()%>일&nbsp;<%=company.getIntvwTime()%>&nbsp;면접</option>
 		    <%
 		    }
 		    %>
