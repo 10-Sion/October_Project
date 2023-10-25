@@ -49,10 +49,10 @@
 	                        	    name: JSON.stringify(kakao_account.profile.nickname)},
 	                        dataType:"text",
 	                        success: function(response) {
-	                            // 없어도됌
 	                            console.log(response);
 	                            if(response == "1"){
 	                            	location.href="<%=contextPath%>/sub_Event/expo_AnNae.jsp";
+	                            	
 	                            } else {
 	                            	alert("사전 등록을 먼저 해주세요.");
 	                            	location.href="<%=contextPath%>/sub_Event/expo_SaJeonApply.jsp";

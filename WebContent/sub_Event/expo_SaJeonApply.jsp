@@ -17,8 +17,8 @@
     <section id="main">
 		<div class="inner apply">
 		
-    <button id="showAttendeeForm">Attendee</button>
-	<button id="showCompanyForm">Company</button>
+    <button id="showAttendeeForm">개인</button>
+	<button id="showCompanyForm">기업</button>
     
     <div class="images">
     <img src="images/apply.jpeg">
@@ -28,20 +28,20 @@
     <!-- 일반 참가자 입력 폼 -->
     <div id="attendeeForm" style="display: none;">
     <form action="/ChuiUpExpo/Event?action=addAttendee" method="post">
-    <h1>Add Attendee</h1>
+    <h1>박람회 신청</h1>
     
-        <label for="atndName">Attendee Name:</label>
+        <label for="atndName">참가자명:</label>
         <input type="text" id="atndName" name="atndName" required><br><br>
         
-        <label for="email">Email:</label>
+        <label for="email">이메일:</label>
         <input type="email" id="email" name="email" required><br><br>
         
-        <label for="passwd">Password:</label>
+        <label for="passwd">비밀번호:</label>
         <input type="password" id="passwd" name="passwd" required><br><br>
         
-        <label for="expoID">Select Expo:</label><br>
+        <label for="expoID">박람회 선택:</label><br>
         <select name="expoID">
-            <option value="" disabled selected>Select an Expo</option>
+            <option value="" disabled selected>선택하세요.</option>
             <%
                 ExpoInfoDAO expoInfoDAO = new ExpoInfoDAO();
                 List<ExpoInfoVO> expoInfoList = expoInfoDAO.getAllExpos();
@@ -55,7 +55,7 @@
         
         <br><br>
         
-        <input type="submit" value="Add Attendee">
+        <input type="submit" value="신청">
         
     </form>
     </div>
@@ -64,24 +64,24 @@
     <!-- 기업 정보 입력 폼 -->
     <div id="companyForm" style="display: none;">
     <form action="/ChuiUpExpo/Event?action=addCompany" method="post">
-    <h1>Add Company</h1>
+    <h1>박람회 신청</h1>
     
-        <label for="coName">Company Name:</label>
+        <label for="coName">기업명:</label>
         <input type="text" id="coName" name="coName" required><br><br>
         
-        <label for="coDetails">Company Details:</label>
+        <label for="coDetails">기업 상세정보:</label>
         <input type="text" id="coDetails" name="coDetails" required><br><br>
         
-        <label for="coTel">Company Tel:</label>
+        <label for="coTel">기업 전화번호:</label>
         <input type="text" id="co_tel" name="co_tel" required><br><br>
         
-        <label for="coNumber">Company Number:</label>
+        <label for="coNumber">기업 사업자번호:</label>
         <input type="text" id="co_number" name="co_number" required><br><br>
         
-        <label for="email">Email:</label>
+        <label for="email">기업 이메일:</label>
         <input type="email" id="email" name="email" required><br><br>
         
-        <label for="passwd">Password:</label>
+        <label for="passwd">비밀번호:</label>
         <input type="password" id="passwd" name="passwd" required><br><br>
         
         <% 
@@ -121,9 +121,9 @@
 		    }
 		%>
 
-        <label for="expoID">Select Expo:</label><br>
+        <label for="expoID">박람회 선택:</label><br>
 		<select name="expoID" id="expoSelect">
-		    <option value="" disabled selected>Select an Expo</option>
+		    <option value="" disabled selected>선택하세요.</option>
 		    <%
 		        for (ExpoInfoVO expo : expoInfoList) {
 		    %>
@@ -133,7 +133,7 @@
 		    %>
 		</select>
 
-    	<input type="submit" value="Add Company">
+    	<input type="submit" value="신청">
     </form>
     </div>
     </div>

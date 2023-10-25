@@ -17,11 +17,9 @@ String path = request.getContextPath();
 <jsp:include page="../sub_Event/subTop.jsp"/>
 <section id="main">
 		<div class="inner">
-<<<<<<< HEAD
-<h1>일반 면접 신청 정보 수정</h1>
-=======
+
 <h1 align="center">일반 면접 신청 정보 수정</h1>
->>>>>>> e27c777474d9ddc90e0c922446635b5b6e14e7ff
+
 
 <%-- 신청 정보를 수정하기 위한 폼 --%>
 <form action="<%= request.getContextPath() %>/In_Controller3" method="post">
