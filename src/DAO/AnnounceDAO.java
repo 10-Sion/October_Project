@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import VO.AnnounceVO;
+import VO.EventVO;
 
 public  class AnnounceDAO implements AnnounceInterface{
 	
@@ -88,4 +89,36 @@ public  class AnnounceDAO implements AnnounceInterface{
 	              e.printStackTrace();
 	          }
 	    }
+
+
+
+
+		public List getEventList() {
+			List list = new ArrayList();
+			try {
+	        	  String sql = "select * from Event"; 
+	        	  
+	        	  PreparedStatement pstmt = connection.prepareStatement(sql);
+	  			
+	  			ResultSet rs = pstmt.executeQuery();
+	        	  
+	        	while(rs.next()) {
+	        		EventVO vo = new EventVO();
+	        		vo.setEve_no(rs.getInt("eve_no"));
+	        		vo.setEve_Name(rs.getString("eve_Name"));
+	        		vo.setEve_manager(rs.getString("eve_manager"));
+	        		vo.setEve_Sch(rs.getDate("eve_Sch"));
+	        		vo.setEve_Cate(rs.getString("eve_Cate"));
+	        		vo.setExpoid(rs.getInt("expoid"));
+	        		
+	        		list.add(vo);	
+	        		
+	        	}
+	        	  
+	          } catch (Exception e) {
+	              e.printStackTrace();
+	          }
+			return list;
+		}
+		
 }

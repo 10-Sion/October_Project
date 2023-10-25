@@ -391,8 +391,42 @@ public class CompanyDAO {
             return false;
         }
     }
-
-
+    public List<In_ScheduleVO> getAllIntvwSched() {
+        List<In_ScheduleVO> companies = new ArrayList<>();
+        String sql = "select * from IntvwSched";
+        
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet rs = preparedStatement.executeQuery()) {
+            while (rs.next()) {
+            	In_ScheduleVO company = new In_ScheduleVO();
+                company.setSchID(rs.getInt("schID"));
+                company.setIntvwDate(rs.getDate("intvwDate"));
+                company.setIntvwTime(rs.getTime("intvwTime"));
+                company.setCoID(rs.getInt("coID"));
+                company.setStatus(rs.getInt("status"));
+                
+                companies.add(company);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return companies;
+    }
+    public String getCoName(int Coid) {
+        String sql = "SELECT CoName FROM Company where CoId = " + Coid;
+        String CoName = "";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+            	CoName = resultSet.getString("coName");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return CoName;
+    }
 
     
 

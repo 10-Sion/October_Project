@@ -44,4 +44,8 @@ public class AnnounceService {
 	public boolean CheckPass(String passwd, String loginEmail) {
 		return atndDao.CheckPass(passwd, loginEmail);
 	}
+
+	public List EventList() {
+		return announceDao.getEventList();
+	}
 }

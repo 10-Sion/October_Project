@@ -198,6 +198,13 @@ public class AnnounceController extends HttpServlet {
 			}
 			
 			
+		}else if(action.equals("/Eventlist.do")) {
+			
+			List list = new ArrayList();
+			list = announceService.EventList();
+			request.setAttribute("Event", list);
+			nextPage = "/sub_Event/expo_Eventlist.jsp";
+			
 		}
 		
 		System.out.println("반환 되는 주소 : " + nextPage);

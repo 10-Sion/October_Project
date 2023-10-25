@@ -1,24 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8">
-<meta name="robots"
+<head>
+<%String sessionUser = (String) session.getAttribute("loginUser"); 
+String path = request.getContextPath();
+%>
+    <meta charset="UTF-8">
+     <meta name="robots"
 	content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<%=path%>/sub_Event/assets/css/main.css">
 
-<body>			
-	<jsp:include page="../sub_Event/subTop.jsp"/>
-	<section id="main">
+    <title>기업 면접 일정 수정</title>
+</head>
+<body>
+<jsp:include page="../sub_Event/subTop.jsp"/>
+<section id="main">
 		<div class="inner">
-	 <div style="margin-bottom: 15px;"></div>
-	<img src="<%=path%>/sub_Event/images/Yeil.png" alt="" data-position="center" width="1000" height="1100" margin-bottom= "20px">
-	</div>
-	<jsp:include page="/sub_Event/Exo_Sch.jsp"/>
+
+<h1 align="center">기업 면접 일정 수정</h1>
+
+
+<%-- 면접 일정을 수정하기 위한 폼 --%>
+<form action="<%= request.getContextPath() %>/In_Controller3" method="post">
+    <input type="hidden" name="action" value="updateSchedule">
+    <input type="hidden" name="schID" value="${schedule.schID}">
+
+    <label for="intvwDate">면접 날짜:</label>
+    <input type="date" id="intvwDate" name="intvwDate" value="${schedule.intvwDate}"><br>
+
+    <label for="intvwTime">면접 시간:</label>
+    <input type="time" id="intvwTime" name="intvwTime" value="${schedule.intvwTime}"><br>
+    
+    <label for="status">신청 상태:</label>
+    <input type="text" id="status" name="status" value="${schedule.status}"><br>
+    
+
+    <label for="coID">기업 참가번호:</label>
+    <input type="text" id="coID" name="coID" value="${schedule.coID}" readonly><br>
+
+    <button type="submit">수정</button>
+</form>
+</div>
 	</section>
     <footer id="footer">
         <ul class="icons">
@@ -30,6 +53,5 @@
 	<div class="copyright">
 		Made with: <a href="https://templated.co/">Templated.co</a>
 	</div>
-
 </body>
 </html>
