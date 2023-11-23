@@ -1,3 +1,5 @@
+<img width="1000" alt="image" src="https://github.com/10-Sion/October_Project/assets/66767165/b73a22bf-52f6-48ae-8ee3-fcfcfe18e521">
+
 <div align="center">
 <h1>[2023] 취업박람회 홈페이지 </h1>
 개인 및 기업 참가자의 관리와 <br> 면접 일정을 조율할 수 있는 온라인 박람회 페이지
